@@ -1,8 +1,8 @@
 <template>
-  <div id="app">
+  <div style="background-color:#383B43; height: 100vh" id="app">
     <div id="nav">
     </div>
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
