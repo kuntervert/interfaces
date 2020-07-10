@@ -1,5 +1,6 @@
 <template>
   <v-container>
+    <Terms v-if="termsDialog" @agreed="termsDialog = false; checkbox1 = true" />
     <v-row class="mainRow">
       <v-card v-bind:class="{'loginCard': login===true,  'loginCardNone': login === false}">
         <v-btn @click="tryLogin()" v-if="signup" outlined x-large class="changeScreenButton">Login</v-btn>
@@ -67,6 +68,14 @@
             placeholder="Company name (optional)"
           ></v-text-field>
         </v-row>
+        <v-row class="termsRow">
+          <v-checkbox style="padding: 0; margin: 0;" disabled v-model="checkbox1"></v-checkbox>
+          <p
+            style="color: white; margin-left: 5%;"
+            role="button"
+            @click="termsDialog=true"
+          >I agree to the terms and conditions</p>
+        </v-row>
         <v-row class="signupButtonRow">
           <v-btn tile class="loginButton" outlined>Sign up</v-btn>
         </v-row>
@@ -76,12 +85,18 @@
 </template>
 
 <script>
+import Terms from "@/components/Terms";
 export default {
   name: "Registration",
+  components: {
+    Terms
+  },
 
   data: () => ({
     login: false,
-    signup: true
+    checkbox1: false,
+    signup: true,
+    termsDialog: false
   }),
   methods: {
     trySignup() {
@@ -97,23 +112,34 @@ export default {
 </script>
 
 <style lang="scss">
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.8;
+  }
+}
 .mainRow {
   background-position: center;
   background-size: 80% 100%;
   background-repeat: no-repeat;
-  background-image: url("https://i.gyazo.com/37c875e1ec466cbc5b67a18f0e16a383.jpg");
+  background-image: url("https://i.gyazo.com/d650150598e216eeed3bf644c868a8ab.png");
   margin-top: 0%;
   justify-content: center;
 }
 .loginCard {
   background-color: #4e65df !important;
-  opacity: 0.9;
+  opacity: 0.8;
   width: 40%;
+  animation: fadein 1s;
+  border-radius: 0 !important;
 }
 .loginCardNone {
   background-color: #4e65df !important;
-  opacity: 0.9;
+  opacity: 0.8;
   width: 40%;
+  border-radius: 0 !important;
   div {
     display: none;
   }
@@ -131,11 +157,16 @@ export default {
   padding-left: 25%;
   padding-right: 18%;
 }
+.termsRow {
+  padding-left: 25%;
+  padding-right: 18%;
+  padding-top: 2%;
+}
 .buttonsRow {
   padding-left: 25%;
   padding-right: 0%;
   padding-top: 5%;
-  padding-bottom: 15%;
+  padding-bottom: 20%;
 }
 .changeScreenButton {
   border-radius: 50%;
@@ -144,13 +175,13 @@ export default {
   height: 20% !important;
   width: 30% !important;
   left: 0%;
-  margin-top: 40% !important;
+  margin-top: 50% !important;
   font-size: 0.8vw;
   transition: width 2s, height 2s;
 }
 .changeScreenButton:hover {
-  height: 30% !important;
-  width: 40% !important;
+  height: 25% !important;
+  width: 35% !important;
 }
 .loginButton {
   border-width: 2px;
@@ -176,7 +207,7 @@ export default {
 .socialButtonsRow {
   padding-left: 25%;
   padding-right: 0%;
-  padding-top: 5%;
+  padding-top: 8%;
   padding-bottom: 20%;
 }
 .googleButton {
@@ -200,12 +231,15 @@ export default {
 .signupCard {
   background-color: rgb(111, 93, 173) !important;
   width: 40%;
-  opacity: 0.9;
+  opacity: 0.8;
+  animation: fadein 1s;
+  border-radius: 0 !important;
 }
 .signupCardNone {
   background-color: rgb(111, 93, 173) !important;
   width: 40%;
-  opacity: 0.9;
+  opacity: 0.8;
+  border-radius: 0 !important;
   div {
     display: none;
   }
@@ -215,6 +249,9 @@ export default {
   padding-right: 0%;
   padding-top: 5%;
   padding-bottom: 20%;
+}
+.v-label.theme--light {
+  left: 5% !important;
 }
 #input-10 {
   margin-left: 4%;
