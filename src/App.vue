@@ -1,7 +1,6 @@
 <template>
-  <div style="background-color:#383B43; height: 100vh" id="app">
-    <div id="nav">
-    </div>
+  <div style="background-color:#c4c4c4; height: 100vh" id="app">
+    <div id="nav"></div>
     <router-view />
   </div>
 </template>
