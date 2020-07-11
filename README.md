@@ -1,4 +1,4 @@
-# hello-world
+# Different UI templates
 
 ## Project setup
 ```
