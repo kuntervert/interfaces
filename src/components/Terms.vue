@@ -155,7 +155,7 @@ export default {
   box-shadow: -5px 31px 64px -27px rgba(74, 74, 74, 1) !important;
   animation: fadein 1s;
   .agreeBtn {
-    color: green;
+    color: #3541ad;
     font-size: calc(0.5em + 0.8vmin) !important;
     max-width: 90%;
   }

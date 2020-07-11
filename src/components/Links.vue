@@ -1,9 +1,11 @@
 <template>
   <v-container>
     <v-row class="linksRow">
-      <!-- <router-link to="/register">Login / Register</router-link>Live previews for -->
       <a class="loginView" href="http://localhost:8080/#/register">Login & Signup</a>
       <img class="loginImg" src="https://i.gyazo.com/948faaaa0ab14d47509e9c702b4e17d2.png" />
+      <div style="width: 2%;" />
+      <a class="termsView" href="http://localhost:8080/#/terms">Terms & Conditions</a>
+      <img class="termsImg" src="https://i.gyazo.com/d6e1375e75dd24dda5b64b400de155e3.png" />
     </v-row>
     <v-row></v-row>
   </v-container>
@@ -23,9 +25,21 @@ export default {
 .loginImg {
   display: none;
 }
-a.loginView:hover + .loginImg {
-  display: block;
+.loginView:hover + .loginImg {
+  display: flex;
   position: fixed;
+  top: 30%;
+  max-height: 50%;
+  bottom: 10%;
+}
+.termsImg {
+  display: none;
+}
+a.termsView:hover + .termsImg {
+  display: flex;
+  position: fixed;
+  top: 30%;
+  max-height: 50%;
   bottom: 10%;
 }
 </style>
