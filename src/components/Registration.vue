@@ -70,11 +70,7 @@
         </v-row>
         <v-row class="termsRow">
           <v-checkbox style="padding: 0; margin: 0;" disabled v-model="checkbox1"></v-checkbox>
-          <p
-            style="color: white; margin-left: 5%; font-size: calc(0.5em + 0.8vmin); width: 75%; text-align: left; padding-top: 0.5%;"
-            role="button"
-            @click="termsDialog=true"
-          >I agree to the terms and conditions</p>
+          <p role="button" @click="termsDialog=true">I agree to the terms and conditions</p>
         </v-row>
         <v-row class="signupButtonRow">
           <v-btn tile class="loginButton" outlined>Sign up</v-btn>
@@ -161,6 +157,14 @@ export default {
   padding-left: 25%;
   padding-right: 18%;
   padding-top: 2%;
+  p {
+    color: white;
+    margin-left: 5%;
+    font-size: calc(0.5em + 0.8vmin);
+    width: 75%;
+    text-align: left;
+    padding-top: 0.5%;
+  }
 }
 .buttonsRow {
   padding-left: 25%;
