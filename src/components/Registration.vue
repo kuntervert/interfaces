@@ -20,7 +20,7 @@
         </v-row>
         <v-row class="buttonsRow">
           <v-btn tile class="loginButton" outlined>Login</v-btn>
-          <v-btn outlined depressed class="forgotButton">Forgot password?</v-btn>
+          <p role="button" class="forgotButton">Forgot password?</p>
         </v-row>
         <v-row class="socialRow">
           <h4
@@ -71,7 +71,7 @@
         <v-row class="termsRow">
           <v-checkbox style="padding: 0; margin: 0;" disabled v-model="checkbox1"></v-checkbox>
           <p
-            style="color: white; margin-left: 5%;"
+            style="color: white; margin-left: 5%; font-size: calc(0.5em + 0.8vmin); width: 75%; text-align: left; padding-top: 0.5%;"
             role="button"
             @click="termsDialog=true"
           >I agree to the terms and conditions</p>
@@ -195,11 +195,9 @@ export default {
 .forgotButton {
   color: white !important;
   opacity: 0.5;
-  border: none;
   width: 30%;
-  height: 3rem !important;
-  font-size: 0.8vw;
-  text-transform: none;
+  font-size: calc(0.5em + 0.8vmin) !important;
+  padding-top: 2%;
 }
 .socialRow {
   padding-left: 25%;

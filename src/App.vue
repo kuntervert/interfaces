@@ -1,5 +1,5 @@
 <template>
-  <div style="background-color:#c4c4c4; height: 100vh" id="app">
+  <div style="background-color:#c4c4c4; height: 100vh;  overflow-y: auto;" id="app">
     <div id="nav"></div>
     <router-view />
   </div>
@@ -12,6 +12,16 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+#app {
+  overflow-y: scroll;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+#app::-webkit-scrollbar {
+  /* WebKit */
+  width: 0;
+  height: 0;
 }
 
 #nav {
