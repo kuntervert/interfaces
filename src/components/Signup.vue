@@ -42,15 +42,13 @@ export default {
   components: {
     changeToSignupButton
   },
-  data: () => ({
-    checkbox1: false
-  }),
+  data: () => ({}),
   computed: {
     ...mapGetters(["termStatus", "isLoginView", "isSignupView", "termDialog"])
   },
   methods: {
     signupUser() {
-      if (!this.checkbox1) {
+      if (!this.termStatus) {
         alert("Please accept the terms and conditions");
       }
     }
