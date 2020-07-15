@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <Terms v-if="termDialog" @agreed="termsDialog = false; checkbox1 = true" />
+    <Terms v-if="termDialog" />
     <v-row class="mainRow">
       <Login />
       <Signup />
