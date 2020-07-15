@@ -2,13 +2,7 @@
   <v-card
     v-bind:class="{'signupCard': isSignupView===true,  'signupCardNone': isSignupView === false}"
   >
-    <v-btn
-      @click="trySignup()"
-      v-if="isLoginView"
-      outlined
-      x-large
-      class="changeScreenButton"
-    >Signup</v-btn>
+    <changeToSignupButton v-if="isLoginView" />
     <v-row class="signupHeaderRow">
       <h3 class="display-2 font-weight-bold mb-3;" style="color: white;">Signup</h3>
     </v-row>
@@ -42,9 +36,12 @@
 
 <script>
 import { mapGetters } from "vuex";
+import changeToSignupButton from "@/components/changeToSignupButton";
 export default {
   name: "Signup",
-
+  components: {
+    changeToSignupButton
+  },
   data: () => ({
     checkbox1: false
   }),
@@ -52,10 +49,6 @@ export default {
     ...mapGetters(["termStatus", "isLoginView", "isSignupView", "termDialog"])
   },
   methods: {
-    trySignup() {
-      this.$store.dispatch("changeToSignup");
-    },
-
     signupUser() {
       if (!this.checkbox1) {
         alert("Please accept the terms and conditions");
@@ -120,20 +113,6 @@ export default {
   }
 }
 
-.changeScreenButton {
-  border-radius: 50%;
-  border-width: 2px;
-  color: white !important;
-  height: 8rem !important;
-  width: 8rem !important;
-  font-size: 1rem !important;
-  transition: width 2s, height 2s;
-  margin-top: 50%;
-}
-.changeScreenButton:hover {
-  height: 25% !important;
-  width: 35% !important;
-}
 .loginButton {
   border-width: 2px;
   color: white !important;

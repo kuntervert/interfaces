@@ -1,6 +1,6 @@
 <template>
   <v-card v-bind:class="{'loginCard': isLoginView===true,  'loginCardNone': isLoginView === false}">
-    <v-btn @click="tryLogin()" v-if="isSignupView" outlined x-large class="changeScreenButton">Login</v-btn>
+    <changeToLoginButton v-if="isSignupView" />
     <v-row class="headerRow">
       <h3 class="display-2 font-weight-bold mb-3;" style="color: white;">Login</h3>
     </v-row>
@@ -38,17 +38,17 @@
       
       <script>
 import { mapGetters } from "vuex";
+import changeToLoginButton from "@/components/changeToLoginButton";
 export default {
   name: "Login",
+  components: {
+    changeToLoginButton
+  },
   data: () => ({}),
   computed: {
     ...mapGetters(["termStatus", "isLoginView", "isSignupView"])
   },
-  methods: {
-    tryLogin() {
-      this.$store.dispatch("changeToLogin");
-    }
-  }
+  methods: {}
 };
 </script>
       
@@ -98,20 +98,7 @@ export default {
   padding-top: 5%;
   padding-bottom: 20%;
 }
-.changeScreenButton {
-  border-radius: 50%;
-  border-width: 2px;
-  color: white !important;
-  height: 8rem !important;
-  width: 8rem !important;
-  font-size: 1rem !important;
-  transition: width 2s, height 2s;
-  margin-top: 50%;
-}
-.changeScreenButton:hover {
-  height: 25% !important;
-  width: 35% !important;
-}
+
 .loginButton {
   border-width: 2px;
   color: white !important;
