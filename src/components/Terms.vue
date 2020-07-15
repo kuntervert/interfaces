@@ -176,8 +176,6 @@ export default {
     overflow-y: hidden;
     background-color: #e0e0e0 !important;
     height: 75%;
-    -ms-overflow-style: none; /* Internet Explorer 10+ */
-    scrollbar-width: none; /* Firefox */
   }
   .textDiv2 {
     padding: 5%;
@@ -185,17 +183,22 @@ export default {
     overflow-y: scroll;
     background-color: #e0e0e0 !important;
     height: 100%;
-    -ms-overflow-style: none; /* Internet Explorer 10+ */
-    scrollbar-width: none; /* Firefox */
   }
+  .textDiv2::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px #8894d1 !important;
+    background-color: #f5f5f5;
+  }
+  .textDiv2::-webkit-scrollbar {
+    width: 5px;
+    background-color: #f5f5f5;
+  }
+  .textDiv2::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px #8894d1 !important;
+    background-color: #8894d1;
+  }
+}
 
-  .textDiv::-webkit-scrollbar {
-    display: none; /* Safari and Chrome */
-  }
-}
-.mainCard::-webkit-scrollbar {
-  display: none;
-}
 @keyframes fadein {
   from {
     opacity: 0;
