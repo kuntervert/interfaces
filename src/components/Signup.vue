@@ -9,13 +9,13 @@
       x-large
       class="changeScreenButton"
     >Signup</v-btn>
-    <v-row class="headerRow">
+    <v-row class="signupHeaderRow">
       <h3 class="display-2 font-weight-bold mb-3;" style="color: white;">Signup</h3>
     </v-row>
-    <v-row class="passwordRow">
+    <v-row class="signupEmailRow">
       <v-text-field id="input-10" class="custom-placeholer-color" placeholder="Email"></v-text-field>
     </v-row>
-    <v-row class="passwordRow">
+    <v-row class="signupPasswordRow">
       <v-text-field
         id="input-10"
         class="custom-placeholer-color"
@@ -23,7 +23,7 @@
         placeholder="Password"
       ></v-text-field>
     </v-row>
-    <v-row class="passwordRow">
+    <v-row class="signupPasswordRow">
       <v-text-field id="input-10" class="custom-placeholer-color" placeholder="Repeat password"></v-text-field>
     </v-row>
     <v-row class="termsRow">
@@ -74,12 +74,35 @@ export default {
   }
 }
 
-.headerRow {
-  padding-left: 25%;
-  padding-top: 25%;
+.signupCard {
+  background-color: rgb(111, 93, 173) !important;
+  width: 40%;
+  opacity: 0.8;
+  animation: fadein 1s;
+  border-radius: 0 !important;
+  padding-top: 8%;
+  padding-bottom: 8%;
+}
+.signupCardNone {
+  background-color: rgb(111, 93, 173) !important;
+  width: 40%;
+  opacity: 0.8;
+  border-radius: 0 !important;
+  div {
+    display: none;
+  }
 }
 
-.passwordRow {
+.signupHeaderRow {
+  padding-left: 25%;
+  padding-top: 0;
+}
+.signupEmailRow {
+  padding-top: 5%;
+  padding-left: 25%;
+  padding-right: 18%;
+}
+.signupPasswordRow {
   padding-left: 25%;
   padding-right: 18%;
 }
@@ -121,27 +144,10 @@ export default {
   margin-right: 3%;
 }
 
-.signupCard {
-  background-color: rgb(111, 93, 173) !important;
-  width: 40%;
-  opacity: 0.8;
-  animation: fadein 1s;
-  border-radius: 0 !important;
-}
-.signupCardNone {
-  background-color: rgb(111, 93, 173) !important;
-  width: 40%;
-  opacity: 0.8;
-  border-radius: 0 !important;
-  div {
-    display: none;
-  }
-}
 .signupButtonRow {
   padding-left: 25%;
   padding-right: 0%;
   padding-top: 5%;
-  padding-bottom: 20%;
 }
 .v-label.theme--light {
   left: 5% !important;

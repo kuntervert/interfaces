@@ -4,10 +4,10 @@
     <v-row class="headerRow">
       <h3 class="display-2 font-weight-bold mb-3;" style="color: white;">Login</h3>
     </v-row>
-    <v-row class="emailRow">
+    <v-row class="loginEmailRow">
       <v-text-field class="custom-placeholer-color" id="input-10" placeholder="Email"></v-text-field>
     </v-row>
-    <v-row class="passwordRow">
+    <v-row class="loginPasswordRow">
       <v-text-field
         class="custom-placeholer-color"
         id="input-10"
@@ -82,12 +82,12 @@ export default {
   padding-left: 25%;
   padding-top: 25%;
 }
-.emailRow {
+.loginEmailRow {
   padding-left: 25%;
   padding-right: 18%;
   padding-top: 5%;
 }
-.passwordRow {
+.loginPasswordRow {
   padding-left: 25%;
   padding-right: 18%;
 }
