@@ -133,7 +133,11 @@ export default {
   }),
   methods: {
     agreeToTerms() {
-      this.$emit("agreed");
+      setTimeout(() => {
+        this.$store.state.termDialog = false;
+      }, 200);
+
+      this.$store.dispatch("acceptTerms");
     }
   }
 };
