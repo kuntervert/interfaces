@@ -74,6 +74,8 @@ export default {
   opacity: 0.8;
   width: 40%;
   border-radius: 0 !important;
+  display: flex;
+  justify-content: space-evenly;
   div {
     display: none;
   }

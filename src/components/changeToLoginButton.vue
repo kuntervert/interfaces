@@ -1,5 +1,5 @@
 <template>
-  <v-btn @click="tryLogin()" outlined x-large class="changeScreenButton">Login</v-btn>
+  <v-btn @click="tryLogin()" outlined x-large class="changeToLogin">Login</v-btn>
 </template>
 
 <script>
@@ -15,7 +15,7 @@ export default {
 </script>
 
 <style>
-.changeScreenButton {
+.changeToLogin {
   border-radius: 50%;
   border-width: 2px;
   color: white !important;
@@ -23,9 +23,9 @@ export default {
   width: 8rem !important;
   font-size: 1rem !important;
   transition: width 2s, height 2s;
-  margin-top: 50%;
+  align-self: center;
 }
-.changeScreenButton:hover {
+.changeToLogin:hover {
   height: 25% !important;
   width: 35% !important;
 }
