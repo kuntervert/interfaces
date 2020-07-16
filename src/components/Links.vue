@@ -1,10 +1,10 @@
 <template>
   <v-container>
     <v-row class="linksRow">
-      <a class="loginView" href="http://localhost:8080/#/register">Login & Signup</a>
+      <a class="loginView" @click="$router.push('/register')">Login & Signup</a>
       <img class="loginImg" src="https://i.gyazo.com/948faaaa0ab14d47509e9c702b4e17d2.png" />
       <div style="width: 2%;" />
-      <a class="termsView" href="http://localhost:8080/#/terms">Terms & Conditions</a>
+      <a class="termsView" @click="$router.push('/terms')">Terms & Conditions</a>
       <img class="termsImg" src="https://i.gyazo.com/d6e1375e75dd24dda5b64b400de155e3.png" />
     </v-row>
     <v-row></v-row>
@@ -25,6 +25,9 @@ export default {
 .loginImg {
   display: none;
 }
+.loginView {
+  cursor: pointer;
+}
 .loginView:hover + .loginImg {
   display: flex;
   position: fixed;
@@ -34,6 +37,9 @@ export default {
 }
 .termsImg {
   display: none;
+}
+.termsView {
+  cursor: pointer;
 }
 a.termsView:hover + .termsImg {
   display: flex;
