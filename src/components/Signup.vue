@@ -31,6 +31,9 @@
     <v-row class="signupButtonRow">
       <v-btn @click="signupUser()" tile class="loginButton" outlined>Sign up</v-btn>
     </v-row>
+    <v-row class="changeViewToLogin">
+      <p role="button" @click="tryLogin()">Login instead</p>
+    </v-row>
   </v-card>
 </template>
 
@@ -47,6 +50,9 @@ export default {
     ...mapGetters(["termStatus", "isLoginView", "isSignupView", "termDialog"])
   },
   methods: {
+    tryLogin() {
+      this.$store.dispatch("changeToLogin");
+    },
     signupUser() {
       if (!this.termStatus) {
         alert("Please accept the terms and conditions");
@@ -146,5 +152,26 @@ export default {
 }
 .v-input__slot {
   color: white !important;
+}
+.changeViewToLogin {
+  display: none;
+}
+@media screen and (max-width: 960px) {
+  .signupCard {
+    width: 100%;
+    padding-top: 20%;
+    padding-bottom: 10%;
+  }
+  .signupCardNone {
+    width: 100%;
+  }
+  .changeViewToLogin {
+    display: initial;
+    justify-content: space-evenly;
+    p {
+      padding-top: 10%;
+      color: lavenderblush;
+    }
+  }
 }
 </style>

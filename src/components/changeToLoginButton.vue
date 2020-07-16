@@ -29,4 +29,9 @@ export default {
   height: 25% !important;
   width: 35% !important;
 }
+@media screen and (max-width: 960px) {
+  .changeToLogin {
+    display: none;
+  }
+}
 </style>

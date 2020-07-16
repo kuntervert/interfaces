@@ -60,4 +60,12 @@ export default {
   margin-top: 0%;
   justify-content: center;
 }
+@media screen and (max-width: 960px) {
+  .mainRow {
+    display: block;
+    background-size: 100% 100%;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+}
 </style>

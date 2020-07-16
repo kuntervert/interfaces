@@ -20,18 +20,20 @@
       <p role="button" class="forgotButton">Forgot password?</p>
     </v-row>
     <v-row class="socialRow">
-      <h4
-        class="display-2 font-weight-bold mb-3;"
-        style="color: white; font-size: 15px;"
-      >Login using Social Media accounts</h4>
+      <p class="socialPhrase">Login using Social Media accounts</p>
     </v-row>
     <v-row class="socialButtonsRow">
       <v-btn tile class="googleButton" outlined>
-        <v-icon left>mdi-google</v-icon>Google
+        <v-icon>mdi-google</v-icon>
+        <p>Google</p>
       </v-btn>
       <v-btn tile class="facebookButton" outlined>
-        <v-icon left>mdi-facebook</v-icon>Facebook
+        <v-icon>mdi-facebook</v-icon>
+        <p>Facebook</p>
       </v-btn>
+    </v-row>
+    <v-row class="changeViewToSignup">
+      <p role="button" @click="trySignup()">Create an account</p>
     </v-row>
   </v-card>
 </template>
@@ -48,7 +50,11 @@ export default {
   computed: {
     ...mapGetters(["termStatus", "isLoginView", "isSignupView"])
   },
-  methods: {}
+  methods: {
+    trySignup() {
+      this.$store.dispatch("changeToSignup");
+    }
+  }
 };
 </script>
       
@@ -68,6 +74,8 @@ export default {
   width: 40%;
   animation: fadein 1s;
   border-radius: 0 !important;
+  padding-top: 8%;
+  padding-bottom: 8%;
 }
 .loginCardNone {
   background-color: #4e65df !important;
@@ -82,7 +90,6 @@ export default {
 }
 .headerRow {
   padding-left: 25%;
-  padding-top: 25%;
 }
 .loginEmailRow {
   padding-left: 25%;
@@ -120,29 +127,39 @@ export default {
 .socialRow {
   padding-left: 25%;
 }
+.socialPhrase {
+  width: fit-content;
+  color: white !important;
+  font-size: calc(0.5em + 0.8vmin) !important;
+}
 .socialButtonsRow {
   padding-left: 25%;
   padding-right: 0%;
   padding-top: 8%;
-  padding-bottom: 20%;
 }
 .googleButton {
   border-width: 2px;
   color: white !important;
   width: 40%;
   height: 3rem !important;
-  font-size: 0.8vw;
+  font-size: calc(0.5em + 0.8vmin) !important;
   text-transform: none;
   margin-right: 3%;
+  p {
+    margin-left: 5%;
+  }
 }
 .facebookButton {
   border-width: 2px;
   color: white !important;
   width: 40%;
   height: 3rem !important;
-  font-size: 0.8vw;
+  font-size: calc(0.5em + 0.8vmin) !important;
   text-transform: none;
   margin-right: 3%;
+  p {
+    margin-left: 5%;
+  }
 }
 .v-label.theme--light {
   left: 5% !important;
@@ -162,5 +179,38 @@ export default {
 }
 .v-input__slot {
   color: white !important;
+}
+.changeViewToSignup {
+  display: none;
+}
+@media screen and (max-width: 960px) {
+  .loginCard {
+    width: 100%;
+    padding-top: 20%;
+    padding-bottom: 10%;
+  }
+  .loginCardNone {
+    width: 100%;
+  }
+  .changeViewToSignup {
+    display: initial;
+    justify-content: space-evenly;
+    p {
+      padding-top: 10%;
+      color: lavenderblush;
+    }
+  }
+}
+@media screen and (max-width: 350px) {
+  .googleButton {
+    p {
+      display: none;
+    }
+  }
+  .facebookButton {
+    p {
+      display: none;
+    }
+  }
 }
 </style>

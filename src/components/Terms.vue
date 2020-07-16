@@ -1,7 +1,7 @@
 <template>
   <div style="position: fixed;z-index:190; height: 100vh; width: 100vw;">
     <v-card class="mainCard">
-      <h1>Terms and Conditions</h1>
+      <h1 style="font-size: 1rem;">Terms and Conditions</h1>
       <div class="textDiv1">
         <div class="textDiv2">
           <p>Last updated: July 11, 2020</p>
@@ -205,6 +205,20 @@ export default {
   }
   to {
     opacity: 1;
+  }
+}
+@media screen and (max-width: 960px) {
+  .mainCard {
+    width: 70%;
+    left: 15%;
+    height: 60vh;
+  }
+}
+@media screen and (max-width: 530px) {
+  .mainCard {
+    width: 70%;
+    left: 15%;
+    height: 45vh;
   }
 }
 </style>
