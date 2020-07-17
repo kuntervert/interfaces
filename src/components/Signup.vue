@@ -28,6 +28,7 @@
       <v-text-field
         v-model="repeatedPassword"
         id="input-10"
+        :type="'password'"
         class="custom-placeholer-color"
         placeholder="Repeat password"
       ></v-text-field>
@@ -79,7 +80,7 @@ export default {
       const email = this.email;
       const password = this.password;
       const password2 = this.repeatedPassword;
-      let userInfo = { email: email, password: password };
+      const userInfo = { email: email, password: password };
       if (password === password2) {
         if (!this.termStatus) {
           alert("Please accept the terms and conditions");

@@ -88,7 +88,7 @@ export default {
   },
   methods: {
     tellTitle(title) {
-      alert(title);
+      console.log(title);
     }
   }
 };

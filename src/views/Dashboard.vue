@@ -182,12 +182,12 @@ export default {
       color: #2c6bff;
     }
     .notificationIcon {
-      margin-left: 6%;
+      margin-left: 10%;
     }
     .profileCircleImage {
       max-width: 50px;
       border-radius: 50%;
-      margin-left: 15%;
+      margin-left: 10%;
     }
   }
 }
