@@ -7,7 +7,13 @@
       <h3 class="display-2 font-weight-bold mb-3;" style="color: white;">Signup</h3>
     </v-row>
     <v-row class="signupEmailRow">
-      <v-text-field id="input-10" class="custom-placeholer-color" placeholder="Email"></v-text-field>
+      <v-text-field
+        v-model="email"
+        :rules="emailRules"
+        id="input-10"
+        class="custom-placeholer-color"
+        placeholder="Email"
+      ></v-text-field>
     </v-row>
     <v-row class="signupPasswordRow">
       <v-text-field
@@ -15,10 +21,16 @@
         class="custom-placeholer-color"
         :type="'password'"
         placeholder="Password"
+        v-model="password"
       ></v-text-field>
     </v-row>
     <v-row class="signupPasswordRow">
-      <v-text-field id="input-10" class="custom-placeholer-color" placeholder="Repeat password"></v-text-field>
+      <v-text-field
+        v-model="repeatedPassword"
+        id="input-10"
+        class="custom-placeholer-color"
+        placeholder="Repeat password"
+      ></v-text-field>
     </v-row>
     <v-row class="termsRow">
       <v-checkbox style="padding: 0; margin: 0;" @click="termsDialog=true" v-model="termStatus"></v-checkbox>
@@ -38,24 +50,43 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import changeToSignupButton from "@/components/changeToSignupButton";
+import axios from "axios";
 export default {
   name: "Signup",
   components: {
     changeToSignupButton
   },
-  data: () => ({}),
+  data: () => ({
+    email: null,
+    password: null,
+    repeatedPassword: null,
+    emailRules: [
+      v => !!v || "E-mail is required",
+      v => /.+@.+\..+/.test(v) || "E-mail must be valid"
+    ]
+  }),
   computed: {
     ...mapGetters(["termStatus", "isLoginView", "isSignupView", "termDialog"])
   },
   methods: {
+    ...mapActions(["signup"]),
     tryLogin() {
       this.$store.dispatch("changeToLogin");
     },
-    signupUser() {
-      if (!this.termStatus) {
-        alert("Please accept the terms and conditions");
+    async signupUser() {
+      const email = this.email;
+      const password = this.password;
+      const password2 = this.repeatedPassword;
+      let userInfo = { email: email, password: password };
+      if (password === password2) {
+        if (!this.termStatus) {
+          alert("Please accept the terms and conditions");
+        } else {
+          await axios.post("/api/user/signup", userInfo);
+          this.$router.push("/dashboard/");
+        }
       }
     }
   }

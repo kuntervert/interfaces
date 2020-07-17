@@ -5,10 +5,16 @@
       <h3 class="display-2 font-weight-bold mb-3;" style="color: white;">Login</h3>
     </v-row>
     <v-row class="loginEmailRow">
-      <v-text-field class="custom-placeholer-color" id="input-10" placeholder="Email"></v-text-field>
+      <v-text-field
+        v-model="email"
+        class="custom-placeholer-color"
+        id="input-10"
+        placeholder="Email"
+      ></v-text-field>
     </v-row>
     <v-row class="loginPasswordRow">
       <v-text-field
+        v-model="password"
         class="custom-placeholer-color"
         id="input-10"
         :type="'password'"
@@ -16,7 +22,7 @@
       ></v-text-field>
     </v-row>
     <v-row class="buttonsRow">
-      <v-btn tile class="loginButton" outlined>Login</v-btn>
+      <v-btn tile class="loginButton" @click="loginUser()" outlined>Login</v-btn>
       <p role="button" class="forgotButton">Forgot password?</p>
     </v-row>
     <v-row class="socialRow">
@@ -39,18 +45,33 @@
 </template>
       
       <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import changeToLoginButton from "@/components/changeToLoginButton";
 export default {
   name: "Login",
   components: {
     changeToLoginButton
   },
-  data: () => ({}),
+  data: () => ({
+    email: null,
+    password: null
+  }),
   computed: {
     ...mapGetters(["termStatus", "isLoginView", "isSignupView"])
   },
   methods: {
+    ...mapActions(["login"]),
+    async loginUser() {
+      try {
+        const email = this.email;
+        const password = this.password;
+        await this.login({ email, password });
+
+        this.$router.push("/dashboard/");
+      } catch (error) {
+        this.feedback = "Login failed: Invalid username or password.";
+      }
+    },
     trySignup() {
       this.$store.dispatch("changeToSignup");
     }

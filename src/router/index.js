@@ -4,11 +4,14 @@ import Home from '../views/Home.vue';
 
 Vue.use(VueRouter);
 
-const routes = [
-	{
+const routes = [{
 		path: '/',
 		name: 'Home',
 		component: Home
+	},
+	{
+		path: '*',
+		redirect: '/'
 	},
 	{
 		path: '/register',
@@ -21,6 +24,12 @@ const routes = [
 		name: 'Terms',
 
 		component: () => import('../components/Terms.vue')
+	},
+	{
+		path: '/dashboard',
+		name: 'Dashboard',
+
+		component: () => import('../views/Dashboard.vue')
 	}
 ];
 

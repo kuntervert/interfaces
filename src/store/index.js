@@ -1,14 +1,17 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import axios from 'axios'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    user: null,
     termStatus: false,
     termDialog: false,
     loginView: false,
     signupView: true,
+    navDrawer: true,
   },
   mutations: {
     acceptTerms(state) {
@@ -24,9 +27,38 @@ export default new Vuex.Store({
     },
     openTermDialog(state) {
       state.termDialog = true
+    },
+
+    login(state, user) {
+      state.user = user;
+    },
+    logout(state) {
+      state.user = null
     }
   },
   actions: {
+    async login({
+      commit
+    }, user) {
+      const {
+        data
+      } = await axios.post('/api/user/login', user, {
+        withCredentials: true
+      });
+      if (data.status === 'OK') {
+        const {
+          user
+        } = data;
+        commit('login', user);
+      } else {
+        throw data.status;
+      }
+    },
+    logout({
+      commit
+    }) {
+      commit('logout');
+    },
     acceptTerms({
       commit
     }) {
@@ -56,6 +88,9 @@ export default new Vuex.Store({
     },
     isSignupView: state => {
       return state.signupView
+    },
+    navDrawer: state => {
+      return state.navDrawer
     }
   }
 })
