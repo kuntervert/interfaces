@@ -3,28 +3,28 @@
     <v-tabs-items v-model="chosenTab">
       <!-- FEED TAB -->
       <v-tab-item>
-        <v-row align="center" style="margin-top: 5%; margin-left: 5%; margin-bottom: 2%;">
+        <v-row align="center" class="feedTabRow">
           <pre style="font-size: 12px; opacity: 0.7; white-space: pre">PROJECT   /   {{chosenProject.title}}   /   FEED</pre>
         </v-row>
-        <v-row style="margin-left: 5%;">
+        <v-row class="feedPRow">
           <p style="font-size: 50px; font-weight: 600;">Feed</p>
         </v-row>
         <hr class="headerLine" />
         <!-- FEED CONTAINER -->
         <v-container class="postsContainer">
           <v-card class="postCard" v-for="post in posts" :key="post.title">
-            <v-row style="margin-left: 10%; padding-top: 2%;">
-              <p style="font-size: 25px; color: #5a5959">{{post.title}}</p>
+            <v-row class="postTitleRow">
+              <p>{{post.title}}</p>
             </v-row>
-            <v-row style="margin-left: 10%; margin-top: 1%; opacity: 0.6">
+            <v-row class="postAuthorRow">
               <p>{{post.author}}</p>
             </v-row>
-            <v-row style="margin-left: 5%; margin-top: 5%; padding-bottom: 3%; max-width: 90%;">
-              <p style="text-align: left;">{{post.content}}</p>
+            <v-row class="postContentRow">
+              <p>{{post.content}}</p>
             </v-row>
-            <v-row style="margin-left: 5%; margin-top: 1%; padding-bottom: 3%;">
-              <v-col style="max-width: 50%; text-align: start;">
-                <p style="font-size: 10px;">{{post.date}}</p>
+            <v-row class="postDateRow">
+              <v-col class="postDateCol">
+                <p>{{post.date}}</p>
               </v-col>
               <v-col>
                 <p style="font-size: 14px;">4 Comments</p>
@@ -35,20 +35,20 @@
       </v-tab-item>
       <!-- QUESTIONS TAB -->
       <v-tab-item>
-        <v-row align="center" style="margin-top: 5%; margin-left: 5%; margin-bottom: 2%;">
+        <v-row align="center" class="feedTabRow">
           <pre style="font-size: 12px; opacity: 0.7; white-space: pre">PROJECT   /   {{chosenProject.title}}   /   QUESTIONS</pre>
         </v-row>
-        <v-row style="margin-left: 5%;">
+        <v-row class="feedPRow">
           <p style="font-size: 50px; font-weight: 600;">Questions</p>
         </v-row>
         <hr class="headerLine" />
       </v-tab-item>
       <!-- POSTS TAB -->
       <v-tab-item>
-        <v-row align="center" style="margin-top: 5%; margin-left: 5%; margin-bottom: 2%;">
+        <v-row align="center" class="feedTabRow">
           <pre style="font-size: 12px; opacity: 0.7; white-space: pre">PROJECT   /   {{chosenProject.title}}   /   POSTS</pre>
         </v-row>
-        <v-row style="margin-left: 5%;">
+        <v-row class="feedPRow">
           <p style="font-size: 50px; font-weight: 600;">Posts</p>
         </v-row>
         <hr class="headerLine" />
@@ -110,8 +110,51 @@ export default {
   margin-right: 50%;
   border-radius: 25px !important;
 }
+
 .postCard:hover {
   box-shadow: 0 2px 5px #2c6bff !important;
   cursor: pointer;
+}
+.feedTabRow {
+  margin-top: 5%;
+  margin-left: 5%;
+  margin-bottom: 2%;
+}
+.feedPRow {
+  margin-left: 5%;
+}
+.postTitleRow {
+  margin-left: 10%;
+  padding-top: 2%;
+  p {
+    font-size: 25px;
+    color: #5a5959;
+  }
+}
+.postAuthorRow {
+  margin-left: 10%;
+  margin-top: 1%;
+  opacity: 0.6;
+}
+.postContentRow {
+  margin-left: 5%;
+  margin-top: 5%;
+  padding-bottom: 3%;
+  max-width: 90%;
+  p {
+    text-align: left;
+  }
+}
+.postDateRow {
+  margin-left: 5%;
+  margin-top: 1%;
+  padding-bottom: 3%;
+}
+.postDateCol {
+  max-width: 50%;
+  text-align: start;
+  p {
+    font-size: 10px;
+  }
 }
 </style>
