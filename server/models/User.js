@@ -3,9 +3,14 @@ const bcrypt = require('bcryptjs');
 const validator = require('validator');
 const mongoose = require('../database');
 const jwt = require('jsonwebtoken');
+const shortid = require('shortid');
 
 // Define schema
 const userSchema = mongoose.Schema({
+    _id: {
+        type: String,
+        default: shortid.generate
+    },
     email: {
         type: String,
         required: true,

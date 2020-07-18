@@ -19,6 +19,7 @@
         id="input-10"
         :type="'password'"
         placeholder="Password"
+        @keydown.enter="loginUser()"
       ></v-text-field>
     </v-row>
     <v-row class="buttonsRow">
@@ -47,6 +48,7 @@
       <script>
 import { mapGetters, mapActions } from "vuex";
 import changeToLoginButton from "@/components/changeToLoginButton";
+import axios from "axios";
 export default {
   name: "Login",
   components: {
@@ -66,7 +68,14 @@ export default {
         const email = this.email;
         const password = this.password;
         await this.login({ email, password });
-
+        let id = this.$store.state.user._id;
+        let projects = null;
+        await axios.get(`/api/user/get-projects/${id}`).then(response => {
+          projects = response.data;
+        });
+        this.$store.state.user.projects = projects.projects;
+        console.log(projects);
+        console.log(this.$store.state.user);
         this.$router.push("/dashboard/");
       } catch (error) {
         this.feedback = "Login failed: Invalid username or password.";

@@ -1,14 +1,16 @@
 <template>
   <div id="mainCont" class="mainContainer">
+    <CreateProject v-if="chosenPage === 'Home'" />
     <v-col class="drawerCol">
       <NavDrawer id="navDrawer" />
     </v-col>
-    <v-col style="padding: 0">
+    <v-col style="padding: 0;">
       <v-app-bar class="mainAppBar">
-        <v-tabs v-model="chosenTab">
-          <v-tab>Feed</v-tab>
-          <v-tab>Questions</v-tab>
-          <v-tab>Posts</v-tab>
+        <div v-if="chosenPage !== 'Projectview'" style="margin-right: 16.95%;"></div>
+        <v-tabs v-if="chosenPage === 'Projectview'" v-model="chosenTab">
+          <v-tab @click.prevent="changeTab(0)">Feed</v-tab>
+          <v-tab @click.prevent="changeTab(1)">Questions</v-tab>
+          <v-tab @click.prevent="changeTab(2)">Posts</v-tab>
         </v-tabs>
         <v-text-field
           outlined
@@ -22,79 +24,8 @@
         <v-icon class="notificationIcon">mdi-bell-alert-outline</v-icon>
         <img class="profileCircleImage" src="@/assets/profilepicture.jpg" />
       </v-app-bar>
-
-      <v-container class="headerContainer">
-        <v-tabs-items v-model="chosenTab">
-          <!-- FEED TAB -->
-          <v-tab-item>
-            <v-row
-              align="center"
-              justify="center"
-              style="margin-top: 5%; margin-left: 5%; margin-bottom: 2%;"
-            >
-              <pre style="font-size: 12px; opacity: 0.7; white-space: pre">PROJECT   /   MILLION DOLLAR IDEA   /   FEED</pre>
-            </v-row>
-            <v-row style="margin-left: 5%;">
-              <p style="font-size: 50px; font-weight: 600;">Feed</p>
-            </v-row>
-            <hr class="headerLine" />
-            <!-- FEED CONTAINER -->
-            <v-container style="padding-left: 5%; padding-right: 50%;">
-              <v-card
-                style="margin-top: 5%; max-width: 80%; border-radius: 25px;"
-                v-for="post in posts"
-                :key="post.title"
-              >
-                <v-row style="margin-left: 10%; padding-top: 2%;">
-                  <p style="font-size: 25px; color: #5a5959">{{post.title}}</p>
-                </v-row>
-                <v-row style="margin-left: 10%; margin-top: 1%; opacity: 0.6">
-                  <p>{{post.author}}</p>
-                </v-row>
-                <v-row style="margin-left: 5%; margin-top: 5%; padding-bottom: 3%; max-width: 90%;">
-                  <p style="text-align: left;">{{post.content}}</p>
-                </v-row>
-                <v-row style="margin-left: 5%; margin-top: 1%; padding-bottom: 3%;">
-                  <v-col style="max-width: 50%; text-align: start;">
-                    <p style="font-size: 10px;">{{post.date}}</p>
-                  </v-col>
-                  <v-col>
-                    <p style="font-size: 14px;">4 Comments</p>
-                  </v-col>
-                </v-row>
-              </v-card>
-            </v-container>
-          </v-tab-item>
-          <!-- QUESTIONS TAB -->
-          <v-tab-item>
-            <v-row
-              align="center"
-              justify="center"
-              style="margin-top: 5%; margin-left: 5%; margin-bottom: 2%;"
-            >
-              <pre style="font-size: 12px; opacity: 0.7; white-space: pre">PROJECT   /   MILLION DOLLAR IDEA   /   QUESTIONS</pre>
-            </v-row>
-            <v-row style="margin-left: 5%;">
-              <p style="font-size: 50px; font-weight: 600;">Questions</p>
-            </v-row>
-            <hr class="headerLine" />
-          </v-tab-item>
-          <!-- POSTS TAB -->
-          <v-tab-item>
-            <v-row
-              align="center"
-              justify="center"
-              style="margin-top: 5%; margin-left: 5%; margin-bottom: 2%;"
-            >
-              <pre style="font-size: 12px; opacity: 0.7; white-space: pre">PROJECT   /   MILLION DOLLAR IDEA   /   POSTS</pre>
-            </v-row>
-            <v-row style="margin-left: 5%;">
-              <p style="font-size: 50px; font-weight: 600;">Posts</p>
-            </v-row>
-            <hr class="headerLine" />
-          </v-tab-item>
-        </v-tabs-items>
-      </v-container>
+      <Projectview v-if="chosenPage === 'Projectview'" />
+      <Home v-if="chosenPage === 'Home'" />
     </v-col>
   </div>
 </template>
@@ -102,14 +33,20 @@
 <script>
 import { mapGetters } from "vuex";
 import NavDrawer from "@/components/NavDrawer.vue";
+import Projectview from "@/components/Projectview.vue";
+import CreateProject from "@/components/CreateProject.vue";
+import Home from "@/components/Home.vue";
+// import axios from "axios";
 export default {
   name: "Dashboard",
   components: {
-    NavDrawer
+    NavDrawer,
+    Projectview,
+    CreateProject,
+    Home
   },
   data: () => ({
     search: null,
-    chosenTab: 0,
     posts: [
       {
         title: "Head uudised.",
@@ -124,20 +61,30 @@ export default {
           "Tere, minu nimi on Peeter ning olen teie ülemus. Meeldivat tööpäeva qtid!",
         date: "04.06.2020"
       }
-    ]
+    ],
+    chosenTab: 0,
+    dialog: true
   }),
-  mounted() {},
+  mounted() {
+    this.chosenTab = this.$store.state.chosenTab;
+  },
   computed: {
     ...mapGetters([
       "termStatus",
       "isLoginView",
       "isSignupView",
       "termDialog",
-      "navDrawer"
+      "navDrawer",
+      "chosenPage"
     ])
   },
   watch: {},
-  methods: {}
+  methods: {
+    changeTab(nr) {
+      console.log(nr);
+      this.$store.state.chosenTab = nr;
+    }
+  }
 };
 </script>
 
@@ -195,6 +142,12 @@ export default {
   height: 100vh;
   max-width: fit-content;
   padding: 0;
+  position: sticky;
+  top: 0;
+}
+.postsContainer {
+  padding-left: 5%;
+  padding-right: 20%;
 }
 .headerContainer {
   max-width: 100%;
@@ -210,8 +163,21 @@ export default {
   opacity: 0.6;
   max-width: 30%;
 }
+.postCard {
+  margin-top: 5%;
+  margin-right: 50%;
+  border-radius: 25px !important;
+}
 
 .v-tabs-slider-wrapper {
   color: #2c6bff;
+}
+@media only screen and (max-width: 1200px) {
+  .postsContainer {
+    padding-right: 20%;
+    .postCard {
+      margin-right: 10% !important;
+    }
+  }
 }
 </style>

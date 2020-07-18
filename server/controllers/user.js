@@ -1,12 +1,15 @@
 // Imports
 const User = require('../models/User');
 
-global.GlobalTimeOuts = new Array();
+
 // Export controller
 module.exports = {
 	loginUser: async (req, res) => {
 		try {
-			const { email, password } = req.body;
+			const {
+				email,
+				password
+			} = req.body;
 			const user = await User.findByCredentials(email, password);
 			if (!user) {
 				return res.status(401).json({
@@ -19,26 +22,24 @@ module.exports = {
 					status: 'Failed to create JWT'
 				});
 			}
-			await User.findByIdAndUpdate(
-				{
-					_id: user._id
-				},
-				{
-					$set: {
-						LastLogin: Date.now()
-					}
+			await User.findByIdAndUpdate({
+				_id: user._id
+			}, {
+				$set: {
+					LastLogin: Date.now()
 				}
-			);
+			});
 			const user_data = {
 				projects: user.projects,
 				email: user.email,
+				_id: user._id,
 				LastLogin: user.LastLogin,
 				GDPRterms: user.GDPRterms
 			};
 			res
 				.status(200)
 				.cookie('token', token, {
-					expires: new Date(Date.now() + 43200000),
+					expires: new Date(Date.now() + 28800000),
 					secure: false,
 					httpOnly: true
 				})
@@ -85,14 +86,11 @@ module.exports = {
 					status: 'User with such email doesnt exist'
 				});
 			}
-			await User.updateOne(
-				{
-					email: req.body.email
-				},
-				{
-					GDPRterms: true
-				}
-			);
+			await User.updateOne({
+				email: req.body.email
+			}, {
+				GDPRterms: true
+			});
 			usr.save();
 			res.status(200).json({
 				status: 'Accepted terms and conditions'

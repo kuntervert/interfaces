@@ -12,6 +12,10 @@ export default new Vuex.Store({
     loginView: false,
     signupView: true,
     navDrawer: true,
+    chosenTab: 0,
+    chosenPage: 'Home',
+    chosenProject: null,
+    createDialog: false,
   },
   mutations: {
     acceptTerms(state) {
@@ -28,12 +32,22 @@ export default new Vuex.Store({
     openTermDialog(state) {
       state.termDialog = true
     },
+    changePage(state, page) {
+      state.chosenPage = page;
+    },
+    chooseProject(state, id) {
+      console.log("id on:", id)
+      state.chosenProject = state.user.projects.find(p => p._id === id)
 
+    },
     login(state, user) {
       state.user = user;
     },
     logout(state) {
       state.user = null
+    },
+    changeTab(state, nr) {
+      state.chosenTab = nr
     }
   },
   actions: {
@@ -77,6 +91,21 @@ export default new Vuex.Store({
   },
   modules: {},
   getters: {
+    chosenTab: state => {
+      return state.chosenTab
+    },
+    chosenProject: state => {
+      return state.chosenProject
+    },
+    userProjects: state => {
+      return state.user.projects;
+    },
+    createDialog: state => {
+      return state.createDialog
+    },
+    chosenPage: state => {
+      return state.chosenPage
+    },
     termDialog: state => {
       return state.termDialog
     },

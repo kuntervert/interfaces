@@ -1,7 +1,9 @@
 <template>
-  <div style="background-color:#c4c4c4; height: 100vh;  overflow-y: auto;" id="app">
-    <router-view />
-  </div>
+  <v-app>
+    <div style="background-color:#c4c4c4; height: 100vh;  overflow-y: auto;" id="app">
+      <router-view />
+    </div>
+  </v-app>
 </template>
 
 <script>
@@ -17,6 +19,9 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  p {
+    margin-bottom: 0;
+  }
 }
 #app {
   overflow-y: scroll;

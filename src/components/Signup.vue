@@ -86,7 +86,7 @@ export default {
           alert("Please accept the terms and conditions");
         } else {
           await axios.post("/api/user/signup", userInfo);
-          this.$router.push("/dashboard/");
+          alert("Successful");
         }
       }
     }

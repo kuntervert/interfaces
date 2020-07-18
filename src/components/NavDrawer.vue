@@ -24,7 +24,7 @@
     </span>
     <hr />
     <v-list class="routesList">
-      <v-list-item v-for="item in items" :key="item.title" link>
+      <v-list-item @click="changePage(item.title)" v-for="item in items" :key="item.title" link>
         <v-list-item-icon>
           <v-icon style="color: white">{{ item.icon }}</v-icon>
         </v-list-item-icon>
@@ -42,13 +42,13 @@
     >PROJECT</v-list-item-title>
     <v-list class="projectList">
       <v-list-item
-        @click="tellTitle(project.title)"
-        v-for="project in projects"
+        @click="changeProject(project.title, project._id)"
+        v-for="project in userProjects"
         :key="project.title"
         link
       >
         <v-list-item-icon>
-          <v-icon size="20" style="color: white">{{ project.icon }}</v-icon>
+          <v-icon size="20" style="color: white">mdi-google-circles-extended</v-icon>
         </v-list-item-icon>
 
         <v-list-item-content>
@@ -58,20 +58,20 @@
         </v-list-item-content>
       </v-list-item>
     </v-list>
+    <div style="position: fixed; bottom: 0; width: 100%; height: 50px; background-color: black;">
+      <v-btn @click="logOut()">Log out</v-btn>
+    </div>
   </v-navigation-drawer>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
+import store from "../store";
 export default {
   name: "NavDrawer",
   data() {
     return {
       mini: false,
-      projects: [
-        { title: "Million dollar idea", icon: "mdi-google-circles-extended" },
-        { title: "Design team", icon: "mdi-google-circles-extended" }
-      ],
       items: [
         { title: "Home", icon: "mdi-home" },
         { title: "Inbox", icon: "mdi-checkbox-multiple-blank-outline" },
@@ -81,14 +81,24 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["navDrawer"]),
+    ...mapGetters(["navDrawer", "userProjects"]),
     drawerWidth() {
       return document.getElementById("navDrawer").offsetWidth;
     }
   },
   methods: {
-    tellTitle(title) {
-      console.log(title);
+    async logOut() {
+      await store.commit("logout");
+      this.$router.push("/register");
+    },
+    changeProject(title, id) {
+      store.commit("changePage", "Projectview");
+      store.commit("chooseProject", id);
+      console.log(id);
+    },
+    changePage(page) {
+      console.log(page);
+      store.commit("changePage", page);
     }
   }
 };
@@ -105,6 +115,19 @@ export default {
   color: #1f224c;
   background-color: #1f224c !important;
 }
+.v-navigation-drawer__content::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px #8894d1 !important;
+  background-color: #f5f5f5;
+}
+.v-navigation-drawer__content::-webkit-scrollbar {
+  width: 5px;
+  background-color: #f5f5f5;
+}
+.v-navigation-drawer__content::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px #8894d1 !important;
+  background-color: #8894d1;
+}
 .v-navigation-drawer--open {
   width: 285px !important;
 }
@@ -120,6 +143,7 @@ export default {
 .projectList {
   margin-top: 1%;
   margin-left: 5%;
+  margin-bottom: 50px;
   .v-list-item {
     max-height: 39px;
   }
