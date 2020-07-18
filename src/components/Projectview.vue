@@ -79,6 +79,7 @@ export default {
       }
     ]
   }),
+  methods: {},
   computed: {
     ...mapGetters(["chosenTab", "userProjects", "chosenProject"])
   }
@@ -108,5 +109,9 @@ export default {
   margin-top: 5%;
   margin-right: 50%;
   border-radius: 25px !important;
+}
+.postCard:hover {
+  box-shadow: 0 2px 5px #2c6bff !important;
+  cursor: pointer;
 }
 </style>
