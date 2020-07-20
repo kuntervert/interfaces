@@ -2,6 +2,9 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Showcase from "@/views/Showcase.vue"
 import store from "../store/index.js";
+import Projectview from "@/components/Projectview.vue"
+import Home from "@/components/Home.vue"
+import MyPosts from "@/components/MyPosts.vue"
 
 Vue.use(VueRouter);
 const router = new VueRouter({
@@ -28,8 +31,28 @@ const router = new VueRouter({
 			component: () => import('../components/Terms.vue')
 		},
 		{
-			path: '/dashboard',
+			path: '/dashboard/:id',
 			name: 'Dashboard',
+			children: [{
+					path: 'Home',
+					component: Home
+				}, {
+					path: 'Inbox',
+					component: Home
+				}, {
+					path: 'Settings',
+					component: Home
+				},
+				{
+					path: 'My Posts',
+					component: MyPosts
+
+				},
+				{
+					path: ':id',
+					component: Projectview
+				},
+			],
 			meta: {
 				requiresAuth: true
 			},

@@ -65,7 +65,8 @@ module.exports = {
 			} else {
 				const user = new User({
 					email: req.body.email,
-					password: req.body.password
+					password: req.body.password,
+					username: req.body.username
 				});
 				await user.save();
 				res.status(200).json('User created');

@@ -1,5 +1,6 @@
 // Imports
 const Project = require('../models/Project');
+const User = require('../models/User')
 
 
 // Export controller
@@ -11,7 +12,19 @@ module.exports = {
                 title: req.body.title,
                 users: req.body.userId
             });
-            console.log(project)
+            if (await User.findOne({
+                    _id: req.body.userId
+                })) {
+                await User.updateOne({
+                    _id: req.body.userId
+                }, {
+                    $push: {
+                        projects: project
+                    }
+                })
+            }
+
+
             await project.save();
             res.status(200).json('Project created');
         } catch (error) {
@@ -39,4 +52,35 @@ module.exports = {
             });
         }
     },
+    shareProject: async (req, res) => {
+        try {
+            const user = await User.findOne({
+                email: req.body.email
+            })
+            if (user._id) {
+                const project = await Project.findOne({
+                    _id: req.body.projectId
+                })
+                if (project.users.includes(user._id)) {
+                    res.status(503).json({
+                        status: error
+                    })
+                } else {
+                    await Project.updateOne({
+                        _id: req.body.projectId
+                    }, {
+                        $push: {
+                            users: user._id
+                        }
+                    })
+                }
+                await project.save()
+                res.status(200).json('Project shared')
+            }
+        } catch (error) {
+            res.status(503).json({
+                status: error
+            });
+        }
+    }
 };

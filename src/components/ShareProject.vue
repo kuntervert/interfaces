@@ -1,5 +1,5 @@
 <template>
-  <v-dialog @keydown.esc="closeDialog()" v-model="createDialog" persistent max-width="512">
+  <v-dialog @keydown.esc="closeDialog()" v-model="shareDialog" persistent max-width="512">
     <v-card class="mailSentSelectBox">
       <v-card-title class="headline">
         Add project info:
@@ -10,16 +10,16 @@
       <v-container>
         <v-row align="center" justify="space-around">
           <v-text-field
-            @keydown.enter="createProject(); closeDialog()"
-            v-model="title"
-            label="Project name"
+            @keydown.enter="shareProject(); closeDialog()"
+            v-model="email"
+            label="Email"
             required
           ></v-text-field>
         </v-row>
 
         <v-spacer></v-spacer>
         <v-row>
-          <v-btn style=" color: white" color="#6353fa" class="mr-4" @click="createProject()">Create</v-btn>
+          <v-btn style=" color: white" color="#6353fa" class="mr-4" @click="shareProject()">Share</v-btn>
         </v-row>
       </v-container>
       <div class="bottomColor"></div>
@@ -31,30 +31,25 @@
 import { mapGetters } from "vuex";
 import axios from "axios";
 export default {
-  name: "CreateProject",
+  name: "ShareProject",
   data: () => ({
     valid: false,
-    title: null
+    title: null,
+    email: null
   }),
   computed: {
-    ...mapGetters(["createDialog"])
+    ...mapGetters(["shareDialog", "chosenProject"])
   },
   methods: {
     closeDialog() {
-      this.$store.state.createDialog = false;
+      this.$store.state.shareDialog = false;
     },
-    async createProject() {
+    async shareProject() {
       const project = {
-        userId: this.$store.state.user._id,
-        title: this.title
+        email: this.email,
+        projectId: this.chosenProject._id
       };
-      await axios.post("/api/user/new-project", project);
-      let id = this.$store.state.user._id;
-      let projects = null;
-      await axios.get(`/api/user/get-projects/${id}`).then(response => {
-        projects = response.data;
-      });
-      this.$store.state.user.projects = projects.projects;
+      await axios.post("/api/user/share-project", project);
     }
   }
 };

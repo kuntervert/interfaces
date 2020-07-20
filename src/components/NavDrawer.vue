@@ -40,10 +40,10 @@
     <v-list-item-title
       style="color: white; opacity: 0.6; text-align: left; padding-left: 15px; font-size: 12px; padding-bottom: 5%;"
     >PROJECT</v-list-item-title>
-    <v-list class="projectList">
+    <v-list v-if="userProjects" class="projectList">
       <v-list-item
         @click="changeProject(project.title, project._id)"
-        v-for="project in userProjects"
+        v-for="project in userProjects.slice().reverse()"
         :key="project.title"
         link
       >
@@ -67,6 +67,7 @@
 <script>
 import { mapGetters } from "vuex";
 import store from "../store";
+import axios from "axios";
 export default {
   name: "NavDrawer",
   data() {
@@ -77,28 +78,41 @@ export default {
         { title: "Inbox", icon: "mdi-checkbox-multiple-blank-outline" },
         { title: "My Posts", icon: "mdi-format-list-checkbox" },
         { title: "Settings", icon: "mdi-cog-outline" }
-      ]
+      ],
+      userId: this.$store.state.user._id
     };
   },
   computed: {
-    ...mapGetters(["navDrawer", "userProjects"]),
+    ...mapGetters(["navDrawer", "userProjects", "chosenProject"]),
     drawerWidth() {
       return document.getElementById("navDrawer").offsetWidth;
     }
   },
+  mounted() {},
   methods: {
     async logOut() {
       await store.commit("logout");
+      this.$store.reset();
       this.$router.push("/register");
     },
-    changeProject(title, id) {
+    async changeProject(title, id) {
       store.commit("changePage", "Projectview");
       store.commit("chooseProject", id);
-      console.log(id);
+      this.$router.push(`/dashboard/${this.userId}/${id}`);
+      let posts = null;
+      await axios
+        .get(`/api/user/get-posts/${this.chosenProject._id}`)
+        .then(response => {
+          posts = response.data;
+        });
+
+      this.$store.state.chosenProject.posts = posts;
+      console.log(this.$store.state.chosenProject.posts);
     },
     changePage(page) {
       console.log(page);
       store.commit("changePage", page);
+      this.$router.push(`/dashboard/${this.userId}/${page}`);
     }
   }
 };

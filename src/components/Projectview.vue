@@ -12,25 +12,38 @@
         <hr class="headerLine" />
         <!-- FEED CONTAINER -->
         <v-container class="postsContainer">
-          <v-card class="postCard" v-for="post in posts" :key="post.title">
-            <v-row class="postTitleRow">
-              <p>{{post.title}}</p>
-            </v-row>
-            <v-row class="postAuthorRow">
-              <p>{{post.author}}</p>
-            </v-row>
-            <v-row class="postContentRow">
-              <p>{{post.content}}</p>
-            </v-row>
-            <v-row class="postDateRow">
-              <v-col class="postDateCol">
-                <p>{{post.date}}</p>
-              </v-col>
-              <v-col>
-                <p style="font-size: 14px;">4 Comments</p>
-              </v-col>
-            </v-row>
-          </v-card>
+          <v-progress-linear v-if="loading" indeterminate color="white" class="mb-0"></v-progress-linear>
+          <v-row>
+            <v-col v-if="chosenProject.posts.posts" style="padding-right:20%; ">
+              <v-card
+                class="postCard"
+                v-for="post in chosenProject.posts.posts.slice().reverse()"
+                :key="post.title"
+              >
+                <v-row class="postTitleRow">
+                  <p>{{post.title}}</p>
+                </v-row>
+                <v-row class="postAuthorRow">
+                  <p>{{post.username}}</p>
+                </v-row>
+                <v-row class="postContentRow">
+                  <p>{{post.content}}</p>
+                </v-row>
+                <v-row class="postDateRow">
+                  <v-col class="postDateCol">
+                    <p>{{post.createdAt}}</p>
+                  </v-col>
+                  <v-col>
+                    <p style="font-size: 14px;">4 Comments</p>
+                  </v-col>
+                </v-row>
+              </v-card>
+            </v-col>
+            <v-col style="max-width: 30%">
+              <v-btn @click="openPostDialog(null)">+ New post</v-btn>
+              <v-btn @click="openShareDialog()">Invite members</v-btn>
+            </v-col>
+          </v-row>
         </v-container>
       </v-tab-item>
       <!-- QUESTIONS TAB -->
@@ -42,6 +55,39 @@
           <p style="font-size: 50px; font-weight: 600;">Questions</p>
         </v-row>
         <hr class="headerLine" />
+        <!-- QUESTIONS CONTAINER -->
+        <v-container class="postsContainer">
+          <v-row>
+            <v-col v-if="chosenProject.posts.posts" style="padding-right:20%;">
+              <v-card
+                class="postCard"
+                v-for="post in chosenProjectQuestionsOnly.slice().reverse()"
+                :key="post.title"
+              >
+                <v-row class="postTitleRow">
+                  <p>{{post.title}}</p>
+                </v-row>
+                <v-row class="postAuthorRow">
+                  <p>{{post.username}}</p>
+                </v-row>
+                <v-row class="postContentRow">
+                  <p>{{post.content}}</p>
+                </v-row>
+                <v-row class="postDateRow">
+                  <v-col class="postDateCol">
+                    <p>{{post.createdAt}}</p>
+                  </v-col>
+                  <v-col>
+                    <p style="font-size: 14px;">4 Comments</p>
+                  </v-col>
+                </v-row>
+              </v-card>
+            </v-col>
+            <v-col style="max-width: 30%">
+              <v-btn @click="openPostDialog( 'Question')">Ask a question</v-btn>
+            </v-col>
+          </v-row>
+        </v-container>
       </v-tab-item>
       <!-- POSTS TAB -->
       <v-tab-item>
@@ -52,6 +98,39 @@
           <p style="font-size: 50px; font-weight: 600;">Posts</p>
         </v-row>
         <hr class="headerLine" />
+        <!-- POSTS CONTAINER -->
+        <v-container class="postsContainer">
+          <v-row>
+            <v-col v-if="chosenProject.posts.posts" style="padding-right:20%;">
+              <v-card
+                class="postCard"
+                v-for="post in chosenProjectPostsOnly.slice().reverse()"
+                :key="post.title"
+              >
+                <v-row class="postTitleRow">
+                  <p>{{post.title}}</p>
+                </v-row>
+                <v-row class="postAuthorRow">
+                  <p>{{post.username}}</p>
+                </v-row>
+                <v-row class="postContentRow">
+                  <p>{{post.content}}</p>
+                </v-row>
+                <v-row class="postDateRow">
+                  <v-col class="postDateCol">
+                    <p>{{post.createdAt}}</p>
+                  </v-col>
+                  <v-col>
+                    <p style="font-size: 14px;">4 Comments</p>
+                  </v-col>
+                </v-row>
+              </v-card>
+            </v-col>
+            <v-col style="max-width: 30%">
+              <v-btn @click="openPostDialog('Post')">Add post</v-btn>
+            </v-col>
+          </v-row>
+        </v-container>
       </v-tab-item>
     </v-tabs-items>
   </v-container>
@@ -63,25 +142,29 @@ export default {
   name: "Projectview",
   data: () => ({
     search: null,
-    posts: [
-      {
-        title: "Head uudised.",
-        author: "Peeter Termomeeter",
-        content: "Tere, tahtsin teile öelda, et kõik on timmis!",
-        date: "05.06.2020"
-      },
-      {
-        title: "Tere kõigile",
-        author: "Peeter Termomeeter",
-        content:
-          "Tere, minu nimi on Peeter ning olen teie ülemus. Meeldivat tööpäeva qtid!",
-        date: "04.06.2020"
-      }
-    ]
+    loading: false
   }),
-  methods: {},
+  mounted() {
+    console.log(this.chosenProject.posts);
+  },
+  methods: {
+    openPostDialog(t) {
+      this.$store.state.postDialog = true;
+      this.$store.state.postDialogType = t;
+      console.log(this.$store.state.postDialogType);
+    },
+    openShareDialog() {
+      this.$store.state.shareDialog = true;
+    }
+  },
   computed: {
-    ...mapGetters(["chosenTab", "userProjects", "chosenProject"])
+    ...mapGetters([
+      "chosenTab",
+      "userProjects",
+      "chosenProject",
+      "chosenProjectQuestionsOnly",
+      "chosenProjectPostsOnly"
+    ])
   }
 };
 </script>
@@ -89,7 +172,7 @@ export default {
 <style lang="scss">
 .postsContainer {
   padding-left: 5%;
-  padding-right: 20%;
+  padding-right: 5%;
 }
 .headerContainer {
   max-width: 100%;
@@ -107,7 +190,8 @@ export default {
 }
 .postCard {
   margin-top: 5%;
-  margin-right: 50%;
+  margin-right: 0;
+  max-height: 20rem;
   border-radius: 25px !important;
 }
 
@@ -143,6 +227,9 @@ export default {
   max-width: 90%;
   p {
     text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 6rem;
   }
 }
 .postDateRow {

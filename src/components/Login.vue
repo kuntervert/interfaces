@@ -76,7 +76,7 @@ export default {
         this.$store.state.user.projects = projects.projects;
         console.log(projects);
         console.log(this.$store.state.user);
-        this.$router.push("/dashboard/");
+        this.$router.push(`/dashboard/${id}/Home`);
       } catch (error) {
         this.feedback = "Login failed: Invalid username or password.";
       }

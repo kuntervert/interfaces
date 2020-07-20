@@ -26,6 +26,10 @@ const userSchema = mongoose.Schema({
         required: true,
         minLength: 7
     },
+    username: {
+        type: String,
+        required: true
+    },
     projects: [{
         type: Object
     }],

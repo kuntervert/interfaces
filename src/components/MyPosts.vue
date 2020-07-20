@@ -2,39 +2,23 @@
   <v-container class="headerContainer">
     <!-- FEED TAB -->
     <v-row align="center" style="margin-top: 5%; margin-left: 5%; margin-bottom: 2%;">
-      <pre style="font-size: 12px; opacity: 0.7; white-space: pre">DASHBOARD   /</pre>
+      <pre style="font-size: 12px; opacity: 0.7; white-space: pre">DASHBOARD   /    MY POSTS</pre>
     </v-row>
     <v-row style="margin-left: 5%;">
-      <p style="font-size: 50px; font-weight: 600;">My Projects</p>
+      <p style="font-size: 50px; font-weight: 600;">My Posts</p>
     </v-row>
     <hr class="headerLine" />
     <!-- FEED CONTAINER -->
     <v-row class="projectsContainer">
       <!-- Create project card -->
-      <v-card @click="openDialog()" class="createProjectCard">
-        <v-row style="  align-self: center;">
-          <v-col style="max-width: 20%;">
-            <h1 style="font-size: 5vw;">+</h1>
-          </v-col>
-          <v-col style="text-align: left">
-            <p style="font-size: 2.3vw; color: #5a5959; ">
-              Start new
-              <br />project
-            </p>
-          </v-col>
-        </v-row>
-      </v-card>
-      <v-card
-        class="projectCard"
-        v-for="project in userProjects.slice().reverse()"
-        :key="project.title"
-      >
+
+      <v-card class="projectCard" v-for="post in myPosts.posts.slice().reverse()" :key="post.title">
         <v-row style="margin-left: 10%; padding-top: 2%;">
-          <p style="font-size: 25px; color: #5a5959; max-width: 90%;">{{project.title}}</p>
+          <p style="font-size: 25px; color: #5a5959; max-width: 90%;">{{post.title}}</p>
         </v-row>
         <v-row style="margin-left: 5%; margin-top: 1%; padding-bottom: 3%;">
           <v-col style="max-width: 50%; text-align: start;">
-            <p style="font-size: 10px;">{{project.createdAt}}</p>
+            <p style="font-size: 10px;">{{post.createdAt}}</p>
           </v-col>
           <v-col>
             <p style="font-size: 14px;">6 members</p>
@@ -47,16 +31,29 @@
 
 <script>
 import { mapGetters } from "vuex";
+import axios from "axios";
 export default {
-  name: "Home",
+  name: "MyPosts",
   data: () => ({
     search: null,
     dialog: false,
-    chosenTab: 0
+    chosenTab: 0,
+    myPosts: null
   }),
+  mounted() {
+    this.getMyPosts();
+  },
   methods: {
     openDialog() {
       this.$store.state.createDialog = true;
+    },
+    async getMyPosts() {
+      const id = this.$store.state.user._id;
+      let myPosts = null;
+      await axios.get(`/api/user/get-my-posts/${id}`).then(response => {
+        myPosts = response.data;
+      });
+      this.myPosts = myPosts;
     }
   },
   computed: {

@@ -8,11 +8,19 @@
     </v-row>
     <v-row class="signupEmailRow">
       <v-text-field
-        v-model="email"
-        :rules="emailRules"
+        v-model="username"
         id="input-10"
         class="custom-placeholer-color"
+        placeholder="Name"
+      ></v-text-field>
+    </v-row>
+    <v-row class="signupPasswordRow">
+      <v-text-field
+        id="input-10"
+        class="custom-placeholer-color"
+        :rules="emailRules"
         placeholder="Email"
+        v-model="email"
       ></v-text-field>
     </v-row>
     <v-row class="signupPasswordRow">
@@ -62,6 +70,7 @@ export default {
   data: () => ({
     email: null,
     password: null,
+    username: null,
     repeatedPassword: null,
     emailRules: [
       v => !!v || "E-mail is required",
@@ -80,7 +89,8 @@ export default {
       const email = this.email;
       const password = this.password;
       const password2 = this.repeatedPassword;
-      const userInfo = { email: email, password: password };
+      const username = this.username;
+      const userInfo = { email: email, password: password, username: username };
       if (password === password2) {
         if (!this.termStatus) {
           alert("Please accept the terms and conditions");

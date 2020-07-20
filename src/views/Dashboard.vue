@@ -1,6 +1,8 @@
 <template>
   <div id="mainCont" class="mainContainer">
     <CreateProject v-if="chosenPage === 'Home'" />
+    <ShareProject />
+    <CreatePost />
     <v-col class="drawerCol">
       <NavDrawer id="navDrawer" />
     </v-col>
@@ -24,8 +26,7 @@
         <v-icon class="notificationIcon">mdi-bell-alert-outline</v-icon>
         <img class="profileCircleImage" src="@/assets/profilepicture.jpg" />
       </v-app-bar>
-      <Projectview v-if="chosenPage === 'Projectview'" />
-      <Home v-if="chosenPage === 'Home'" />
+      <router-view></router-view>
     </v-col>
   </div>
 </template>
@@ -33,17 +34,17 @@
 <script>
 import { mapGetters } from "vuex";
 import NavDrawer from "@/components/NavDrawer.vue";
-import Projectview from "@/components/Projectview.vue";
 import CreateProject from "@/components/CreateProject.vue";
-import Home from "@/components/Home.vue";
+import CreatePost from "@/components/CreatePost.vue";
+import ShareProject from "@/components/ShareProject.vue";
 // import axios from "axios";
 export default {
   name: "Dashboard",
   components: {
     NavDrawer,
-    Projectview,
     CreateProject,
-    Home
+    CreatePost,
+    ShareProject
   },
   data: () => ({
     search: null,
@@ -145,39 +146,10 @@ export default {
   position: sticky;
   top: 0;
 }
-.postsContainer {
-  padding-left: 5%;
-  padding-right: 20%;
-}
-.headerContainer {
-  max-width: 100%;
-}
-.headerLine {
-  display: block;
-  height: 1px;
-  margin-left: 5%;
-  border: 0;
-  border-top: 1px solid #ccc;
-
-  padding: 0;
-  opacity: 0.6;
-  max-width: 30%;
-}
-.postCard {
-  margin-top: 5%;
-  margin-right: 50%;
-  border-radius: 25px !important;
-}
 
 .v-tabs-slider-wrapper {
   color: #2c6bff;
 }
 @media only screen and (max-width: 1200px) {
-  .postsContainer {
-    padding-right: 20%;
-    .postCard {
-      margin-right: 10% !important;
-    }
-  }
 }
 </style>

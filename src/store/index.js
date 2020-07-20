@@ -1,10 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
-
+import {
+  createStore
+} from 'vuex-extensions'
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+export default createStore(Vuex.Store, {
   state: {
     user: null,
     termStatus: false,
@@ -16,6 +18,9 @@ export default new Vuex.Store({
     chosenPage: 'Home',
     chosenProject: null,
     createDialog: false,
+    postDialog: false,
+    postDialogType: null,
+    shareDialog: false,
   },
   mutations: {
     acceptTerms(state) {
@@ -45,6 +50,7 @@ export default new Vuex.Store({
     },
     logout(state) {
       state.user = null
+
     },
     changeTab(state, nr) {
       state.chosenTab = nr
@@ -97,11 +103,26 @@ export default new Vuex.Store({
     chosenProject: state => {
       return state.chosenProject
     },
+    chosenProjectPostsOnly: state => {
+      return state.chosenProject.posts.posts.filter((c) => c.type === 'Post');
+    },
+    chosenProjectQuestionsOnly: state => {
+      return state.chosenProject.posts.posts.filter((c) => c.type === 'Question');
+    },
+    postDialogType: state => {
+      return state.postDialogType
+    },
     userProjects: state => {
       return state.user.projects;
     },
     createDialog: state => {
       return state.createDialog
+    },
+    postDialog: state => {
+      return state.postDialog
+    },
+    shareDialog: state => {
+      return state.shareDialog
     },
     chosenPage: state => {
       return state.chosenPage
