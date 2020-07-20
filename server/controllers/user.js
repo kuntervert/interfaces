@@ -34,7 +34,8 @@ module.exports = {
 				email: user.email,
 				_id: user._id,
 				LastLogin: user.LastLogin,
-				GDPRterms: user.GDPRterms
+				GDPRterms: user.GDPRterms,
+				username: user.username
 			};
 			res
 				.status(200)

@@ -24,6 +24,7 @@
         <v-icon class="upgradeIcon">mdi-apple-keyboard-caps</v-icon>
         <p role="button" class="upgradeButton">Upgrade account</p>
         <v-icon class="notificationIcon">mdi-bell-alert-outline</v-icon>
+        <p>{{username}}</p>
         <img class="profileCircleImage" src="@/assets/profilepicture.jpg" />
       </v-app-bar>
       <router-view></router-view>
@@ -48,21 +49,6 @@ export default {
   },
   data: () => ({
     search: null,
-    posts: [
-      {
-        title: "Head uudised.",
-        author: "Peeter Termomeeter",
-        content: "Tere, tahtsin teile öelda, et kõik on timmis!",
-        date: "05.06.2020"
-      },
-      {
-        title: "Tere kõigile",
-        author: "Peeter Termomeeter",
-        content:
-          "Tere, minu nimi on Peeter ning olen teie ülemus. Meeldivat tööpäeva qtid!",
-        date: "04.06.2020"
-      }
-    ],
     chosenTab: 0,
     dialog: true
   }),
@@ -76,7 +62,8 @@ export default {
       "isSignupView",
       "termDialog",
       "navDrawer",
-      "chosenPage"
+      "chosenPage",
+      "username"
     ])
   },
   watch: {},

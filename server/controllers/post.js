@@ -16,7 +16,7 @@ module.exports = {
                     content: req.body.content,
                     type: req.body.type,
                     projectId: req.params.id,
-                    userEmail: req.body.email
+                    username: req.body.username
                 });
 
             } else if (!req.body.content) {
@@ -25,7 +25,7 @@ module.exports = {
                     user: req.body.userId,
                     type: req.body.type,
                     projectId: req.params.id,
-                    userEmail: req.body.email
+                    username: req.body.username
 
                 });
             }

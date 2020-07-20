@@ -26,9 +26,11 @@
                 <v-row class="postAuthorRow">
                   <p>{{post.username}}</p>
                 </v-row>
-                <v-row class="postContentRow">
+
+                <v-row v-if="post.content" class="postContentRow">
                   <p>{{post.content}}</p>
                 </v-row>
+                <hr />
                 <v-row class="postDateRow">
                   <v-col class="postDateCol">
                     <p>{{post.createdAt}}</p>
@@ -70,9 +72,11 @@
                 <v-row class="postAuthorRow">
                   <p>{{post.username}}</p>
                 </v-row>
-                <v-row class="postContentRow">
+
+                <v-row v-if="post.content" class="postContentRow">
                   <p>{{post.content}}</p>
                 </v-row>
+                <hr />
                 <v-row class="postDateRow">
                   <v-col class="postDateCol">
                     <p>{{post.createdAt}}</p>
@@ -113,9 +117,10 @@
                 <v-row class="postAuthorRow">
                   <p>{{post.username}}</p>
                 </v-row>
-                <v-row class="postContentRow">
+                <v-row v-if="post.content" class="postContentRow">
                   <p>{{post.content}}</p>
                 </v-row>
+                <hr />
                 <v-row class="postDateRow">
                   <v-col class="postDateCol">
                     <p>{{post.createdAt}}</p>
@@ -191,8 +196,15 @@ export default {
 .postCard {
   margin-top: 5%;
   margin-right: 0;
-  max-height: 20rem;
+  padding-bottom: 3%;
+  padding-top: 5%;
   border-radius: 25px !important;
+  hr {
+    max-width: 90%;
+    opacity: 0.7;
+    margin-right: 5%;
+    margin-left: 5%;
+  }
 }
 
 .postCard:hover {
@@ -209,10 +221,17 @@ export default {
 }
 .postTitleRow {
   margin-left: 10%;
-  padding-top: 2%;
+  max-width: 90%;
+  max-height: 5rem;
+
   p {
-    font-size: 25px;
+    width: 85%;
+    font-size: 23px;
     color: #5a5959;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 4rem;
+    text-align: left;
   }
 }
 .postAuthorRow {
@@ -225,6 +244,7 @@ export default {
   margin-top: 5%;
   padding-bottom: 3%;
   max-width: 90%;
+  background-color: #e2e4ff;
   p {
     text-align: left;
     overflow: hidden;
@@ -235,7 +255,6 @@ export default {
 .postDateRow {
   margin-left: 5%;
   margin-top: 1%;
-  padding-bottom: 3%;
 }
 .postDateCol {
   max-width: 50%;

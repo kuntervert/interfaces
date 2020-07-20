@@ -93,11 +93,12 @@ export default {
       if (!this.title) {
         return alert("Needs a title");
       }
+      console.log(this.$store.state.user.username);
       let post = null;
       if (this.title && this.content) {
         post = {
           userId: this.$store.state.user._id,
-          email: this.$store.state.user.email,
+          username: this.$store.state.user.username,
           title: this.title,
           type: this.type,
           content: this.content
@@ -105,7 +106,7 @@ export default {
       } else if (this.title && !this.content) {
         post = {
           userId: this.$store.state.user._id,
-          email: this.$store.state.user.email,
+          username: this.$store.state.user.username,
           title: this.title,
           type: this.type
         };

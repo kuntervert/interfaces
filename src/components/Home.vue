@@ -28,6 +28,7 @@
         class="projectCard"
         v-for="project in userProjects.slice().reverse()"
         :key="project.title"
+        @click="changeProject(project.title, project._id)"
       >
         <v-row style="margin-left: 10%; padding-top: 2%;">
           <p style="font-size: 25px; color: #5a5959; max-width: 90%;">{{project.title}}</p>
@@ -47,20 +48,39 @@
 
 <script>
 import { mapGetters } from "vuex";
+import axios from "axios";
+import store from "../store";
 export default {
   name: "Home",
-  data: () => ({
-    search: null,
-    dialog: false,
-    chosenTab: 0
-  }),
+  data() {
+    return {
+      search: null,
+      dialog: false,
+      chosenTab: 0,
+      userId: this.$store.state.user._id
+    };
+  },
   methods: {
     openDialog() {
       this.$store.state.createDialog = true;
+    },
+    async changeProject(title, id) {
+      store.commit("changePage", "Projectview");
+      store.commit("chooseProject", id);
+      this.$router.push(`/dashboard/${this.userId}/${id}`);
+      let posts = null;
+      await axios
+        .get(`/api/user/get-posts/${this.chosenProject._id}`)
+        .then(response => {
+          posts = response.data;
+        });
+
+      this.$store.state.chosenProject.posts = posts;
+      console.log(this.$store.state.chosenProject.posts);
     }
   },
   computed: {
-    ...mapGetters(["userProjects"])
+    ...mapGetters(["userProjects", "chosenProject"])
   }
 };
 </script>

@@ -141,6 +141,9 @@ export default createStore(Vuex.Store, {
     },
     navDrawer: state => {
       return state.navDrawer
+    },
+    username: state => {
+      return state.user.username
     }
   }
 })

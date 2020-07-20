@@ -22,7 +22,7 @@ const postSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    userEmail: {
+    username: {
         type: String,
         required: true
     },
