@@ -1,7 +1,7 @@
 <template>
   <v-dialog @keydown.esc="closeDialog()" v-model="createDialog" persistent max-width="512">
     <v-card class="mailSentSelectBox">
-      <v-card-title class="headline">
+      <v-card-title style="justify-content: space-between;" class="headline">
         Add project info:
         <v-btn icon @click="closeDialog()">
           <v-icon>mdi-close</v-icon>
@@ -18,7 +18,7 @@
         </v-row>
 
         <v-spacer></v-spacer>
-        <v-row>
+        <v-row style="justify-content: space-evenly;">
           <v-btn style=" color: white" color="#6353fa" class="mr-4" @click="createProject()">Create</v-btn>
         </v-row>
       </v-container>

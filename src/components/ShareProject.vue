@@ -1,8 +1,8 @@
 <template>
   <v-dialog @keydown.esc="closeDialog()" v-model="shareDialog" persistent max-width="512">
     <v-card class="mailSentSelectBox">
-      <v-card-title class="headline">
-        Add project info:
+      <v-card-title style="justify-content: space-between;" class="headline">
+        Share project
         <v-btn icon @click="closeDialog()">
           <v-icon>mdi-close</v-icon>
         </v-btn>
@@ -14,11 +14,12 @@
             v-model="email"
             label="Email"
             required
+            style="max-width: 60%;"
           ></v-text-field>
         </v-row>
 
         <v-spacer></v-spacer>
-        <v-row>
+        <v-row style="justify-content: space-evenly;">
           <v-btn style=" color: white" color="#6353fa" class="mr-4" @click="shareProject()">Share</v-btn>
         </v-row>
       </v-container>

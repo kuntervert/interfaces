@@ -1,7 +1,7 @@
 <template>
   <v-dialog @keydown.esc="closeDialog()" v-model="postDialog" persistent max-width="512">
     <v-card class="mailSentSelectBox">
-      <v-card-title class="headline">
+      <v-card-title style="justify-content: space-between;" class="headline">
         <h3 v-if="postDialogType === null" id="postHeader">Create a new post</h3>
         <h3 v-if="postDialogType === 'Question'" id="postHeader">Ask a question</h3>
         <h3 v-if="postDialogType === 'Post'" id="postHeader">Share your ideas</h3>
@@ -16,16 +16,7 @@
 
           <v-btn value="Post">Post</v-btn>
         </v-btn-toggle>
-        <!-- <v-select
-          style="max-width: 20%;"
-          v-model="type"
-          :items="types"
-          item-text="title"
-          align-content-start
-          label="Choose post type"
-          dense
-          outlined
-        ></v-select>-->
+
         <v-container v-if="type">
           <v-row align="center" justify="space-around">
             <v-text-field
@@ -45,7 +36,7 @@
           </v-row>
 
           <v-spacer></v-spacer>
-          <v-row>
+          <v-row style="justify-content: space-evenly;">
             <v-btn
               style=" color: white"
               color="#6353fa"

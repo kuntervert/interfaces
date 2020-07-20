@@ -9,7 +9,7 @@
         <v-row class="feedPRow">
           <p style="font-size: 50px; font-weight: 600;">Feed</p>
         </v-row>
-        <hr class="headerLine" />
+        <hr id="aosAnchor" class="headerLine" />
         <!-- FEED CONTAINER -->
         <v-container class="postsContainer">
           <v-progress-linear v-if="loading" indeterminate color="white" class="mb-0"></v-progress-linear>
@@ -42,8 +42,8 @@
               </v-card>
             </v-col>
             <v-col style="max-width: 30%">
-              <v-btn @click="openPostDialog(null)">+ New post</v-btn>
-              <v-btn @click="openShareDialog()">Invite members</v-btn>
+              <v-btn class="addPostButton" outlined @click="openPostDialog(null)">+ New post</v-btn>
+              <v-btn class="addPostButton" outlined @click="openShareDialog()">Invite members</v-btn>
             </v-col>
           </v-row>
         </v-container>
@@ -88,7 +88,11 @@
               </v-card>
             </v-col>
             <v-col style="max-width: 30%">
-              <v-btn @click="openPostDialog( 'Question')">Ask a question</v-btn>
+              <v-btn
+                outlined
+                class="addPostButton"
+                @click="openPostDialog( 'Question')"
+              >Ask a question</v-btn>
             </v-col>
           </v-row>
         </v-container>
@@ -132,7 +136,7 @@
               </v-card>
             </v-col>
             <v-col style="max-width: 30%">
-              <v-btn @click="openPostDialog('Post')">Add post</v-btn>
+              <v-btn outlined class="addPostButton" @click="openPostDialog('Post')">Add post</v-btn>
             </v-col>
           </v-row>
         </v-container>
@@ -140,6 +144,7 @@
     </v-tabs-items>
   </v-container>
 </template>
+
 
 <script>
 import { mapGetters } from "vuex";
@@ -199,6 +204,9 @@ export default {
   padding-bottom: 3%;
   padding-top: 5%;
   border-radius: 25px !important;
+  box-shadow: 0px 3px 1px -2px rgba(104, 158, 255, 0.6),
+    0px 2px 2px 0px rgba(104, 158, 255, 0.6),
+    0px 1px 5px 0px rgba(104, 158, 255, 0.6) !important;
   hr {
     max-width: 90%;
     opacity: 0.7;
@@ -206,7 +214,9 @@ export default {
     margin-left: 5%;
   }
 }
-
+.v-ripple__container {
+  color: rgb(44, 107, 255, 0.4);
+}
 .postCard:hover {
   box-shadow: 0 2px 5px #2c6bff !important;
   cursor: pointer;
@@ -244,7 +254,7 @@ export default {
   margin-top: 5%;
   padding-bottom: 3%;
   max-width: 90%;
-  background-color: #e2e4ff;
+
   p {
     text-align: left;
     overflow: hidden;
@@ -262,5 +272,17 @@ export default {
   p {
     font-size: 10px;
   }
+}
+.addPostButton {
+  border-width: 2px;
+  border-color: rgb(44, 107, 255, 0.5);
+  color: black !important;
+  height: 3rem !important;
+  font-size: 1vw;
+  margin-right: 3%;
+  width: 173px !important;
+}
+.addPostButton:hover {
+  background-color: rgb(44, 107, 255, 0.2) !important;
 }
 </style>

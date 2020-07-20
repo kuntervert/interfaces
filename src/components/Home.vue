@@ -112,6 +112,9 @@ export default {
   margin-top: 5%;
   margin-right: 5%;
   border-radius: 25px !important;
+  box-shadow: 0px 3px 1px -2px rgba(104, 158, 255, 0.6),
+    0px 2px 2px 0px rgba(104, 158, 255, 0.6),
+    0px 1px 5px 0px rgba(104, 158, 255, 0.6) !important;
 }
 .projectCard:hover {
   box-shadow: 0 2px 5px #2c6bff !important;
@@ -130,6 +133,9 @@ export default {
   justify-content: space-evenly;
   padding-left: 2%;
   padding-right: 2%;
+  box-shadow: 0px 3px 1px -2px rgba(104, 158, 255, 0.6),
+    0px 2px 2px 0px rgba(104, 158, 255, 0.6),
+    0px 1px 5px 0px rgba(104, 158, 255, 0.6) !important;
 }
 .createProjectCard:hover {
   cursor: pointer;

@@ -24,7 +24,7 @@
         <v-icon class="upgradeIcon">mdi-apple-keyboard-caps</v-icon>
         <p role="button" class="upgradeButton">Upgrade account</p>
         <v-icon class="notificationIcon">mdi-bell-alert-outline</v-icon>
-        <p>{{username}}</p>
+        <p style="margin-left:5%; margin-right: 2%;">{{username}}</p>
         <img class="profileCircleImage" src="@/assets/profilepicture.jpg" />
       </v-app-bar>
       <router-view></router-view>
@@ -122,7 +122,6 @@ export default {
     .profileCircleImage {
       max-width: 50px;
       border-radius: 50%;
-      margin-left: 10%;
     }
   }
 }
