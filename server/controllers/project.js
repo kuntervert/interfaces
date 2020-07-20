@@ -1,16 +1,19 @@
 // Imports
 const Project = require('../models/Project');
 const User = require('../models/User')
-
+const moment = require('moment-timezone');
 
 // Export controller
 module.exports = {
     createProject: async (req, res) => {
         try {
-
+            let currDate = moment().tz("Europe/Helsinki").format(
+                "DD MMMM YYYY, HH:mm"
+            )
             const project = new Project({
                 title: req.body.title,
-                users: req.body.userId
+                users: req.body.userId,
+                createdAt: currDate
             });
             if (await User.findOne({
                     _id: req.body.userId
@@ -82,5 +85,17 @@ module.exports = {
                 status: error
             });
         }
-    }
+    },
+    deleteProject: async (req, res) => {
+        try {
+            await Project.findByIdAndDelete({
+                _id: req.params.id
+            });
+            res.send("Project deleted");
+        } catch (error) {
+            res.status(400).json({
+                status: error
+            });
+        }
+    },
 };

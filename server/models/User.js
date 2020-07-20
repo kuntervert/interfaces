@@ -34,8 +34,7 @@ const userSchema = mongoose.Schema({
         type: Object
     }],
     LastLogin: {
-        type: Date,
-        default: Date.now
+        type: String,
     },
     GDPRterms: {
         type: Boolean,

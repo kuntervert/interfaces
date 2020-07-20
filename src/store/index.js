@@ -21,6 +21,7 @@ export default createStore(Vuex.Store, {
     postDialog: false,
     postDialogType: null,
     shareDialog: false,
+
   },
   mutations: {
     acceptTerms(state) {
@@ -44,6 +45,7 @@ export default createStore(Vuex.Store, {
       console.log("id on:", id)
       state.chosenProject = state.user.projects.find(p => p._id === id)
 
+
     },
     login(state, user) {
       state.user = user;
@@ -54,6 +56,9 @@ export default createStore(Vuex.Store, {
     },
     changeTab(state, nr) {
       state.chosenTab = nr
+    },
+    formatPostDates(state, newarray) {
+      state.chosenProject = newarray
     }
   },
   actions: {
@@ -66,6 +71,7 @@ export default createStore(Vuex.Store, {
         withCredentials: true
       });
       if (data.status === 'OK') {
+        data
         const {
           user
         } = data;

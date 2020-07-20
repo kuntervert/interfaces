@@ -5,6 +5,7 @@ import store from "../store/index.js";
 import Projectview from "@/components/Projectview.vue"
 import Home from "@/components/Home.vue"
 import MyPosts from "@/components/MyPosts.vue"
+import Postview from "@/components/Postview.vue"
 
 Vue.use(VueRouter);
 const router = new VueRouter({
@@ -49,8 +50,12 @@ const router = new VueRouter({
 
 				},
 				{
-					path: ':id',
+					path: 'project/:id',
 					component: Projectview
+				},
+				{
+					path: 'post/:id',
+					component: Postview
 				},
 			],
 			meta: {

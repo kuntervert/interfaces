@@ -67,7 +67,7 @@ export default {
     async changeProject(title, id) {
       store.commit("changePage", "Projectview");
       store.commit("chooseProject", id);
-      this.$router.push(`/dashboard/${this.userId}/${id}`);
+      this.$router.push(`/dashboard/${this.userId}/project/${id}`);
       let posts = null;
       await axios
         .get(`/api/user/get-posts/${this.chosenProject._id}`)

@@ -2,7 +2,6 @@
 const mongoose = require('../database');
 const shortid = require('shortid');
 
-
 // Define schema
 const projectSchema = mongoose.Schema({
     _id: {
@@ -19,8 +18,7 @@ const projectSchema = mongoose.Schema({
         required: true,
     }],
     createdAt: {
-        type: Date,
-        default: Date.now
+        type: String
     },
     posts: [{
         type: String

@@ -22,6 +22,7 @@
             <v-text-field
               @keydown.enter="createPost(); closeDialog()"
               v-model="title"
+              counter="400"
               label="Title (required)"
               required
             ></v-text-field>

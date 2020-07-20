@@ -14,8 +14,9 @@
         <v-container class="postsContainer">
           <v-progress-linear v-if="loading" indeterminate color="white" class="mb-0"></v-progress-linear>
           <v-row>
-            <v-col v-if="chosenProject.posts.posts" style="padding-right:20%; ">
+            <v-col style="max-width: 40%;" v-if="chosenProject.posts.posts">
               <v-card
+                @click="openPost(post._id)"
                 class="postCard"
                 v-for="post in chosenProject.posts.posts.slice().reverse()"
                 :key="post.title"
@@ -60,8 +61,9 @@
         <!-- QUESTIONS CONTAINER -->
         <v-container class="postsContainer">
           <v-row>
-            <v-col v-if="chosenProject.posts.posts" style="padding-right:20%;">
+            <v-col style="max-width: 40%;" v-if="chosenProject.posts.posts">
               <v-card
+                @click="openPost(post._id)"
                 class="postCard"
                 v-for="post in chosenProjectQuestionsOnly.slice().reverse()"
                 :key="post.title"
@@ -109,8 +111,9 @@
         <!-- POSTS CONTAINER -->
         <v-container class="postsContainer">
           <v-row>
-            <v-col v-if="chosenProject.posts.posts" style="padding-right:20%;">
+            <v-col style="max-width: 40%;" v-if="chosenProject.posts.posts">
               <v-card
+                @click="openPost(post._id)"
                 class="postCard"
                 v-for="post in chosenProjectPostsOnly.slice().reverse()"
                 :key="post.title"
@@ -148,15 +151,15 @@
 
 <script>
 import { mapGetters } from "vuex";
+import store from "../store";
+// import axios from "axios";
 export default {
   name: "Projectview",
   data: () => ({
     search: null,
     loading: false
   }),
-  mounted() {
-    console.log(this.chosenProject.posts);
-  },
+  mounted() {},
   methods: {
     openPostDialog(t) {
       this.$store.state.postDialog = true;
@@ -165,6 +168,11 @@ export default {
     },
     openShareDialog() {
       this.$store.state.shareDialog = true;
+    },
+    openPost(id) {
+      const userId = this.$store.state.user._id;
+      store.commit("changePage", "Postview");
+      this.$router.push(`/dashboard/${userId}/post/${id}`);
     }
   },
   computed: {
@@ -203,6 +211,7 @@ export default {
   margin-right: 0;
   padding-bottom: 3%;
   padding-top: 5%;
+  max-width: 95%;
   border-radius: 25px !important;
   box-shadow: 0px 3px 1px -2px rgba(104, 158, 255, 0.6),
     0px 2px 2px 0px rgba(104, 158, 255, 0.6),

@@ -12,7 +12,12 @@
     <v-row v-if="myPosts.posts" class="projectsContainer">
       <!-- Create project card -->
 
-      <v-card class="projectCard" v-for="post in myPosts.posts.slice().reverse()" :key="post.title">
+      <v-card
+        @click="openPost(post._id)"
+        class="projectCard"
+        v-for="post in myPosts.posts.slice().reverse()"
+        :key="post.title"
+      >
         <v-row class="myPostsTitleRow">
           <p style>{{post.title}}</p>
         </v-row>
@@ -33,6 +38,7 @@
 <script>
 import { mapGetters } from "vuex";
 import axios from "axios";
+import store from "../store";
 export default {
   name: "MyPosts",
   data: () => ({
@@ -55,6 +61,11 @@ export default {
         myPosts = response.data;
       });
       this.myPosts = myPosts;
+    },
+    openPost(id) {
+      const userId = this.$store.state.user._id;
+      store.commit("changePage", "Postview");
+      this.$router.push(`/dashboard/${userId}/post/${id}`);
     }
   },
   computed: {

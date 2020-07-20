@@ -19,7 +19,9 @@ router.post('/share-project/', projectController.shareProject)
 //Post
 router.post('/new-post/:id', postController.createPost)
 router.get('/get-posts/:id', postController.getPosts)
+router.get('/get-post/:id', postController.getPost)
 router.get('/get-my-posts/:id', postController.getMyPosts)
+router.post('/new-comment/:id', postController.createComment)
 
 
 // Export router

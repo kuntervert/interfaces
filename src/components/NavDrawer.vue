@@ -42,6 +42,7 @@
     >PROJECT</v-list-item-title>
     <v-list v-if="userProjects" class="projectList">
       <v-list-item
+        class="tooltip"
         @click="changeProject(project.title, project._id)"
         v-for="project in userProjects.slice().reverse()"
         :key="project.title"
@@ -52,14 +53,15 @@
         </v-list-item-icon>
 
         <v-list-item-content>
-          <v-list-item-title
-            style="color: white; text-align: left; padding-left: 15px;"
-          >{{ project.title }}</v-list-item-title>
+          <v-list-item-title style="color: white; text-align: left; padding-left: 15px;">
+            {{ project.title }}
+            <span class="tooltiptext">{{project.title}}</span>
+          </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
     </v-list>
     <div style="position: fixed; bottom: 0; width: 100%; height: 50px; background-color: black;">
-      <v-btn @click="logOut()">Log out</v-btn>
+      <v-btn v-if="!mini" @click="logOut()">Log out</v-btn>
     </div>
   </v-navigation-drawer>
 </template>
@@ -98,7 +100,7 @@ export default {
     async changeProject(title, id) {
       store.commit("changePage", "Projectview");
       store.commit("chooseProject", id);
-      this.$router.push(`/dashboard/${this.userId}/${id}`);
+      this.$router.push(`/dashboard/${this.userId}/project/${id}`);
       let posts = null;
       await axios
         .get(`/api/user/get-posts/${this.chosenProject._id}`)
@@ -169,9 +171,42 @@ hr {
   display: block;
   height: 1px;
   border: 0;
-  border-top: 1px solid #ccc;
+  border-top: 1px solid #2c6bfc;
   margin: 1em 0;
   padding: 0;
   opacity: 0.2;
+}
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 90%;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 110%;
+  left: 30%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  white-space: pre-wrap;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
 }
 </style>

@@ -10,6 +10,7 @@
       <v-container>
         <v-row align="center" justify="space-around">
           <v-text-field
+            counter="100"
             @keydown.enter="createProject(); closeDialog()"
             v-model="title"
             label="Project name"
