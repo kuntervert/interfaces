@@ -4,7 +4,7 @@
     <div style="max-width: 40%; width: 40%;margin-top: 150px; float: left">
       <v-container
         style="padding-top: 5%; border-left: outset;
-    border-right: inset; border-color: rgb(44, 107, 255, 0.2)"
+    border-right: inset; border-color: rgb(44, 107, 255, 0.6);     border-width: 1px;"
       >
         <v-row
           style="margin-left: 0; margin-right: 0; margin-top: 0%; justify-content: flex-start;"
@@ -31,18 +31,21 @@
     max-width: 90%; text-align: left;">{{postData.content}}</p>
         </v-row>
       </v-container>
+
       <v-container
         style="border-left: outset;
-    border-right: inset;  border-color: rgb(44, 107, 255, 0.2)"
+    border-right: inset;  border-color: rgb(44, 107, 255, 0.2);     border-width: 1px;"
       >
+        <hr style="max-width: 70%;  border-color: rgb(44, 107, 255, 1); opacity: 0.8" />
         <v-row
-          style="margin-left: 0; margin-top: 20px; margin-right: 5px; justify-content: space-between"
+          style="margin-left: 0; margin-top: 20px; margin-right: 5px; justify-content: space-between; margin-bottom:5%;"
         >
-          <h5 @click="commentBox = !commentBox" style="cursor: pointer;">Add comment</h5>
+          <h5 @click="commentBox = !commentBox" style="cursor: pointer;">Reply to post</h5>
+
           <h5
             @click="showComments = !showComments"
             style="cursor: pointer;"
-          >{{postData.comments.length}} Comments</h5>
+          >Show Comments ({{postData.comments.length}})</h5>
         </v-row>
         <v-row v-if="commentBox" style="margin-top:2%; margin-left: 0;">
           <v-text-field
@@ -52,30 +55,33 @@
             append-icon="mdi-comment-arrow-right-outline"
             style
             outlined
+            @keydown.enter="addComment(postData._id)"
             v-model="commentContent"
             placeholder="Write comment..."
             solo
           ></v-text-field>
         </v-row>
-        <v-row></v-row>
-        <div v-if="showComments">
-          <v-container
-            v-for="comment in postData.comments"
-            :key="comment.username"
-            style="margin-top: 1%;"
-          >
-            <hr />
-            <v-row>
-              <p style="font-size: 11px;">{{comment.createdAt}}</p>
-            </v-row>
-            <v-row style="margin-top: 1%;">
-              <p style="font-size: 14px;">{{comment.username}}</p>
-            </v-row>
-            <v-row style="margin-top: 5%;">
-              <p style="text-align: left;">{{comment.content}}</p>
-            </v-row>
-          </v-container>
-        </div>
+
+        <transition-group tag="div" name="slide-fade">
+          <div :key="showComments" v-if="showComments">
+            <v-container
+              v-for="comment in postData.comments.slice().reverse()"
+              :key="comment.username"
+              style="margin-top: 1%; padding-left: 0;"
+            >
+              <v-row style="margin-left: 0;">
+                <p style="font-size: 11px;">{{comment.createdAt}}</p>
+              </v-row>
+              <v-row style="margin-top: 1%;margin-left: 0;">
+                <p style="font-size: 14px;">{{comment.username}}</p>
+              </v-row>
+              <v-row style="margin-top: 5%;margin-left: 0;">
+                <p style="text-align: left;">{{comment.content}}</p>
+              </v-row>
+              <hr />
+            </v-container>
+          </div>
+        </transition-group>
       </v-container>
     </div>
     <div style="width: 30%; float-left" />
@@ -117,7 +123,9 @@ export default {
       console.log(this.postData.comments.length);
     },
     async addComment(postId) {
-      if (this.commentContent !== "") {
+      if (!this.commentContent.replace(/\s/g, "").length) {
+        return;
+      } else if (this.commentContent.length > 0) {
         let newComment = {
           userId: this.$store.state.user._id,
           username: this.$store.state.user.username,
@@ -126,6 +134,7 @@ export default {
         await axios.post(`/api/user/new-comment/${postId}`, newComment);
         this.commentBox = false;
         this.getPost();
+        this.showComments = true;
       }
     }
   }
@@ -139,5 +148,16 @@ export default {
   .v-input__append-inner {
     cursor: pointer;
   }
+}
+.slide-fade-enter-active {
+  transition: all 0.3s ease;
+}
+.slide-fade-leave-active {
+  transition: all 0.1s ease;
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateX(10px);
+  opacity: 0;
 }
 </style>

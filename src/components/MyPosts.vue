@@ -104,7 +104,7 @@ export default {
     max-width: 90%;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-height: 4rem;
+    max-height: 5rem;
     text-align: left;
   }
 }

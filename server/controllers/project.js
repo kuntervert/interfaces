@@ -10,9 +10,10 @@ module.exports = {
             let currDate = moment().tz("Europe/Helsinki").format(
                 "DD MMMM YYYY, HH:mm"
             )
+            let user1 = [req.body.userId, req.body.username]
             const project = new Project({
                 title: req.body.title,
-                users: req.body.userId,
+                users: user1,
                 createdAt: currDate
             });
             if (await User.findOne({
@@ -69,6 +70,13 @@ module.exports = {
                         status: error
                     })
                 } else {
+                    await Project.updateOne({
+                        _id: req.body.projectId
+                    }, {
+                        $push: {
+                            users: user.username
+                        }
+                    })
                     await Project.updateOne({
                         _id: req.body.projectId
                     }, {

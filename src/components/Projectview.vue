@@ -15,6 +15,7 @@
           <v-progress-linear v-if="loading" indeterminate color="white" class="mb-0"></v-progress-linear>
           <v-row>
             <v-col style="max-width: 40%;" v-if="chosenProject.posts.posts">
+              <h2 v-if="chosenProject.posts.posts.length === 0">Nothing has been posted yet</h2>
               <v-card
                 @click="openPost(post._id)"
                 class="postCard"
@@ -37,7 +38,7 @@
                     <p>{{post.createdAt}}</p>
                   </v-col>
                   <v-col>
-                    <p style="font-size: 14px;">4 Comments</p>
+                    <p style="font-size: 14px;">{{post.comments.length}} Comments</p>
                   </v-col>
                 </v-row>
               </v-card>
@@ -45,6 +46,15 @@
             <v-col style="max-width: 30%">
               <v-btn class="addPostButton" outlined @click="openPostDialog(null)">+ New post</v-btn>
               <v-btn class="addPostButton" outlined @click="openShareDialog()">Invite members</v-btn>
+              <!-- <v-row>
+                <p>Project members:</p>
+              </v-row>
+              <v-row v-for="user in chosenProject.users" :key="user.userId">
+                <p>Project members:</p>
+                <v-row>
+                  <p>{{user}}</p>
+                </v-row>
+              </v-row>-->
             </v-col>
           </v-row>
         </v-container>
@@ -62,6 +72,8 @@
         <v-container class="postsContainer">
           <v-row>
             <v-col style="max-width: 40%;" v-if="chosenProject.posts.posts">
+              <h2 v-if="chosenProjectQuestionsOnly.length === 0">Nothing has been posted yet</h2>
+
               <v-card
                 @click="openPost(post._id)"
                 class="postCard"
@@ -84,7 +96,7 @@
                     <p>{{post.createdAt}}</p>
                   </v-col>
                   <v-col>
-                    <p style="font-size: 14px;">4 Comments</p>
+                    <p style="font-size: 14px;">{{post.comments.length}} Comments</p>
                   </v-col>
                 </v-row>
               </v-card>
@@ -112,6 +124,8 @@
         <v-container class="postsContainer">
           <v-row>
             <v-col style="max-width: 40%;" v-if="chosenProject.posts.posts">
+              <h2 v-if="chosenProjectPostsOnly.length === 0">Nothing has been posted yet</h2>
+
               <v-card
                 @click="openPost(post._id)"
                 class="postCard"
@@ -133,7 +147,7 @@
                     <p>{{post.createdAt}}</p>
                   </v-col>
                   <v-col>
-                    <p style="font-size: 14px;">4 Comments</p>
+                    <p style="font-size: 14px;">{{post.comments.length}} Comments</p>
                   </v-col>
                 </v-row>
               </v-card>

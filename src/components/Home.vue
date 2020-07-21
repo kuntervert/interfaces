@@ -14,7 +14,7 @@
       <v-card @click="openDialog()" class="createProjectCard">
         <v-row style="  align-self: center;">
           <v-col style="max-width: 20%;">
-            <h1 style="font-size: 5vw;">+</h1>
+            <h1 style="font-size: 5vw; color:rgba(104, 158, 255, 0.8) ">+</h1>
           </v-col>
           <v-col style="text-align: left">
             <p style="font-size: 2.3vw; color: #5a5959; ">
@@ -38,7 +38,7 @@
             <p style="font-size: 10px;">{{project.createdAt}}</p>
           </v-col>
           <v-col>
-            <p style="font-size: 14px;">6 members</p>
+            <p style="font-size: 14px;">{{project.users.length / 2}} members</p>
           </v-col>
         </v-row>
       </v-card>
@@ -86,6 +86,10 @@ export default {
 </script>
 
 <style lang="scss">
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500&display=swap");
+* {
+  font-family: "Barlow Condensed", sans-serif;
+}
 .projectsContainer {
   padding-left: 5%;
   padding-right: 20%;
@@ -111,6 +115,7 @@ export default {
   min-width: 35%;
   margin-top: 5%;
   margin-right: 5%;
+  align-self: flex-end;
   border-radius: 25px !important;
   box-shadow: 0px 3px 1px -2px rgba(104, 158, 255, 0.6),
     0px 2px 2px 0px rgba(104, 158, 255, 0.6),

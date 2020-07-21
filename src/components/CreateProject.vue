@@ -47,6 +47,7 @@ export default {
     async createProject() {
       const project = {
         userId: this.$store.state.user._id,
+        username: this.$store.state.user.username,
         title: this.title
       };
       await axios.post("/api/user/new-project", project);
