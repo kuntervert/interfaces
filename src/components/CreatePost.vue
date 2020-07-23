@@ -20,6 +20,7 @@
         <v-container v-if="type">
           <v-row align="center" justify="space-around">
             <v-text-field
+              class="titleText"
               @keydown.enter="createPost(); closeDialog()"
               v-model="title"
               counter="400"
@@ -28,12 +29,14 @@
             ></v-text-field>
           </v-row>
           <v-row align="center" justify="space-around">
-            <v-text-field
+            <v-textarea
+              class="descriptionText"
+              height="100"
               @keydown.enter="createPost(); closeDialog()"
               v-model="content"
               label="Description (optional)"
               required
-            ></v-text-field>
+            ></v-textarea>
           </v-row>
 
           <v-spacer></v-spacer>
@@ -131,5 +134,11 @@ export default {
     background: #6353fa !important;
     opacity: 70%;
   }
+}
+.descriptionText {
+  max-width: 75%;
+}
+.titleText {
+  max-width: 75%;
 }
 </style>

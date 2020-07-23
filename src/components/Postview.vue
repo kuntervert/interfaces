@@ -1,10 +1,12 @@
 <template>
   <div style="display: flex; width: 100%;" v-if="postData">
     <div style="width: 30%; float: left" />
-    <div style="max-width: 40%; width: 40%;margin-top: 150px; float: left">
+    <div
+      style="max-width: 40%; width: 40%;margin-top: 150px; float: left; animation: fadeInUp; animation-duration: 0.5s;"
+    >
       <v-container
         style="padding-top: 5%; border-left: outset;
-    border-right: inset; border-color: rgb(44, 107, 255, 0.6);     border-width: 1px;"
+    border-right: inset; border-color: rgb(44, 107, 255, 0.6);     border-width: 1px; "
       >
         <v-row
           style="margin-left: 0; margin-right: 0; margin-top: 0%; justify-content: flex-start;"
@@ -16,7 +18,7 @@
         >
           <p style="font-size: 18px;">{{postData.username}}</p>
         </v-row>
-        <v-row style="margin: 0; margin-top: 3%;justify-content: flex-start;">
+        <v-row style="margin: 0; margin-top: 5%;justify-content: flex-start;">
           <h3
             style=" text-align: left;     overflow-wrap: break-word;
 
@@ -45,10 +47,10 @@
             style="cursor: pointer; color: #728aff"
           >Reply to post</h3>
 
-          <h3
+          <h4
             @click="showComments = !showComments"
             style="cursor: pointer; color: rgb(44, 107, 255, 0.9);"
-          >Show Comments ({{postData.comments.length}})</h3>
+          >Show Comments ({{postData.comments.length}})</h4>
         </v-row>
         <v-row v-if="commentBox" style="margin-top:2%; margin-left: 0;">
           <v-text-field
@@ -93,6 +95,7 @@
 <script>
 import axios from "axios";
 import moment from "moment";
+import "animate.css";
 
 export default {
   name: "Postview",
@@ -147,6 +150,8 @@ export default {
 .commentField {
   max-width: 60%;
   max-height: 40%;
+  animation: slideInDown;
+  animation-duration: 0.25s;
   .v-input__append-inner {
     cursor: pointer;
   }

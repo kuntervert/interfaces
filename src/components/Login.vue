@@ -49,6 +49,7 @@
 import { mapGetters, mapActions } from "vuex";
 import changeToLoginButton from "@/components/changeToLoginButton";
 import axios from "axios";
+import "animate.css";
 export default {
   name: "Login",
   components: {
@@ -197,10 +198,14 @@ export default {
 #input-10 {
   margin-left: 4%;
   color: white !important;
+  animation: slideInLeft;
+  animation-duration: 1s;
 }
 #input-13 {
   margin-left: 4%;
   color: white !important;
+  animation: slideInLeft;
+  animation-duration: 1s;
 }
 .custom-placeholer-color input::placeholder {
   color: white !important;

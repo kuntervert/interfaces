@@ -24,7 +24,7 @@
         <hr />
         <v-row style="margin-left: 5%; margin-top: 1%; padding-bottom: 3%;">
           <v-col style="max-width: 50%; text-align: start;">
-            <p style="font-size: 10px;">{{post.createdAt}}</p>
+            <p style="font-size: 15px;">{{post.createdAt}}</p>
           </v-col>
           <v-col>
             <p style="font-size: 14px;">6 comments</p>
@@ -79,6 +79,8 @@ export default {
   padding-left: 5%;
   padding-right: 20%;
   display: flex;
+  animation: fadeInUp;
+  animation-duration: 0.3s;
 }
 .headerContainer {
   max-width: 100%;
