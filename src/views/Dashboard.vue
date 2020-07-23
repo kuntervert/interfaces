@@ -98,7 +98,7 @@ export default {
       max-width: fit-content;
     }
     .v-tab {
-      font-size: 0.675rem;
+      font-size: 0.975rem;
     }
     .v-text-field {
       max-width: 20%;

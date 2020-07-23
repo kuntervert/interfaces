@@ -9,18 +9,18 @@
         <v-row
           style="margin-left: 0; margin-right: 0; margin-top: 0%; justify-content: flex-start;"
         >
-          <p style="font-size: 11px;">{{postData.createdAt}}</p>
+          <p style="font-size: 13px;">{{postData.createdAt}}</p>
         </v-row>
         <v-row
           style="margin-left: 0; margin-right: 0; margin-top: 1%; justify-content: flex-start; "
         >
-          <p style="font-size: 15px;">{{postData.username}}</p>
+          <p style="font-size: 18px;">{{postData.username}}</p>
         </v-row>
         <v-row style="margin: 0; margin-top: 3%;justify-content: flex-start;">
           <h3
             style=" text-align: left;     overflow-wrap: break-word;
 
-    max-width: 90%"
+    max-width: 90%; font-size: 25px;"
           >{{postData.title}}</h3>
         </v-row>
 
@@ -28,7 +28,7 @@
           style="margin-left: 0; margin-right: 0; margin-top: 5%; justify-content: flex-start;"
         >
           <p style="
-    max-width: 90%; text-align: left;">{{postData.content}}</p>
+    max-width: 90%; text-align: left; font-size: 23px">{{postData.content}}</p>
         </v-row>
       </v-container>
 
@@ -36,22 +36,24 @@
         style="border-left: outset;
     border-right: inset;  border-color: rgb(44, 107, 255, 0.2);     border-width: 1px;"
       >
-        <hr style="max-width: 70%;  border-color: rgb(44, 107, 255, 1); opacity: 0.8" />
+        <hr style="max-width: 70%;  border-color: rgb(44, 107, 255, 0.9); opacity: 0.8" />
         <v-row
           style="margin-left: 0; margin-top: 20px; margin-right: 5px; justify-content: space-between; margin-bottom:5%;"
         >
-          <h5 @click="commentBox = !commentBox" style="cursor: pointer;">Reply to post</h5>
+          <h3
+            @click="commentBox = !commentBox"
+            style="cursor: pointer; color: #728aff"
+          >Reply to post</h3>
 
-          <h5
+          <h3
             @click="showComments = !showComments"
-            style="cursor: pointer;"
-          >Show Comments ({{postData.comments.length}})</h5>
+            style="cursor: pointer; color: rgb(44, 107, 255, 0.9);"
+          >Show Comments ({{postData.comments.length}})</h3>
         </v-row>
         <v-row v-if="commentBox" style="margin-top:2%; margin-left: 0;">
           <v-text-field
             @click:append="addComment(postData._id)"
             class="commentField"
-            counter="500"
             append-icon="mdi-comment-arrow-right-outline"
             style
             outlined
@@ -70,13 +72,13 @@
               style="margin-top: 1%; padding-left: 0;"
             >
               <v-row style="margin-left: 0;">
-                <p style="font-size: 11px;">{{comment.createdAt}}</p>
+                <p style="font-size: 13px;">{{comment.createdAt}}</p>
               </v-row>
               <v-row style="margin-top: 1%;margin-left: 0;">
-                <p style="font-size: 14px;">{{comment.username}}</p>
+                <p style="font-size: 18px;">{{comment.username}}</p>
               </v-row>
               <v-row style="margin-top: 5%;margin-left: 0;">
-                <p style="text-align: left;">{{comment.content}}</p>
+                <p style="text-align: left; font-size: 19px;">{{comment.content}}</p>
               </v-row>
               <hr />
             </v-container>

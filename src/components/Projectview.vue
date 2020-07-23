@@ -273,7 +273,7 @@ export default {
   opacity: 0.6;
 }
 .postContentRow {
-  margin-left: 5%;
+  margin-left: 10%;
   margin-top: 5%;
   padding-bottom: 3%;
   max-width: 90%;
@@ -283,17 +283,19 @@ export default {
     overflow: hidden;
     text-overflow: ellipsis;
     max-height: 6rem;
+    font-size: 22px;
   }
 }
 .postDateRow {
   margin-left: 5%;
   margin-top: 1%;
+  margin-right: 1%;
 }
 .postDateCol {
   max-width: 50%;
   text-align: start;
   p {
-    font-size: 10px;
+    font-size: 15px;
   }
 }
 .addPostButton {
@@ -301,7 +303,7 @@ export default {
   border-color: rgb(44, 107, 255, 0.5);
   color: black !important;
   height: 3rem !important;
-  font-size: 1vw;
+  font-size: 19px !important;
   margin-right: 3%;
   width: 173px !important;
 }
