@@ -10,7 +10,7 @@
         style="color: white;    max-width: 50%;
     text-overflow: ellipsis;
     overflow: hidden; display: inline-flex; font-weight: 600; font-size: 20px;
-}"
+"
         v-if="!mini"
       >ORGΞT</p>
       <v-btn style="margin-left: 25%;" icon @click.stop="mini = !mini">
@@ -79,16 +79,16 @@ export default {
         { title: "Home", icon: "mdi-home" },
         { title: "Inbox", icon: "mdi-checkbox-multiple-blank-outline" },
         { title: "My Posts", icon: "mdi-format-list-checkbox" },
-        { title: "Settings", icon: "mdi-cog-outline" }
+        { title: "Settings", icon: "mdi-cog-outline" },
       ],
-      userId: this.$store.state.user._id
+      userId: this.$store.state.user._id,
     };
   },
   computed: {
     ...mapGetters(["navDrawer", "userProjects", "chosenProject"]),
     drawerWidth() {
       return document.getElementById("navDrawer").offsetWidth;
-    }
+    },
   },
   mounted() {},
   methods: {
@@ -104,7 +104,7 @@ export default {
       let posts = null;
       await axios
         .get(`/api/user/get-posts/${this.chosenProject._id}`)
-        .then(response => {
+        .then((response) => {
           posts = response.data;
         });
 
@@ -115,8 +115,8 @@ export default {
       console.log(page);
       store.commit("changePage", page);
       this.$router.push(`/dashboard/${this.userId}/${page}`);
-    }
-  }
+    },
+  },
 };
 </script>
 

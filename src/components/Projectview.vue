@@ -46,15 +46,16 @@
             <v-col style="max-width: 30%">
               <v-btn class="addPostButton" outlined @click="openPostDialog(null)">+ New post</v-btn>
               <v-btn class="addPostButton" outlined @click="openShareDialog()">Invite members</v-btn>
-              <!-- <v-row>
-                <p>Project members:</p>
+            </v-col>
+            <v-col style="max-width: 30%;">
+              <p style="text-align: left;">Project members:</p>
+              <v-row
+                style=" margin-left: 0;"
+                v-for="user in chosenProject.users"
+                :key="user.userId"
+              >
+                <p>{{user.username}}</p>
               </v-row>
-              <v-row v-for="user in chosenProject.users" :key="user.userId">
-                <p>Project members:</p>
-                <v-row>
-                  <p>{{user}}</p>
-                </v-row>
-              </v-row>-->
             </v-col>
           </v-row>
         </v-container>
@@ -171,7 +172,7 @@ export default {
   name: "Projectview",
   data: () => ({
     search: null,
-    loading: false
+    loading: false,
   }),
   mounted() {},
   methods: {
@@ -187,7 +188,7 @@ export default {
       const userId = this.$store.state.user._id;
       store.commit("changePage", "Postview");
       this.$router.push(`/dashboard/${userId}/post/${id}`);
-    }
+    },
   },
   computed: {
     ...mapGetters([
@@ -195,9 +196,9 @@ export default {
       "userProjects",
       "chosenProject",
       "chosenProjectQuestionsOnly",
-      "chosenProjectPostsOnly"
-    ])
-  }
+      "chosenProjectPostsOnly",
+    ]),
+  },
 };
 </script>
 

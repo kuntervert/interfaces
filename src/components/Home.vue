@@ -38,7 +38,7 @@
             <p style="font-size: 10px;">{{project.createdAt}}</p>
           </v-col>
           <v-col>
-            <p style="font-size: 14px;">{{project.users.length / 2}} members</p>
+            <p style="font-size: 14px;">{{project.users.length}} members</p>
           </v-col>
         </v-row>
       </v-card>
@@ -57,9 +57,10 @@ export default {
       search: null,
       dialog: false,
       chosenTab: 0,
-      userId: this.$store.state.user._id
+      userId: this.$store.state.user._id,
     };
   },
+  mounted() {},
   methods: {
     openDialog() {
       this.$store.state.createDialog = true;
@@ -71,17 +72,17 @@ export default {
       let posts = null;
       await axios
         .get(`/api/user/get-posts/${this.chosenProject._id}`)
-        .then(response => {
+        .then((response) => {
           posts = response.data;
         });
 
       this.$store.state.chosenProject.posts = posts;
       console.log(this.$store.state.chosenProject.posts);
-    }
+    },
   },
   computed: {
-    ...mapGetters(["userProjects", "chosenProject"])
-  }
+    ...mapGetters(["userProjects", "chosenProject"]),
+  },
 };
 </script>
 

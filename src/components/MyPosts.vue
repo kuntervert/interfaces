@@ -11,7 +11,7 @@
     <!-- FEED CONTAINER -->
     <v-row v-if="myPosts.posts" class="projectsContainer">
       <!-- Create project card -->
-
+      <h2 v-if="myPosts.posts.length === 0">You haven't posted anything yet</h2>
       <v-card
         @click="openPost(post._id)"
         class="projectCard"
@@ -45,7 +45,7 @@ export default {
     search: null,
     dialog: false,
     chosenTab: 0,
-    myPosts: 0
+    myPosts: 0,
   }),
   mounted() {
     this.getMyPosts();
@@ -57,7 +57,7 @@ export default {
     async getMyPosts() {
       const id = this.$store.state.user._id;
       let myPosts = null;
-      await axios.get(`/api/user/get-my-posts/${id}`).then(response => {
+      await axios.get(`/api/user/get-my-posts/${id}`).then((response) => {
         myPosts = response.data;
       });
       this.myPosts = myPosts;
@@ -66,11 +66,11 @@ export default {
       const userId = this.$store.state.user._id;
       store.commit("changePage", "Postview");
       this.$router.push(`/dashboard/${userId}/post/${id}`);
-    }
+    },
   },
   computed: {
-    ...mapGetters(["userProjects"])
-  }
+    ...mapGetters(["userProjects"]),
+  },
 };
 </script>
 
