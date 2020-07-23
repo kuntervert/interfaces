@@ -84,6 +84,13 @@ module.exports = {
                             users: user._id
                         }
                     })
+                    await User.updateOne({
+                        _id: user._id
+                    }, {
+                        $push: {
+                            projects: project
+                        }
+                    })
                 }
                 await project.save()
                 res.status(200).json('Project shared')

@@ -8,6 +8,7 @@
     </v-row>
     <v-row class="signupEmailRow">
       <v-text-field
+        required
         v-model="username"
         id="input-10"
         class="custom-placeholer-color"
@@ -65,7 +66,7 @@ import axios from "axios";
 export default {
   name: "Signup",
   components: {
-    changeToSignupButton
+    changeToSignupButton,
   },
   data: () => ({
     email: null,
@@ -73,12 +74,12 @@ export default {
     username: null,
     repeatedPassword: null,
     emailRules: [
-      v => !!v || "E-mail is required",
-      v => /.+@.+\..+/.test(v) || "E-mail must be valid"
-    ]
+      (v) => !!v || "E-mail is required",
+      (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
+    ],
   }),
   computed: {
-    ...mapGetters(["termStatus", "isLoginView", "isSignupView", "termDialog"])
+    ...mapGetters(["termStatus", "isLoginView", "isSignupView", "termDialog"]),
   },
   methods: {
     ...mapActions(["signup"]),
@@ -99,8 +100,8 @@ export default {
           alert("Successful");
         }
       }
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="scss">

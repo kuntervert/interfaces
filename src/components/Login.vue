@@ -22,10 +22,19 @@
         @keydown.enter="loginUser()"
       ></v-text-field>
     </v-row>
+    <v-row v-if="loginError" class="loginPasswordRow">
+      <v-alert class="errorAlert" color="#fc8585" icon="mdi-alert-box-outline">
+        <strong>Invalid</strong> &nbsp;
+        <strong>email</strong> or
+        <strong>password</strong>.
+      </v-alert>
+    </v-row>
+
     <v-row class="buttonsRow">
       <v-btn tile class="loginButton" @click="loginUser()" outlined>Login</v-btn>
       <p role="button" class="forgotButton">Forgot password?</p>
     </v-row>
+
     <v-row class="socialRow">
       <p class="socialPhrase">Login using Social Media accounts</p>
     </v-row>
@@ -53,14 +62,15 @@ import "animate.css";
 export default {
   name: "Login",
   components: {
-    changeToLoginButton
+    changeToLoginButton,
   },
   data: () => ({
     email: null,
-    password: null
+    password: null,
+    loginError: false,
   }),
   computed: {
-    ...mapGetters(["termStatus", "isLoginView", "isSignupView"])
+    ...mapGetters(["termStatus", "isLoginView", "isSignupView"]),
   },
   methods: {
     ...mapActions(["login"]),
@@ -71,21 +81,22 @@ export default {
         await this.login({ email, password });
         let id = this.$store.state.user._id;
         let projects = null;
-        await axios.get(`/api/user/get-projects/${id}`).then(response => {
+        await axios.get(`/api/user/get-projects/${id}`).then((response) => {
           projects = response.data;
         });
+        this.loginError = false;
         this.$store.state.user.projects = projects.projects;
         console.log(projects);
         console.log(this.$store.state.user);
         this.$router.push(`/dashboard/${id}/Home`);
       } catch (error) {
-        this.feedback = "Login failed: Invalid username or password.";
+        this.loginError = true;
       }
     },
     trySignup() {
       this.$store.dispatch("changeToSignup");
-    }
-  }
+    },
+  },
 };
 </script>
       
@@ -131,7 +142,10 @@ export default {
   padding-left: 25%;
   padding-right: 18%;
 }
-
+.errorAlert {
+  animation: headShake;
+  animation-duration: 1s;
+}
 .buttonsRow {
   padding-left: 25%;
   padding-right: 0%;

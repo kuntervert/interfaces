@@ -3,6 +3,7 @@ const express = require('express');
 const userController = require('../controllers/user');
 const projectController = require('../controllers/project')
 const postController = require('../controllers/post')
+const projectAccess = require('../middleware/projectAccess')
 
 
 // Create new Express router
@@ -18,7 +19,7 @@ router.get('/get-projects/:id', projectController.getProjects)
 router.post('/share-project/', projectController.shareProject)
 //Post
 router.post('/new-post/:id', postController.createPost)
-router.get('/get-posts/:id', postController.getPosts)
+router.get('/get-posts/:id', projectAccess, postController.getPosts)
 router.get('/get-post/:id', postController.getPost)
 router.get('/get-my-posts/:id', postController.getMyPosts)
 router.post('/new-comment/:id', postController.createComment)

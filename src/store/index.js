@@ -1,12 +1,17 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+import createPersistedState from "vuex-persistedstate";
+
 import {
   createStore
 } from 'vuex-extensions'
 Vue.use(Vuex)
 
 export default createStore(Vuex.Store, {
+  plugins: [createPersistedState({
+    storage: window.sessionStorage
+  })],
   state: {
     user: null,
     termStatus: false,
