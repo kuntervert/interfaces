@@ -1,12 +1,12 @@
 # Project management dashboard
 
-**Vue.js
-**Vuetify
-**Vuex
-**Router
-**Node.js
-**MongoDB
-**JSON Web Tokens
+#### Vue.js
+#### Vuetify
+#### Vuex
+#### Router
+#### Node.js
+#### MongoDB
+#### JSON Web Tokens
 
 ## Project setup
 ```
