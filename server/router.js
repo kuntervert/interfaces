@@ -15,7 +15,7 @@ const router = express.Router();
 // Set subrouters
 
 router.use(bodyParser.json());
-router.use("/user", verifyToken, userRouter);
+router.use("/user", userRouter);
 // router.use("/post", postsRouter)
 
 
