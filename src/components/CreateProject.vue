@@ -10,6 +10,7 @@
       <v-container>
         <v-row align="center" justify="space-around">
           <v-text-field
+            class="projectNameField"
             counter="100"
             @keydown.enter="createProject(); closeDialog()"
             v-model="title"
@@ -35,10 +36,10 @@ export default {
   name: "CreateProject",
   data: () => ({
     valid: false,
-    title: null
+    title: null,
   }),
   computed: {
-    ...mapGetters(["createDialog"])
+    ...mapGetters(["createDialog"]),
   },
   methods: {
     closeDialog() {
@@ -48,17 +49,17 @@ export default {
       const project = {
         userId: this.$store.state.user._id,
         username: this.$store.state.user.username,
-        title: this.title
+        title: this.title,
       };
       await axios.post("/api/user/new-project", project);
       let id = this.$store.state.user._id;
       let projects = null;
-      await axios.get(`/api/user/get-projects/${id}`).then(response => {
+      await axios.get(`/api/user/get-projects/${id}`).then((response) => {
         projects = response.data;
       });
       this.$store.state.user.projects = projects.projects;
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -71,5 +72,8 @@ export default {
     background: #6353fa !important;
     opacity: 70%;
   }
+}
+.projectNameField {
+  max-width: 75%;
 }
 </style>

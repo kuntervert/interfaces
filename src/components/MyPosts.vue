@@ -27,7 +27,7 @@
             <p style="font-size: 15px;">{{post.createdAt}}</p>
           </v-col>
           <v-col>
-            <p style="font-size: 14px;">6 comments</p>
+            <p style="font-size: 14px;">{{post.comments.length}} comments</p>
           </v-col>
         </v-row>
       </v-card>
