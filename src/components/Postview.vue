@@ -192,5 +192,8 @@ export default {
     max-width: 90%;
     width: 90%;
   }
+  .commentField {
+    max-width: 95%;
+  }
 }
 </style>

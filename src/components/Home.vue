@@ -8,22 +8,13 @@
       <p style="font-size: 50px; font-weight: 600;">My Projects</p>
     </v-row>
     <hr class="headerLine" />
+    <v-row class="newProjectButtonRow">
+      <v-btn class="startProjectButton" outlined @click="openDialog()">Create project</v-btn>
+    </v-row>
     <!-- FEED CONTAINER -->
     <v-row class="projectsContainer">
       <!-- Create project card -->
-      <v-card @click="openDialog()" class="createProjectCard">
-        <v-row style="  align-self: center;">
-          <v-col style="max-width: 20%;">
-            <h1 style="font-size: 55px; color:rgba(104, 158, 255, 0.8) ">+</h1>
-          </v-col>
-          <v-col style="text-align: left; align-self: center;">
-            <p style="font-size: 25px; color: #5a5959; ">
-              Start new
-              <br />project
-            </p>
-          </v-col>
-        </v-row>
-      </v-card>
+
       <v-card
         class="projectCard"
         v-for="project in userProjects.slice().reverse()"
@@ -95,6 +86,21 @@ export default {
   padding-left: 5%;
   padding-right: 20%;
   display: flex;
+}
+.newProjectButtonRow {
+  display: flex;
+  margin-left: 5%;
+  max-width: 95%;
+  justify-content: flex-start;
+  .startProjectButton {
+    border-width: 3px;
+    border-color: rgb(44, 107, 255, 0.5);
+    color: black !important;
+    height: 3rem !important;
+    font-size: 19px !important;
+    margin-right: 3%;
+    width: 173px !important;
+  }
 }
 .headerContainer {
   max-width: 100%;

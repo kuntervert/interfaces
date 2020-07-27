@@ -60,8 +60,10 @@
         </v-list-item-content>
       </v-list-item>
     </v-list>
-    <div style="position: fixed; bottom: 0; width: 100%; height: 50px; background-color: black;">
-      <v-btn v-if="!mini" @click="logOut()">Log out</v-btn>
+    <div
+      style="display: flex; justify-content: space-evenly; position: fixed; bottom: 0; width: 100%; height: 50px;"
+    >
+      <v-btn style="align-self: center;" v-if="!mini" @click="logOut()">Log out</v-btn>
     </div>
   </v-navigation-drawer>
 </template>
@@ -74,7 +76,7 @@ export default {
   name: "NavDrawer",
   data() {
     return {
-      mini: false,
+      mini: true,
       items: [
         { title: "Home", icon: "mdi-home" },
         { title: "Inbox", icon: "mdi-checkbox-multiple-blank-outline" },

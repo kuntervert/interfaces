@@ -86,7 +86,7 @@ export default {
       if (state === "Projectview" && this.displaySize < 767) {
         document.getElementById("notificationBell").style.display = "none";
         document.getElementById("profileImage").style.display = "none";
-      } else {
+      } else if (state === "Projectview" && this.displaySize > 767) {
         document.getElementById("notificationBell").style.display =
           "inline-flex";
         document.getElementById("profileImage").style.display = "flex";

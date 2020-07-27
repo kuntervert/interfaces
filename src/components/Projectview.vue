@@ -19,10 +19,7 @@
                 <v-btn class="addPostButton" outlined @click="openPostDialog(null)">+ New post</v-btn>
                 <v-btn class="addPostButton" outlined @click="openShareDialog()">Invite members</v-btn>
               </v-row>
-              <h2
-                style="text-align: left"
-                v-if="chosenProject.posts.posts.length === 0"
-              >Nothing has been posted yet</h2>
+              <h2 v-if="chosenProject.posts.posts.length === 0">Nothing has been posted yet</h2>
               <v-card
                 @click="openPost(post._id)"
                 class="postCard"
@@ -208,8 +205,8 @@ export default {
   },
   methods: {
     openPostDialog(t) {
-      this.$store.state.postDialog = true;
       this.$store.state.postDialogType = t;
+      this.$store.state.postDialog = true;
       console.log(this.$store.state.postDialogType);
     },
     openShareDialog() {

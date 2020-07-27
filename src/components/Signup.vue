@@ -43,7 +43,11 @@
       ></v-text-field>
     </v-row>
     <v-row class="termsRow">
-      <v-checkbox style="padding: 0; margin: 0;" @click="termsDialog=true" v-model="termStatus"></v-checkbox>
+      <v-checkbox
+        style="padding: 0; margin: 0;"
+        @click="$store.state.termDialog = true"
+        v-model="termStatus"
+      ></v-checkbox>
       <p
         style="font-size: 15px;"
         role="button"
