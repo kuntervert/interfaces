@@ -6,6 +6,7 @@ const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const router = require('./router');
+const fs = require('fs');
 
 // Initialize express
 const app = express();
