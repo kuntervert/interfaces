@@ -9,7 +9,11 @@ const router = require('./router');
 
 // Initialize express
 const app = express();
-
+const options = {
+	key: fs.readFileSync('/etc/letsencrypt/live/devert.ee/privkey.pem'),
+	cert: fs.readFileSync('/etc/letsencrypt/live/devert.ee/cert.pem'),
+	ca: fs.readFileSync('/etc/letsencrypt/live/devert.ee/chain.pem')
+};
 // Middleware
 
 app.use(
@@ -24,7 +28,7 @@ app.use(cookieParser());
 app.use('/api', router);
 
 // Start express application
-app.listen(process.env.PORT, () => console.log(`App listening on port ${process.env.PORT}`));
+app.listen(process.env.PORT, options, () => console.log(`App listening on port ${process.env.PORT}`));
 
 // Export app
 module.exports = app;
