@@ -196,6 +196,7 @@ export default {
     loading: false,
   }),
   mounted() {
+    this.checkScreenSize();
     window.addEventListener("resize", function () {
       if (screen.width < 767) {
         document.getElementById("feedtabRow").style.display = "none";
@@ -370,6 +371,9 @@ export default {
     margin-left: 0;
     max-width: 95%;
     justify-content: space-around;
+  }
+  .feedTabRow {
+    visibility: hidden;
   }
 }
 </style>
