@@ -122,24 +122,7 @@ export default {
   box-shadow: 0 2px 5px #2c6bff !important;
   cursor: pointer;
 }
-.createProjectCard {
-  //   background-color: gray !important;
 
-  max-width: 35%;
-  width: 35%;
-  min-width: 35%;
-  margin-top: 5%;
-  margin-right: 5%;
-  border-radius: 25px !important;
-  display: flex;
-  justify-content: space-evenly;
-  padding-left: 2%;
-  padding-right: 2%;
-}
-.createProjectCard:hover {
-  cursor: pointer;
-  box-shadow: 0 2px 5px #2c6bff !important;
-}
 @media screen and (max-width: 1500px) {
   .projectsContainer {
     padding-right: 5%;

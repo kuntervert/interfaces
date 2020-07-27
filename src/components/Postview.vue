@@ -1,9 +1,7 @@
 <template>
   <div style="display: flex; width: 100%;" v-if="postData">
-    <div style="width: 30%; float: left" />
-    <div
-      style="max-width: 40%; width: 40%;margin-top: 150px; float: left; animation: fadeInUp; animation-duration: 0.5s;"
-    >
+    <div class="leftPadding" />
+    <div class="postColumn">
       <v-container
         style="padding-top: 5%; border-left: outset;
     border-right: inset; border-color: rgb(44, 107, 255, 0.6);     border-width: 1px; "
@@ -88,7 +86,7 @@
         </transition-group>
       </v-container>
     </div>
-    <div style="width: 30%; float-left" />
+    <div class="rightPadding" />
   </div>
 </template>
 
@@ -105,7 +103,7 @@ export default {
       commentBox: false,
       postData: null,
       commentContent: null,
-      showComments: false
+      showComments: false,
     };
   },
   mounted() {
@@ -117,7 +115,7 @@ export default {
       let postData = null;
       await axios
         .get(`/api/user/get-post/${this.$route.params.id}`)
-        .then(response => {
+        .then((response) => {
           postData = response.data;
         });
       this.postData = postData.posts[0];
@@ -134,15 +132,15 @@ export default {
         let newComment = {
           userId: this.$store.state.user._id,
           username: this.$store.state.user.username,
-          content: this.commentContent
+          content: this.commentContent,
         };
         await axios.post(`/api/user/new-comment/${postId}`, newComment);
         this.commentBox = false;
         this.getPost();
         this.showComments = true;
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -156,6 +154,22 @@ export default {
     cursor: pointer;
   }
 }
+.leftPadding {
+  width: 30%;
+  float: left;
+}
+.postColumn {
+  max-width: 40%;
+  width: 40%;
+  margin-top: 150px;
+  float: left;
+  animation: fadeInUp;
+  animation-duration: 0.5s;
+}
+.rightPadding {
+  width: 30%;
+  float: left;
+}
 .slide-fade-enter-active {
   transition: all 0.3s ease;
 }
@@ -166,5 +180,17 @@ export default {
 /* .slide-fade-leave-active below version 2.1.8 */ {
   transform: translateX(10px);
   opacity: 0;
+}
+@media only screen and (max-width: 767px) {
+  .leftPadding {
+    width: 5%;
+  }
+  .rightPadding {
+    width: 5%;
+  }
+  .postColumn {
+    max-width: 90%;
+    width: 90%;
+  }
 }
 </style>

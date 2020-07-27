@@ -209,4 +209,8 @@ hr {
   visibility: visible;
   opacity: 1;
 }
+@media only screen and (max-width: 767px) {
+  .drawerCard {
+  }
+}
 </style>

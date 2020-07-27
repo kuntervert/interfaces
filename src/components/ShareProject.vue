@@ -2,7 +2,7 @@
   <v-dialog @keydown.esc="closeDialog()" v-model="shareDialog" persistent max-width="512">
     <v-card class="mailSentSelectBox">
       <v-card-title style="justify-content: space-between;" class="headline">
-        Share project
+        Share project with
         <v-btn icon @click="closeDialog()">
           <v-icon>mdi-close</v-icon>
         </v-btn>
@@ -12,7 +12,7 @@
           <v-text-field
             @keydown.enter="shareProject(); closeDialog()"
             v-model="email"
-            label="Email"
+            label="New member's email"
             required
             style="max-width: 60%;"
           ></v-text-field>
@@ -36,10 +36,10 @@ export default {
   data: () => ({
     valid: false,
     title: null,
-    email: null
+    email: null,
   }),
   computed: {
-    ...mapGetters(["shareDialog", "chosenProject"])
+    ...mapGetters(["shareDialog", "chosenProject"]),
   },
   methods: {
     closeDialog() {
@@ -48,11 +48,11 @@ export default {
     async shareProject() {
       const project = {
         email: this.email,
-        projectId: this.chosenProject._id
+        projectId: this.chosenProject._id,
       };
       await axios.post("/api/user/share-project", project);
-    }
-  }
+    },
+  },
 };
 </script>
 

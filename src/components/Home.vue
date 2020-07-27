@@ -14,10 +14,10 @@
       <v-card @click="openDialog()" class="createProjectCard">
         <v-row style="  align-self: center;">
           <v-col style="max-width: 20%;">
-            <h1 style="font-size: 5vw; color:rgba(104, 158, 255, 0.8) ">+</h1>
+            <h1 style="font-size: 55px; color:rgba(104, 158, 255, 0.8) ">+</h1>
           </v-col>
-          <v-col style="text-align: left">
-            <p style="font-size: 2.3vw; color: #5a5959; ">
+          <v-col style="text-align: left; align-self: center;">
+            <p style="font-size: 25px; color: #5a5959; ">
               Start new
               <br />project
             </p>
@@ -129,9 +129,9 @@ export default {
 .createProjectCard {
   //   background-color: gray !important;
 
-  max-width: 35%;
-  width: 35%;
-  min-width: 35%;
+  max-width: 25%;
+  width: 25%;
+  min-width: 25%;
   margin-top: 5%;
   margin-right: 5%;
   border-radius: 25px !important;
@@ -150,6 +150,21 @@ export default {
 @media screen and (max-width: 1500px) {
   .projectsContainer {
     padding-right: 5%;
+  }
+}
+@media screen and (max-width: 767px) {
+  .projectsContainer {
+    padding-right: 5%;
+    display: block !important;
+  }
+  .projectCard {
+    min-width: 90% !important;
+    max-width: 90% !important;
+  }
+  .createProjectCard {
+    min-width: 50%;
+    max-width: 50%;
+    margin-bottom: 12%;
   }
 }
 </style>

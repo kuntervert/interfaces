@@ -3,7 +3,7 @@
     <v-tabs-items v-model="chosenTab">
       <!-- FEED TAB -->
       <v-tab-item>
-        <v-row align="center" class="feedTabRow">
+        <v-row id="feedtabRow" align="center" class="feedTabRow">
           <pre style="font-size: 12px; opacity: 0.7; white-space: pre">PROJECT   /   {{chosenProject.title}}   /   FEED</pre>
         </v-row>
         <v-row class="feedPRow">
@@ -14,8 +14,15 @@
         <v-container class="postsContainer">
           <v-progress-linear v-if="loading" indeterminate color="white" class="mb-0"></v-progress-linear>
           <v-row>
-            <v-col style="max-width: 40%;" v-if="chosenProject.posts.posts">
-              <h2 v-if="chosenProject.posts.posts.length === 0">Nothing has been posted yet</h2>
+            <v-col class="postsCol" v-if="chosenProject.posts.posts">
+              <v-row class="mobileButtonsRow">
+                <v-btn class="addPostButton" outlined @click="openPostDialog(null)">+ New post</v-btn>
+                <v-btn class="addPostButton" outlined @click="openShareDialog()">Invite members</v-btn>
+              </v-row>
+              <h2
+                style="text-align: left"
+                v-if="chosenProject.posts.posts.length === 0"
+              >Nothing has been posted yet</h2>
               <v-card
                 @click="openPost(post._id)"
                 class="postCard"
@@ -43,12 +50,12 @@
                 </v-row>
               </v-card>
             </v-col>
-            <v-col style="max-width: 30%">
+            <v-col class="postsButtonCol">
               <v-row>
                 <v-btn class="addPostButton" outlined @click="openPostDialog(null)">+ New post</v-btn>
               </v-row>
             </v-col>
-            <v-col style="max-width: 30%;">
+            <v-col class="postsButtonCol">
               <v-row>
                 <v-btn class="addPostButton" outlined @click="openShareDialog()">Invite members</v-btn>
               </v-row>
@@ -66,7 +73,7 @@
       </v-tab-item>
       <!-- QUESTIONS TAB -->
       <v-tab-item>
-        <v-row align="center" class="feedTabRow">
+        <v-row id="feedtabRow" align="center" class="feedTabRow">
           <pre style="font-size: 12px; opacity: 0.7; white-space: pre">PROJECT   /   {{chosenProject.title}}   /   QUESTIONS</pre>
         </v-row>
         <v-row class="feedPRow">
@@ -76,7 +83,14 @@
         <!-- QUESTIONS CONTAINER -->
         <v-container class="postsContainer">
           <v-row>
-            <v-col style="max-width: 40%;" v-if="chosenProject.posts.posts">
+            <v-col class="postsCol" v-if="chosenProject.posts.posts">
+              <v-row class="mobileButtonsRow">
+                <v-btn
+                  class="addPostButton"
+                  outlined
+                  @click="openPostDialog( 'Question')"
+                >Ask a question</v-btn>
+              </v-row>
               <h2 v-if="chosenProjectQuestionsOnly.length === 0">Nothing has been posted yet</h2>
 
               <v-card
@@ -106,7 +120,7 @@
                 </v-row>
               </v-card>
             </v-col>
-            <v-col style="max-width: 30%">
+            <v-col class="postsButtonCol">
               <v-btn
                 outlined
                 class="addPostButton"
@@ -118,7 +132,7 @@
       </v-tab-item>
       <!-- POSTS TAB -->
       <v-tab-item>
-        <v-row align="center" class="feedTabRow">
+        <v-row id="feedtabRow" align="center" class="feedTabRow">
           <pre style="font-size: 12px; opacity: 0.7; white-space: pre">PROJECT   /   {{chosenProject.title}}   /   POSTS</pre>
         </v-row>
         <v-row class="feedPRow">
@@ -128,7 +142,10 @@
         <!-- POSTS CONTAINER -->
         <v-container class="postsContainer">
           <v-row>
-            <v-col style="max-width: 40%;" v-if="chosenProject.posts.posts">
+            <v-col class="postsCol" v-if="chosenProject.posts.posts">
+              <v-row class="mobileButtonsRow">
+                <v-btn class="addPostButton" outlined @click="openPostDialog('Post')">Add post</v-btn>
+              </v-row>
               <h2 v-if="chosenProjectPostsOnly.length === 0">Nothing has been posted yet</h2>
 
               <v-card
@@ -157,7 +174,7 @@
                 </v-row>
               </v-card>
             </v-col>
-            <v-col style="max-width: 30%">
+            <v-col class="postsButtonCol">
               <v-btn outlined class="addPostButton" @click="openPostDialog('Post')">Add post</v-btn>
             </v-col>
           </v-row>
@@ -178,7 +195,16 @@ export default {
     search: null,
     loading: false,
   }),
-  mounted() {},
+  mounted() {
+    window.addEventListener("resize", function () {
+      if (screen.width < 767) {
+        document.getElementById("feedtabRow").style.display = "none";
+      } else if (screen.width >= 767) {
+        document.getElementById("feedtabRow").style.display = "flex";
+      }
+      console.log(this.displaySize);
+    });
+  },
   methods: {
     openPostDialog(t) {
       this.$store.state.postDialog = true;
@@ -192,6 +218,11 @@ export default {
       const userId = this.$store.state.user._id;
       store.commit("changePage", "Postview");
       this.$router.push(`/dashboard/${userId}/post/${id}`);
+    },
+    checkScreenSize() {
+      if (screen.width < 767) {
+        document.getElementById("feedtabRow").style.display = "none";
+      }
     },
   },
   computed: {
@@ -259,6 +290,7 @@ export default {
 }
 .postTitleRow {
   margin-left: 10%;
+  margin-right: 5%;
   max-width: 90%;
   max-height: 5rem;
 
@@ -275,10 +307,12 @@ export default {
 .postAuthorRow {
   margin-left: 10%;
   margin-top: 1%;
+  margin-right: 5%;
   opacity: 0.6;
 }
 .postContentRow {
   margin-left: 10%;
+  margin-right: 5%;
   margin-top: 5%;
   padding-bottom: 3%;
   max-width: 90%;
@@ -303,6 +337,12 @@ export default {
     font-size: 15px;
   }
 }
+.postsCol {
+  max-width: 40%;
+}
+.postsButtonCol {
+  max-width: 30%;
+}
 .addPostButton {
   border-width: 2px;
   border-color: rgb(44, 107, 255, 0.5);
@@ -314,5 +354,22 @@ export default {
 }
 .addPostButton:hover {
   background-color: rgb(44, 107, 255, 0.2) !important;
+}
+.mobileButtonsRow {
+  display: none;
+}
+@media only screen and (max-width: 767px) {
+  .postsButtonCol {
+    display: none;
+  }
+  .postsCol {
+    max-width: 90%;
+  }
+  .mobileButtonsRow {
+    display: flex;
+    margin-left: 0;
+    max-width: 95%;
+    justify-content: space-around;
+  }
 }
 </style>
