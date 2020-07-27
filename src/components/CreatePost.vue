@@ -65,15 +65,15 @@ export default {
     title: null,
     type: null,
     content: null,
-    types: [{ title: "Question" }, { title: "Post" }]
+    types: [{ title: "Question" }, { title: "Post" }],
   }),
   computed: {
-    ...mapGetters(["postDialog", "chosenProject", "postDialogType"])
+    ...mapGetters(["postDialog", "chosenProject", "postDialogType"]),
   },
   watch: {
     postDialogType(e) {
       this.type = e;
-    }
+    },
   },
   methods: {
     selectType(selected) {
@@ -96,14 +96,14 @@ export default {
           username: this.$store.state.user.username,
           title: this.title,
           type: this.type,
-          content: this.content
+          content: this.content,
         };
       } else if (this.title && !this.content) {
         post = {
           userId: this.$store.state.user._id,
           username: this.$store.state.user.username,
           title: this.title,
-          type: this.type
+          type: this.type,
         };
       } else {
         return;
@@ -113,15 +113,15 @@ export default {
       let posts = null;
       await axios
         .get(`/api/user/get-posts/${this.chosenProject._id}`)
-        .then(response => {
+        .then((response) => {
           posts = response.data;
         });
 
       this.$store.state.chosenProject.posts = posts;
       this.type = null;
       (this.title = null), (this.content = null);
-    }
-  }
+    },
+  },
 };
 </script>
 

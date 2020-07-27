@@ -50,9 +50,15 @@
         @click="$store.state.termDialog = true"
       >I agree to the terms and conditions</p>
     </v-row>
+    <v-row v-if="signupSuccess" class="loginPasswordRow">
+      <v-alert class="errorAlert" color="#2ac88e" icon="mdi-checkbox-marked-outline">
+        <strong>Signup was successful</strong>
+      </v-alert>
+    </v-row>
     <v-row class="signupButtonRow">
       <v-btn @click="signupUser()" tile class="loginButton" outlined>Sign up</v-btn>
     </v-row>
+
     <v-row class="changeViewToLogin">
       <p role="button" @click="tryLogin()">Login instead</p>
     </v-row>
@@ -73,10 +79,8 @@ export default {
     password: null,
     username: null,
     repeatedPassword: null,
-    emailRules: [
-      (v) => !!v || "E-mail is required",
-      (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
-    ],
+    signupSuccess: false,
+    emailRules: [(v) => /.+@.+\..+/.test(v) || "E-mail must be valid"],
   }),
   computed: {
     ...mapGetters(["termStatus", "isLoginView", "isSignupView", "termDialog"]),
@@ -97,7 +101,12 @@ export default {
           alert("Please accept the terms and conditions");
         } else {
           await axios.post("/api/user/signup", userInfo);
-          alert("Successful");
+          this.signupSuccess = true;
+          this.email = null;
+          this.password = null;
+          this.repeatedPassword = null;
+          this.username = null;
+          this.$store.state.termStatus = false;
         }
       }
     },

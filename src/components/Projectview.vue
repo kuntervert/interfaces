@@ -44,10 +44,14 @@
               </v-card>
             </v-col>
             <v-col style="max-width: 30%">
-              <v-btn class="addPostButton" outlined @click="openPostDialog(null)">+ New post</v-btn>
-              <v-btn class="addPostButton" outlined @click="openShareDialog()">Invite members</v-btn>
+              <v-row>
+                <v-btn class="addPostButton" outlined @click="openPostDialog(null)">+ New post</v-btn>
+              </v-row>
             </v-col>
             <v-col style="max-width: 30%;">
+              <v-row>
+                <v-btn class="addPostButton" outlined @click="openShareDialog()">Invite members</v-btn>
+              </v-row>
               <p style="text-align: left;">Project members:</p>
               <v-row
                 style=" margin-left: 0;"
