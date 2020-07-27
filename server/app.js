@@ -27,11 +27,8 @@ app.use(cookieParser());
 
 // API router
 app.use('/api', router);
-
+var http = require('https').Server(options, app);
 // Start express application
-
-https.createServer(options, () =>
-	console.log(`App listening on port ${process.env.PORT}`)
-).listen(process.env.PORT);
+http.listen(3000, () => console.log(`App listening on port ${process.env.PORT}`));
 // Export app
 module.exports = app;
