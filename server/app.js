@@ -7,7 +7,7 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const router = require('./router');
 const fs = require('fs');
-
+const https = require('https');
 // Initialize express
 const app = express();
 const options = {
@@ -29,7 +29,9 @@ app.use(cookieParser());
 app.use('/api', router);
 
 // Start express application
-app.listen(process.env.PORT, options, () => console.log(`App listening on port ${process.env.PORT}`));
 
+https.createServer(options, () =>
+	console.log(`App listening on port ${process.env.PORT}`)
+).listen(process.env.PORT);
 // Export app
 module.exports = app;
