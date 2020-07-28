@@ -111,7 +111,6 @@ export default {
         });
 
       this.$store.state.chosenProject.posts = posts;
-      console.log(this.$store.state.chosenProject.posts);
     },
     changePage(page) {
       console.log(page);

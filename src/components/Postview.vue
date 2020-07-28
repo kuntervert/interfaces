@@ -1,8 +1,12 @@
 <template>
-  <div style="display: flex; width: 100%;" v-if="postData">
+  <div style="display: flex; width: 100%;">
+    <v-progress-linear v-if="loading" indeterminate color="rgb(44, 107, 255, 0.5)" class="mb-0"></v-progress-linear>
+
     <div class="leftPadding" />
+
     <div class="postColumn">
       <v-container
+        v-if="postData"
         style="padding-top: 5%; border-left: outset;
     border-right: inset; border-color: rgb(44, 107, 255, 0.6);     border-width: 1px; "
       >
@@ -104,6 +108,7 @@ export default {
       postData: null,
       commentContent: null,
       showComments: false,
+      loading: false,
     };
   },
   mounted() {
@@ -112,6 +117,7 @@ export default {
   },
   methods: {
     async getPost() {
+      this.loading = true;
       let postData = null;
       await axios
         .get(`/api/user/get-post/${this.$route.params.id}`)
@@ -122,6 +128,7 @@ export default {
       this.postData.createdAt = moment(this.postData.createdAt).format(
         "DD MMMM YYYY, HH:mm"
       );
+      this.loading = false;
       console.log(this.postData);
       console.log(this.postData.comments.length);
     },

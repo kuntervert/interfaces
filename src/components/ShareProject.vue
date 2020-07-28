@@ -20,7 +20,12 @@
 
         <v-spacer></v-spacer>
         <v-row style="justify-content: space-evenly;">
-          <v-btn style=" color: white" color="#6353fa" class="mr-4" @click="shareProject()">Share</v-btn>
+          <v-btn
+            style=" color: white"
+            color="#6353fa"
+            class="mr-4"
+            @click="shareProject(); closeDialog()"
+          >Share</v-btn>
         </v-row>
       </v-container>
       <div class="bottomColor"></div>

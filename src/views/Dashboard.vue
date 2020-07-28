@@ -8,34 +8,47 @@
     </v-col>
     <v-col style="padding: 0;">
       <v-app-bar class="mainAppBar">
-        <div class="emptyDiv" v-if="chosenPage !== 'Projectview'" style="margin-right: 16.95%;"></div>
         <v-tabs v-if="chosenPage === 'Projectview'" v-model="chosenTab">
           <v-tab @click.prevent="changeTab(0)">Feed</v-tab>
           <v-tab @click.prevent="changeTab(1)">Questions</v-tab>
           <v-tab @click.prevent="changeTab(2)">Posts</v-tab>
         </v-tabs>
-        <v-text-field
-          v-if="chosenPage !== 'Projectview'"
-          outlined
-          rounded
-          placeholder="Search | ie. Projects, Posts, Questions"
-          append-icon="mdi-magnify"
-          v-model="search"
-        ></v-text-field>
-        <v-text-field
-          class="projectviewSearch"
-          v-if="chosenPage === 'Projectview'"
-          outlined
-          rounded
-          placeholder="Search | ie. Projects, Posts, Questions"
-          append-icon="mdi-magnify"
-          v-model="search"
-        ></v-text-field>
-        <v-icon class="upgradeIcon">mdi-apple-keyboard-caps</v-icon>
-        <p role="button" class="upgradeButton">Upgrade account</p>
-        <v-icon id="notificationBell" class="notificationIcon">mdi-bell-alert-outline</v-icon>
-        <p class="usernameOnBar" style="margin-left:5%; margin-right: 2%;">{{username}}</p>
-        <img id="profileImage" class="profileCircleImage" src="@/assets/profilepicture.jpg" />
+        <div class="emptyDiv" v-if="chosenPage !== 'Projectview'">
+          <v-text-field
+            class="regularSearch"
+            outlined
+            rounded
+            placeholder="Search | ie. Projects, Posts, Questions"
+            append-icon="mdi-magnify"
+            v-model="search"
+          ></v-text-field>
+        </div>
+
+        <div class="emptyMiddleDiv">
+          <v-text-field
+            v-if="chosenPage === 'Projectview'"
+            class="regularSearch"
+            outlined
+            rounded
+            placeholder="Search | ie. Projects, Posts, Questions"
+            append-icon="mdi-magnify"
+            v-model="search"
+          ></v-text-field>
+        </div>
+        <div class="tabContentDiv" v-if="chosenPage !== 'Projectview'">
+          <v-icon class="upgradeIcon">mdi-apple-keyboard-caps</v-icon>
+          <p role="button" class="upgradeButton">Upgrade account</p>
+          <v-icon id="notificationBell" class="notificationIcon">mdi-bell-alert-outline</v-icon>
+          <p class="usernameOnBar" style="margin-left:5%; margin-right: 2%;">{{username}}</p>
+          <img id="profileImage" class="profileCircleImage" src="@/assets/profilepicture.jpg" />
+        </div>
+        <div class="tabContentDivProject" v-if="chosenPage === 'Projectview'">
+          <v-icon class="upgradeIcon">mdi-apple-keyboard-caps</v-icon>
+          <p role="button" class="upgradeButton">Upgrade account</p>
+          <v-icon id="notificationBell" class="notificationIcon">mdi-bell-alert-outline</v-icon>
+          <p class="usernameOnBar" style="margin-left:5%; margin-right: 2%;">{{username}}</p>
+          <img id="profileImage" class="profileCircleImage" src="@/assets/profilepicture.jpg" />
+        </div>
       </v-app-bar>
       <router-view></router-view>
     </v-col>
@@ -119,33 +132,58 @@ export default {
     .v-toolbar__content {
       height: 80px !important;
     }
+
     .emptyDiv {
-      margin-right: 0 !important;
+      max-width: 35%;
+      width: 35%;
+      display: flex;
+      align-items: center;
+      padding-left: 4%;
+    }
+    .emptyMiddleDiv {
+      max-width: 30%;
+      width: 30%;
+    }
+    .tabContentDiv {
+      max-width: 35%;
+      width: 35%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+    .tabContentDivProject {
+      max-width: 35%;
+      width: 35%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
     }
     .v-tabs {
       max-width: fit-content;
+      min-width: 35%;
     }
     .v-tab {
       font-size: 0.975rem;
     }
-    .v-text-field {
-      max-width: 20%;
-      margin-left: 20%;
+    .regularSearch {
+      max-width: 100%;
+      // margin-left: 30%;
       margin-top: 30px;
     }
+
     .v-icon.notranslate.mdi.mdi-magnify.theme--light {
       color: #2c6bff !important;
     }
     .upgradeIcon {
-      margin-left: 7%;
+      // margin-left: 5%;
       color: #2c6bff;
     }
     .upgradeButton {
-      margin-left: 5px;
+      margin-left: 2%;
       color: #2c6bff;
     }
     .notificationIcon {
-      margin-left: 10%;
+      margin-left: 5%;
     }
     .profileCircleImage {
       max-width: 50px;
@@ -179,6 +217,9 @@ export default {
     .v-tab {
       font-size: 0.975rem;
     }
+    .tabContentDivProject {
+      display: none !important;
+    }
     .v-text-field {
       max-width: none !important;
       margin-left: 0% !important;
@@ -186,6 +227,12 @@ export default {
     }
     .v-icon.notranslate.mdi.mdi-magnify.theme--light {
       color: #2c6bff !important;
+    }
+    .emptyMiddleDiv {
+      display: none;
+    }
+    .emptyDiv {
+      min-width: 65%;
     }
     .upgradeIcon {
       margin-left: 0%;

@@ -1,5 +1,6 @@
 <template>
   <v-container class="headerContainer">
+    <v-progress-linear v-if="loading" indeterminate color="rgb(44, 107, 255, 0.5)" class="mb-0"></v-progress-linear>
     <v-tabs-items v-model="chosenTab">
       <!-- FEED TAB -->
       <v-tab-item>
@@ -7,18 +8,29 @@
           <pre style="font-size: 12px; opacity: 0.7; white-space: pre">PROJECT   /   {{chosenProject.title}}   /   FEED</pre>
         </v-row>
         <v-row class="feedPRow">
+          <v-btn
+            @click="refreshProjects()"
+            x-large
+            raised
+            min-width="80"
+            min-height="80"
+            icon
+            color="rgb(44, 107, 255, 0.5)"
+          >
+            <v-icon x-large width="80" height="80">mdi-refresh</v-icon>
+          </v-btn>
           <p style="font-size: 50px; font-weight: 600;">Feed</p>
         </v-row>
         <hr id="aosAnchor" class="headerLine" />
         <!-- FEED CONTAINER -->
         <v-container class="postsContainer">
-          <v-progress-linear v-if="loading" indeterminate color="white" class="mb-0"></v-progress-linear>
           <v-row>
             <v-col class="postsCol" v-if="chosenProject.posts.posts">
               <v-row class="mobileButtonsRow">
                 <v-btn class="addPostButton" outlined @click="openPostDialog(null)">+ New post</v-btn>
                 <v-btn class="addPostButton" outlined @click="openShareDialog()">Invite members</v-btn>
               </v-row>
+
               <h2 v-if="chosenProject.posts.posts.length === 0">Nothing has been posted yet</h2>
               <v-card
                 @click="openPost(post._id)"
@@ -185,7 +197,7 @@
 <script>
 import { mapGetters } from "vuex";
 import store from "../store";
-// import axios from "axios";
+import axios from "axios";
 export default {
   name: "Projectview",
   data: () => ({
@@ -222,6 +234,18 @@ export default {
         document.getElementById("feedtabRow").style.display = "none";
       }
     },
+    async refreshProjects() {
+      this.loading = true;
+      let posts = null;
+      await axios
+        .get(`/api/user/get-posts/${this.chosenProject._id}`)
+        .then((response) => {
+          posts = response.data;
+        });
+
+      this.$store.state.chosenProject.posts = posts;
+      this.loading = false;
+    },
   },
   computed: {
     ...mapGetters([
@@ -239,6 +263,10 @@ export default {
 .postsContainer {
   padding-left: 5%;
   padding-right: 5%;
+  .v-progress-linear {
+    max-width: 95%;
+    margin-top: 3%;
+  }
 }
 .headerContainer {
   max-width: 100%;
