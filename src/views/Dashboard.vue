@@ -187,7 +187,10 @@ export default {
   padding-top: 0;
   .mainAppBar {
     margin-left: 0%;
+    position: sticky;
     margin-right: 0%;
+    top: 0;
+    z-index: 199;
     height: 80px !important;
     background-color: white !important;
     .v-toolbar__content {
