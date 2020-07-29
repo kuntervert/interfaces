@@ -21,7 +21,7 @@
         :key="project.title"
         @click="changeProject(project.title, project._id)"
       >
-        <v-row style="margin-left: 10%; padding-top: 2%;">
+        <v-row style="margin-left: 5%; padding-top: 2%;">
           <p style="font-size: 25px; color: #5a5959; max-width: 90%;">{{project.title}}</p>
         </v-row>
         <v-row style="margin-left: 5%; margin-top: 1%; padding-bottom: 3%;">
@@ -160,12 +160,12 @@ export default {
 }
 @media screen and (max-width: 767px) {
   .projectsContainer {
-    padding-right: 5%;
+    padding-right: 5% !important;
     display: block !important;
   }
   .projectCard {
-    min-width: 90% !important;
-    max-width: 90% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
   }
   .createProjectCard {
     min-width: 50%;

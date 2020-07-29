@@ -123,8 +123,8 @@ export default {
 
 <style lang="scss">
 .drawerCard {
-  position: relative;
-  z-index: 200;
+  position: sticky;
+  z-index: 0;
   height: 100%;
   padding-top: 40px;
   top: 0;

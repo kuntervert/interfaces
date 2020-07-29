@@ -24,7 +24,7 @@
         <hr id="aosAnchor" class="headerLine" />
         <!-- FEED CONTAINER -->
         <v-container class="postsContainer">
-          <v-row>
+          <v-row class="postsContainerRow">
             <v-col class="postsCol" v-if="chosenProject.posts.posts">
               <v-row class="mobileButtonsRow">
                 <v-btn class="addPostButton" outlined @click="openPostDialog(null)">+ New post</v-btn>
@@ -68,13 +68,13 @@
               <v-row>
                 <v-btn class="addPostButton" outlined @click="openShareDialog()">Invite members</v-btn>
               </v-row>
-              <p style="text-align: left;">Project members:</p>
+              <p style="text-align: left; margin-top: 5%; font-size: 19px;">Project members:</p>
               <v-row
                 style=" margin-left: 0;"
                 v-for="user in chosenProject.users"
                 :key="user.userId"
               >
-                <p>{{user.username}}</p>
+                <p style="font-size: 21px;">{{user.username}}</p>
               </v-row>
             </v-col>
           </v-row>
@@ -91,7 +91,7 @@
         <hr class="headerLine" />
         <!-- QUESTIONS CONTAINER -->
         <v-container class="postsContainer">
-          <v-row>
+          <v-row class="postsContainerRow">
             <v-col class="postsCol" v-if="chosenProject.posts.posts">
               <v-row class="mobileButtonsRow">
                 <v-btn
@@ -150,7 +150,7 @@
         <hr class="headerLine" />
         <!-- POSTS CONTAINER -->
         <v-container class="postsContainer">
-          <v-row>
+          <v-row class="postsContainerRow">
             <v-col class="postsCol" v-if="chosenProject.posts.posts">
               <v-row class="mobileButtonsRow">
                 <v-btn class="addPostButton" outlined @click="openPostDialog('Post')">Add post</v-btn>
@@ -263,6 +263,7 @@ export default {
 .postsContainer {
   padding-left: 5%;
   padding-right: 5%;
+
   .v-progress-linear {
     max-width: 95%;
     margin-top: 3%;
@@ -389,7 +390,7 @@ export default {
     display: none;
   }
   .postsCol {
-    max-width: 90%;
+    max-width: 100%;
   }
   .mobileButtonsRow {
     display: flex;
@@ -399,6 +400,9 @@ export default {
   }
   .feedTabRow {
     visibility: hidden;
+  }
+  .postsContainerRow {
+    margin-left: 0;
   }
 }
 </style>

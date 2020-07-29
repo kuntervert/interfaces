@@ -124,8 +124,8 @@ export default {
 }
 
 @media screen and (max-width: 1500px) {
-  .projectsContainer {
-    padding-right: 5%;
-  }
+  // .projectsContainer {
+  //   padding-right: 5%;
+  // }
 }
 </style>

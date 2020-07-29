@@ -6,7 +6,7 @@
     <v-col class="drawerCol">
       <NavDrawer id="navDrawer" />
     </v-col>
-    <v-col style="padding: 0;">
+    <v-col style="padding: 0; max-width: calc(100vw - 56px)">
       <v-app-bar class="mainAppBar">
         <v-tabs v-if="chosenPage === 'Projectview'" v-model="chosenTab">
           <v-tab @click.prevent="changeTab(0)">Feed</v-tab>
@@ -14,26 +14,43 @@
           <v-tab @click.prevent="changeTab(2)">Posts</v-tab>
         </v-tabs>
         <div class="emptyDiv" v-if="chosenPage !== 'Projectview'">
-          <v-text-field
+          <v-autocomplete
             class="regularSearch"
             outlined
+            :items="searchResultsProjects"
+            item-text="title"
+            :search-input.sync="searchProjects"
+            :loading="searchLoading"
             rounded
-            placeholder="Search | ie. Projects, Posts, Questions"
+            placeholder="Search projects"
             append-icon="mdi-magnify"
-            v-model="search"
-          ></v-text-field>
+          ></v-autocomplete>
         </div>
 
         <div class="emptyMiddleDiv">
-          <v-text-field
-            v-if="chosenPage === 'Projectview'"
+          <v-autocomplete
             class="regularSearch"
+            v-if="chosenPage === 'Projectview'"
+            :items="searchResultsPosts"
+            item-text="title"
+            :search-input.sync="searchPosts"
+            :loading="searchLoading"
             outlined
             rounded
-            placeholder="Search | ie. Projects, Posts, Questions"
+            placeholder="Search posts and questions"
             append-icon="mdi-magnify"
-            v-model="search"
-          ></v-text-field>
+          >
+            <template slot="selection" slot-scope="data">
+              Title: {{ data.item.title }}
+              <br />
+              {{ data.item.username }}
+            </template>
+            <template slot="item" slot-scope="data">
+              Title: {{ data.item.title }}
+              <br />
+              Author: {{ data.item.username }}
+            </template>
+          </v-autocomplete>
         </div>
         <div class="tabContentDiv" v-if="chosenPage !== 'Projectview'">
           <v-icon class="upgradeIcon">mdi-apple-keyboard-caps</v-icon>
@@ -71,7 +88,11 @@ export default {
     ShareProject,
   },
   data: () => ({
-    search: null,
+    searchPosts: null,
+    searchProjects: null,
+    searchResultsProjects: [],
+    searchResultsPosts: [],
+    searchLoading: false,
     chosenTab: 0,
     dialog: true,
     displaySize: null,
@@ -92,6 +113,8 @@ export default {
       "navDrawer",
       "chosenPage",
       "username",
+      "userProjects",
+      "chosenProject",
     ]),
   },
   watch: {
@@ -105,8 +128,46 @@ export default {
         document.getElementById("profileImage").style.display = "flex";
       }
     },
+    searchProjects(val) {
+      console.log(val);
+      if (val === "") return;
+      else this.findProjectResults(val);
+    },
+    searchPosts(val) {
+      console.log(val);
+      if (val === "") this.searchResultsPosts = [];
+      else this.findPostResults(val);
+    },
   },
   methods: {
+    findProjectResults(val) {
+      this.searchLoading = true;
+
+      this.userProjects.forEach((object) => {
+        if (
+          Object.keys(object).some(function (k) {
+            return ~k.indexOf(val);
+          })
+        ) {
+          this.searchResultsProjects.push(object);
+        } else return;
+      });
+      this.searchLoading = false;
+    },
+    findPostResults(val) {
+      this.searchLoading = true;
+
+      this.chosenProject.posts.posts.forEach((object) => {
+        if (
+          Object.keys(object).some(function (k) {
+            return ~k.indexOf(val);
+          })
+        ) {
+          this.searchResultsPosts.push(object);
+        } else return;
+      });
+      this.searchLoading = false;
+    },
     changeTab(nr) {
       this.$store.state.chosenTab = nr;
     },
@@ -191,6 +252,16 @@ export default {
     }
   }
 }
+.v-menu__content {
+  overflow-wrap: anywhere;
+  max-width: min-content;
+}
+.v-list-item {
+  text-align: left !important;
+  overflow: hidden;
+  margin-top: 10px;
+  scrollbar-width: 0;
+}
 .drawerCol {
   height: 100vh;
   max-width: fit-content;
@@ -258,6 +329,11 @@ export default {
       max-width: 40px !important;
       border-radius: 50%;
     }
+  }
+}
+@media only screen and (max-width: 1050px) {
+  .upgradeIcon {
+    display: none !important;
   }
 }
 </style>
