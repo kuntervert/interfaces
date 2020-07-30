@@ -24,12 +24,14 @@
             rounded
             placeholder="Search projects"
             append-icon="mdi-magnify"
+            hide-no-data
           ></v-autocomplete>
         </div>
 
         <div class="emptyMiddleDiv">
           <v-autocomplete
             class="regularSearch"
+            hide-no-data
             v-if="chosenPage === 'Projectview'"
             :items="searchResultsPosts"
             item-text="title"
@@ -37,6 +39,9 @@
             :loading="searchLoading"
             outlined
             rounded
+            v-model="foundPost"
+            @change="openPost()"
+            return-object
             placeholder="Search posts and questions"
             append-icon="mdi-magnify"
           >
@@ -78,6 +83,7 @@ import NavDrawer from "@/components/NavDrawer.vue";
 import CreateProject from "@/components/CreateProject.vue";
 import CreatePost from "@/components/CreatePost.vue";
 import ShareProject from "@/components/ShareProject.vue";
+import store from "../store";
 // import axios from "axios";
 export default {
   name: "Dashboard",
@@ -93,6 +99,7 @@ export default {
     searchResultsProjects: [],
     searchResultsPosts: [],
     searchLoading: false,
+    foundPost: null,
     chosenTab: 0,
     dialog: true,
     displaySize: null,
@@ -129,43 +136,56 @@ export default {
       }
     },
     searchProjects(val) {
-      console.log(val);
-      if (val === "") return;
+      if (val === "") this.searchResultsProjects = [];
       else this.findProjectResults(val);
     },
     searchPosts(val) {
-      console.log(val);
       if (val === "") this.searchResultsPosts = [];
       else this.findPostResults(val);
     },
   },
   methods: {
+    openPost() {
+      console.log(this.foundPost);
+      const userId = this.$store.state.user._id;
+      store.commit("changePage", "Postview");
+      this.$router.push(`/dashboard/${userId}/post/${this.foundPost._id}`);
+    },
     findProjectResults(val) {
       this.searchLoading = true;
-
-      this.userProjects.forEach((object) => {
-        if (
-          Object.keys(object).some(function (k) {
-            return ~k.indexOf(val);
-          })
-        ) {
-          this.searchResultsProjects.push(object);
+      this.userProjects.forEach((obj) => {
+        if (obj.title.includes(val)) {
+          this.searchResultsProjects.push(obj);
         } else return;
       });
       this.searchLoading = false;
     },
     findPostResults(val) {
       this.searchLoading = true;
+      // let objectKeys = [];
+      // let newVal = val;
+      let searchedProject = this.chosenProject.posts.posts.slice(0);
 
-      this.chosenProject.posts.posts.forEach((object) => {
-        if (
-          Object.keys(object).some(function (k) {
-            return ~k.indexOf(val);
-          })
-        ) {
-          this.searchResultsPosts.push(object);
-        } else return;
+      searchedProject.forEach((obj) => {
+        if (obj.title.includes(val)) {
+          console.log(obj);
+          this.searchResultsPosts.push(obj);
+        }
+        // let newTitle = obj.title;
+        // objectKeys.push(newTitle);
       });
+
+      // let results = objectKeys.filter((s) => s.includes(newVal));
+
+      // results.forEach((result) => {
+      //   searchedProject.forEach((object1) => {
+      //     // object1.title = object1.title.toLowerCase();
+
+      //     if (Object.values(object1).includes(result)) {
+      //       this.searchResultsPosts.push(object1);
+      //     } else return;
+      //   });
+      // });
       this.searchLoading = false;
     },
     changeTab(nr) {

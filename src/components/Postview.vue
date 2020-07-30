@@ -4,7 +4,7 @@
 
     <div class="leftPadding" />
 
-    <div class="postColumn">
+    <div v-if="postData" class="postColumn">
       <v-container
         v-if="postData"
         style="padding-top: 5%; border-left: outset;
@@ -112,7 +112,6 @@ export default {
     };
   },
   mounted() {
-    console.log(this.$route.params.id);
     this.getPost();
   },
   methods: {
@@ -129,8 +128,6 @@ export default {
         "DD MMMM YYYY, HH:mm"
       );
       this.loading = false;
-      console.log(this.postData);
-      console.log(this.postData.comments.length);
     },
     async addComment(postId) {
       if (!this.commentContent.replace(/\s/g, "").length) {
