@@ -634,14 +634,14 @@ export default {
     }
   }
   .projectsRow {
-    display: none;
+    display: none !important;
     flex-flow: column;
   }
   .portfolioHeaderRow {
-    display: none;
+    display: none !important;
   }
   .separator {
-    display: none;
+    display: none !important;
   }
 }
 </style>
