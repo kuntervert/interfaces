@@ -27,7 +27,102 @@
       <v-row class="portfolioHeaderRow" no-gutters>
         <h1 id="solHeader" class="projectHeader">Recruitment tool</h1>
       </v-row>
-      <Mobilehome />
+      <!-- MOBILE  -->
+      <v-col class="projectDataColMobile" cols="12" sm="4" md="4" lg="4" xl="4">
+        <p
+          data-aos="fade-up"
+          data-aos-anchor-placement="top-center"
+          data-aos-delay="100"
+          class="projectDescP"
+        >Main view</p>
+        <hr
+          data-aos="fade-up"
+          data-aos-anchor-placement="top-center"
+          data-aos-delay="200"
+          class="projectDescLine"
+        />
+      </v-col>
+      <v-col class="projectDataColMobile" cols="12" sm="8" md="8" lg="8" xl="8">
+        <img
+          data-aos="fade-up"
+          data-aos-anchor-placement="top-center"
+          data-aos-delay="200"
+          class="projectImage"
+          src="../assets/recruitment tool/mainview.png"
+        />
+      </v-col>
+      <v-col class="projectDataColMobile" cols="12" sm="4" md="4" lg="4" xl="4">
+        <p
+          data-aos="fade-up"
+          data-aos-anchor-placement="top-center"
+          data-aos-delay="100"
+          class="projectDescP"
+        >Candidate view</p>
+        <hr
+          data-aos="fade-up"
+          data-aos-anchor-placement="top-center"
+          data-aos-delay="100"
+          class="projectDescLine"
+        />
+      </v-col>
+      <v-col id="fail" class="projectDataColMobile" cols="12" sm="8" md="8" lg="8" xl="8">
+        <img
+          data-aos="fade-up"
+          data-aos-anchor-placement="top-center"
+          data-aos-delay="300"
+          class="projectImage"
+          src="../assets/recruitment tool/candidate.png"
+        />
+      </v-col>
+
+      <v-col class="projectDataColMobile" cols="12" sm="4" md="4" lg="4" xl="4">
+        <p
+          data-aos="fade-up"
+          data-aos-anchor-placement="top-center"
+          data-aos-delay="100"
+          class="projectDescP"
+        >Built-in emailing</p>
+        <hr
+          data-aos="fade-up"
+          data-aos-anchor-placement="top-center"
+          data-aos-delay="100"
+          class="projectDescLine"
+        />
+      </v-col>
+      <v-col class="projectDataColMobile" cols="12" sm="8" md="8" lg="8" xl="8">
+        <img
+          data-aos="fade-up"
+          data-aos-anchor-placement="top-center"
+          data-aos-delay="300"
+          class="projectImage"
+          src="../assets/recruitment tool/email.png"
+        />
+      </v-col>
+      <v-col class="projectDataColMobile" cols="12" sm="4" md="4" lg="4" xl="4">
+        <p
+          data-aos="fade-up"
+          data-aos-anchor-placement="top-center"
+          data-aos-delay="100"
+          class="projectDescP"
+        >Campaign analytics</p>
+        <hr
+          data-aos="fade-up"
+          data-aos-anchor-placement="top-center"
+          data-aos-delay="100"
+          class="projectDescLine"
+        />
+      </v-col>
+      <v-col class="projectDataColMobile" cols="12" sm="8" md="8" lg="8" xl="8">
+        <img
+          data-aos="fade-up"
+          data-aos-anchor-placement="top-center"
+          data-aos-delay="300"
+          class="projectImage"
+          src="../assets/recruitment tool/analytics.png"
+        />
+      </v-col>
+      <!-- /MOBILE  -->
+
       <v-row class="projectsRow" no-gutters>
         <v-col class="projectDataCol" cols="12" sm="4" md="4" lg="4" xl="4">
           <p
@@ -52,7 +147,6 @@
             src="../assets/recruitment tool/mainview.png"
           />
         </v-col>
-
         <v-col id="fail" class="projectDataCol" cols="12" sm="8" md="8" lg="8" xl="8">
           <img
             data-aos="fade-up"
@@ -131,6 +225,101 @@
         <h1 id="solHeader" class="projectHeader">Project management</h1>
       </v-row>
       <v-row class="projectsRow" no-gutters>
+        <!-- MOBILE  -->
+        <v-col class="projectDataColMobile" cols="12" sm="4" md="4" lg="4" xl="4">
+          <p
+            data-aos="fade-up"
+            data-aos-anchor-placement="top-center"
+            data-aos-delay="100"
+            class="projectDescP"
+          >Signup</p>
+          <hr
+            data-aos="fade-up"
+            data-aos-anchor-placement="top-center"
+            data-aos-delay="200"
+            class="projectDescLine"
+          />
+        </v-col>
+        <v-col class="projectDataColMobile" cols="12" sm="8" md="8" lg="8" xl="8">
+          <img
+            data-aos="fade-up"
+            data-aos-anchor-placement="top-center"
+            data-aos-delay="200"
+            class="projectImage"
+            src="../assets/project dashboard/signup.png"
+          />
+        </v-col>
+        <v-col class="projectDataColMobile" cols="12" sm="4" md="4" lg="4" xl="4">
+          <p
+            data-aos="fade-up"
+            data-aos-anchor-placement="top-center"
+            data-aos-delay="100"
+            class="projectDescP"
+          >Dashboard</p>
+          <hr
+            data-aos="fade-up"
+            data-aos-anchor-placement="top-center"
+            data-aos-delay="100"
+            class="projectDescLine"
+          />
+        </v-col>
+        <v-col class="projectDataColMobile" cols="12" sm="8" md="8" lg="8" xl="8">
+          <img
+            data-aos="fade-up"
+            data-aos-anchor-placement="top-center"
+            data-aos-delay="300"
+            class="projectImage"
+            src="../assets/project dashboard/dashboard.png"
+          />
+        </v-col>
+
+        <v-col class="projectDataColMobile" cols="12" sm="4" md="4" lg="4" xl="4">
+          <p
+            data-aos="fade-up"
+            data-aos-anchor-placement="top-center"
+            data-aos-delay="100"
+            class="projectDescP"
+          >Project feed</p>
+          <hr
+            data-aos="fade-up"
+            data-aos-anchor-placement="top-center"
+            data-aos-delay="100"
+            class="projectDescLine"
+          />
+        </v-col>
+        <v-col class="projectDataColMobile" cols="12" sm="8" md="8" lg="8" xl="8">
+          <img
+            data-aos="fade-up"
+            data-aos-anchor-placement="top-center"
+            data-aos-delay="300"
+            class="projectImage"
+            src="../assets/project dashboard/feed.png"
+          />
+        </v-col>
+        <v-col class="projectDataColMobile" cols="12" sm="4" md="4" lg="4" xl="4">
+          <p
+            data-aos="fade-up"
+            data-aos-anchor-placement="top-center"
+            data-aos-delay="100"
+            class="projectDescP"
+          >Post view</p>
+          <hr
+            data-aos="fade-up"
+            data-aos-anchor-placement="top-center"
+            data-aos-delay="100"
+            class="projectDescLine"
+          />
+        </v-col>
+        <v-col class="projectDataColMobile" cols="12" sm="8" md="8" lg="8" xl="8">
+          <img
+            data-aos="fade-up"
+            data-aos-anchor-placement="top-center"
+            data-aos-delay="300"
+            class="projectImage"
+            src="../assets/project dashboard/post.png"
+          />
+        </v-col>
+        <!-- /MOBILE  -->
         <v-col class="projectDataCol" cols="12" sm="4" md="4" lg="4" xl="4">
           <p
             data-aos="fade-up"
@@ -234,6 +423,78 @@
         <h1 id="solHeader" class="projectHeader">API analytics</h1>
       </v-row>
       <v-row class="projectsRow" no-gutters>
+        <!-- MOBILE  -->
+        <v-col class="projectDataColMobile" cols="12" sm="4" md="4" lg="4" xl="4">
+          <p
+            data-aos="fade-up"
+            data-aos-anchor-placement="top-center"
+            data-aos-delay="100"
+            class="projectDescP"
+          >HR data calculator</p>
+          <hr
+            data-aos="fade-up"
+            data-aos-anchor-placement="top-center"
+            data-aos-delay="200"
+            class="projectDescLine"
+          />
+        </v-col>
+        <v-col class="projectDataColMobile" cols="12" sm="8" md="8" lg="8" xl="8">
+          <img
+            data-aos="fade-up"
+            data-aos-anchor-placement="top-center"
+            data-aos-delay="200"
+            class="projectImage"
+            src="../assets/calculator/calculator.png"
+          />
+        </v-col>
+        <v-col class="projectDataColMobile" cols="12" sm="4" md="4" lg="4" xl="4">
+          <p
+            data-aos="fade-up"
+            data-aos-anchor-placement="top-center"
+            data-aos-delay="100"
+            class="projectDescP"
+          >Geocollections search</p>
+          <hr
+            data-aos="fade-up"
+            data-aos-anchor-placement="top-center"
+            data-aos-delay="100"
+            class="projectDescLine"
+          />
+        </v-col>
+        <v-col class="projectDataColMobile" cols="12" sm="8" md="8" lg="8" xl="8">
+          <img
+            data-aos="fade-up"
+            data-aos-anchor-placement="top-center"
+            data-aos-delay="300"
+            class="projectImage"
+            src="../assets/calculator/specimen1.png"
+          />
+        </v-col>
+
+        <v-col class="projectDataColMobile" cols="12" sm="4" md="4" lg="4" xl="4">
+          <p
+            data-aos="fade-up"
+            data-aos-anchor-placement="top-center"
+            data-aos-delay="100"
+            class="projectDescP"
+          >Detail view</p>
+          <hr
+            data-aos="fade-up"
+            data-aos-anchor-placement="top-center"
+            data-aos-delay="100"
+            class="projectDescLine"
+          />
+        </v-col>
+        <v-col class="projectDataColMobile" cols="12" sm="8" md="8" lg="8" xl="8">
+          <img
+            data-aos="fade-up"
+            data-aos-anchor-placement="top-center"
+            data-aos-delay="300"
+            class="projectImage"
+            src="../assets/calculator/specimen2.png"
+          />
+        </v-col>
+        <!-- /MOBILE  -->
         <v-col class="projectDataCol" cols="12" sm="4" md="4" lg="4" xl="4">
           <p
             data-aos="fade-up"
@@ -439,7 +700,14 @@
         <hr class="separator" />
       </v-row>
       <v-row no-gutters class="portfolioHeaderRow">
-        <h1 id="solHeader" class="projectHeader">About me</h1>
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://www.linkedin.com/in/künter-evert-b22771194"
+          id="solHeader"
+          class="projectHeader"
+          style="color:#9e047a; "
+        >About me</a>
       </v-row>
     </v-row>
   </v-container>
@@ -448,12 +716,9 @@
 <script>
 import AOS from "aos";
 import "aos/dist/aos.css";
-import Mobilehome from "../views/ShowcaseMobile";
 export default {
   name: "Home",
-  components: {
-    Mobilehome,
-  },
+  components: {},
   mounted() {
     AOS.init();
   },
@@ -606,6 +871,9 @@ export default {
 .projectDataCol {
   margin-bottom: 50px;
 }
+.projectDataColMobile {
+  display: none;
+}
 @media only screen and (max-width: 599px) {
   .parentCont {
     .firstHeadRow {
@@ -633,15 +901,12 @@ export default {
       font-size: 40px;
     }
   }
-  .projectsRow {
-    display: none !important;
-    flex-flow: column;
+  .projectDataCol {
+    display: none;
   }
-  .portfolioHeaderRow {
-    display: none !important;
-  }
-  .separator {
-    display: none !important;
+  .projectDataColMobile {
+    display: initial;
+    margin-bottom: 50px;
   }
 }
 </style>
