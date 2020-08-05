@@ -8,7 +8,7 @@
 #### MongoDB
 #### JSON Web Tokens
 
-LIVE DEMO: https://devert.ee/
+LIVE DEMO: https://devert.ee/register
 
 ## Project setup
 ```
