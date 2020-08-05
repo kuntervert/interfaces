@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <div style="background-color:#c4c4c4; height: 100vh;  overflow-y: auto;" id="app">
+    <div style="background-color:#c4c4c4; height: 100vh; " id="app">
       <router-view />
     </div>
   </v-app>
@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: "App"
+  name: "App",
 };
 </script>
 
@@ -23,14 +23,14 @@ export default {
     margin-bottom: 0;
   }
 }
-#app {
-  overflow-y: scroll;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* Internet Explorer 10+ */
-}
-#app::-webkit-scrollbar {
-  /* WebKit */
-  width: 0;
-  height: 0;
-}
+// #app {
+//   overflow-y: scroll;
+//   scrollbar-width: none; /* Firefox */
+//   -ms-overflow-style: none; /* Internet Explorer 10+ */
+// }
+// #app::-webkit-scrollbar {
+//   /* WebKit */
+//   width: 0;
+//   height: 0;
+// }
 </style>

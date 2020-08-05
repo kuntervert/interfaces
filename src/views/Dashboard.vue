@@ -156,7 +156,7 @@ export default {
       this.userProjects.forEach((obj) => {
         if (obj.title.includes(val)) {
           this.searchResultsProjects.push(obj);
-        } else return;
+        } else return (this.searchLoading = false);
       });
       this.searchLoading = false;
     },
