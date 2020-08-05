@@ -310,6 +310,137 @@
     <v-row no-gutters class="portfolioHeaderRow">
       <h1 id="solHeader" class="projectHeader">Technology stack</h1>
     </v-row>
+    <v-row no-gutters class="technologyRow">
+      <v-col cols="12" md="3" sm="3" />
+      <!-- LEFT COL -->
+      <v-col class="technologyCol" cols="12" md="3" sm="3">
+        <v-btn
+          data-aos="zoom-in-right"
+          data-aos-anchor-placement="top-bottom"
+          data-aos-delay="100"
+          elevation="10"
+          outlined
+        >HTML</v-btn>
+        <v-btn
+          data-aos="zoom-in-right"
+          data-aos-anchor-placement="top-bottom"
+          data-aos-delay="100"
+          elevation="10"
+          outlined
+        >SCSS</v-btn>
+        <v-btn
+          data-aos="zoom-in-right"
+          data-aos-anchor-placement="top-bottom"
+          data-aos-delay="100"
+          elevation="10"
+          outlined
+        >Bootstrap</v-btn>
+        <v-btn
+          data-aos="zoom-in-right"
+          data-aos-anchor-placement="top-bottom"
+          data-aos-delay="100"
+          elevation="10"
+          outlined
+        >Vuetify</v-btn>
+        <v-btn
+          data-aos="zoom-in-right"
+          data-aos-anchor-placement="top-bottom"
+          data-aos-delay="100"
+          elevation="10"
+          outlined
+        >Javascript</v-btn>
+        <v-btn
+          data-aos="zoom-in-right"
+          data-aos-anchor-placement="top-bottom"
+          data-aos-delay="100"
+          elevation="10"
+          outlined
+        >npm</v-btn>
+        <v-btn
+          data-aos="zoom-in-right"
+          data-aos-anchor-placement="top-bottom"
+          data-aos-delay="100"
+          elevation="10"
+          outlined
+        >Chart.js</v-btn>
+        <v-btn
+          data-aos="zoom-in-right"
+          data-aos-anchor-placement="top-bottom"
+          data-aos-delay="100"
+          elevation="10"
+          outlined
+        >Git</v-btn>
+      </v-col>
+
+      <!-- RIGHT COL -->
+      <v-col class="technologyCol" cols="12" md="3" sm="3">
+        <v-btn
+          data-aos="zoom-in-left"
+          data-aos-anchor-placement="top-bottom"
+          data-aos-delay="100"
+          elevation="10"
+          outlined
+        >Vue.js</v-btn>
+        <v-btn
+          data-aos="zoom-in-left"
+          data-aos-anchor-placement="top-bottom"
+          data-aos-delay="100"
+          elevation="10"
+          outlined
+        >Vuex</v-btn>
+        <v-btn
+          data-aos="zoom-in-left"
+          data-aos-anchor-placement="top-bottom"
+          data-aos-delay="100"
+          elevation="10"
+          outlined
+        >Router</v-btn>
+
+        <v-btn
+          data-aos="zoom-in-left"
+          data-aos-anchor-placement="top-bottom"
+          data-aos-delay="100"
+          elevation="10"
+          outlined
+        >Node.js</v-btn>
+        <v-btn
+          data-aos="zoom-in-left"
+          data-aos-anchor-placement="top-bottom"
+          data-aos-delay="100"
+          elevation="10"
+          outlined
+        >Express</v-btn>
+        <v-btn
+          data-aos="zoom-in-left"
+          data-aos-anchor-placement="top-bottom"
+          data-aos-delay="100"
+          elevation="10"
+          outlined
+        >REST API</v-btn>
+        <v-btn
+          data-aos="zoom-in-left"
+          data-aos-anchor-placement="top-bottom"
+          data-aos-delay="100"
+          elevation="10"
+          outlined
+        >MongoDB (NoSQL)</v-btn>
+        <v-btn
+          data-aos="zoom-in-left"
+          data-aos-anchor-placement="top-bottom"
+          data-aos-delay="100"
+          elevation="10"
+          outlined
+        >JWT</v-btn>
+      </v-col>
+    </v-row>
+    <v-row no-gutters class="aboutRow">
+      <v-row no-gutters style="width: 100%; background: #fff2f2;">
+        <hr class="separator" />
+      </v-row>
+      <v-row no-gutters class="portfolioHeaderRow">
+        <h1 id="solHeader" class="projectHeader">About me</h1>
+      </v-row>
+    </v-row>
   </v-container>
 </template>
 
@@ -335,7 +466,7 @@ export default {
 .parentCont {
   padding: 0;
 
-  background-color: #fff;
+  background-color: #fff2f2;
   min-width: 100%;
   min-height: 100%;
   .firstHeadRow {
@@ -391,7 +522,8 @@ export default {
   height: 100%;
 }
 .aboutRow {
-  // background: #e8bedb;
+  background: #fff2f2;
+  margin-top: 50px;
 }
 .aboutHeaderRow {
   justify-content: center;
@@ -441,6 +573,25 @@ export default {
 }
 .projectsRow {
   background: #fff2f2;
+}
+.technologyRow {
+  background: #fff2f2;
+}
+.technologyCol {
+  display: grid;
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+  .v-btn {
+    cursor: default;
+    margin-top: 5px;
+    max-width: 100%;
+    height: 3.5rem !important;
+    font-size: 1.35rem !important;
+    text-transform: initial !important;
+    .v-ripple__container {
+      color: #700056;
+    }
+  }
 }
 .projectDescP {
   opacity: 0;
