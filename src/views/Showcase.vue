@@ -19,7 +19,7 @@
       <v-row class="solutionsHeaderRow" no-gutters>
         <h1 id="solHeader" class="solutionsHeader">My solutions</h1>
       </v-row>
-      <v-row no-gutters style="width: 100%; background: #fff2f2;">
+      <v-row no-gutters style="width: 100%; background: #e8f8ff;">
         <hr class="separator" />
       </v-row>
 
@@ -216,7 +216,7 @@
             class="projectDescLine"
           />
         </v-col>
-        <v-row no-gutters style="width: 100%; background: #fff2f2;">
+        <v-row no-gutters style="width: 100%; background: #e8f8ff;">
           <hr class="separator" />
         </v-row>
       </v-row>
@@ -414,7 +414,7 @@
           />
         </v-col>
       </v-row>
-      <v-row no-gutters style="width: 100%; background: #fff2f2;">
+      <v-row no-gutters style="width: 100%; background: #e8f8ff;">
         <hr class="separator" />
       </v-row>
       <!-- FIRST PROJECT -->
@@ -565,7 +565,7 @@
           />
         </v-col>
       </v-row>
-      <v-row no-gutters style="width: 100%; background: #fff2f2;">
+      <v-row no-gutters style="width: 100%; background: #e8f8ff;">
         <hr class="separator" />
       </v-row>
     </v-row>
@@ -696,7 +696,7 @@
       </v-col>
     </v-row>
     <v-row no-gutters class="aboutRow">
-      <v-row no-gutters style="width: 100%; background: #fff2f2;">
+      <v-row no-gutters style="width: 100%; background: #e8f8ff;">
         <hr class="separator" />
       </v-row>
       <v-row no-gutters class="portfolioHeaderRow">
@@ -706,7 +706,7 @@
           href="https://www.linkedin.com/in/künter-evert-b22771194"
           id="solHeader"
           class="projectHeader"
-          style="color:#9e047a; "
+          style="color:#0b1ec4; "
         >About me</a>
       </v-row>
     </v-row>
@@ -735,7 +735,7 @@ export default {
 .parentCont {
   padding: 0;
 
-  background-color: #fff2f2;
+  background-color: #e8f8ff;
   min-width: 100%;
   min-height: 100%;
   .firstHeadRow {
@@ -791,7 +791,7 @@ export default {
   height: 100%;
 }
 .aboutRow {
-  background: #fff2f2;
+  background: #e8f8ff;
   margin-top: 50px;
 }
 .aboutHeaderRow {
@@ -800,13 +800,13 @@ export default {
 .solutionsHeaderRow {
   width: 100%;
   justify-content: center;
-  background: #fff2f2;
+  background: #e8f8ff;
   padding-top: 15px;
 }
 .portfolioHeaderRow {
   width: 100%;
   justify-content: center;
-  background: #fff2f2;
+  background: #e8f8ff;
   padding-top: 15px;
 }
 .projectImage {
@@ -819,16 +819,16 @@ export default {
   font-size: 60px;
   margin-bottom: 30px;
   margin-top: 50px;
-  color: #9e047a;
+  color: #0b1ec4;
 }
 .projectHeader {
   font-size: 50px;
   margin-bottom: 50px;
-  color: #9e047a;
+  color: #0b1ec4;
 }
 .separator {
   width: 50%;
-  border: 2px solid #9e047a;
+  border: 2px solid #0b1ec4;
   margin-left: 25%;
   margin-bottom: 100px;
 }
@@ -841,10 +841,10 @@ export default {
   transition: all 2s ease;
 }
 .projectsRow {
-  background: #fff2f2;
+  background: #e8f8ff;
 }
 .technologyRow {
-  background: #fff2f2;
+  background: #e8f8ff;
 }
 .technologyCol {
   display: grid;
@@ -858,14 +858,14 @@ export default {
     font-size: 1.35rem !important;
     text-transform: initial !important;
     .v-ripple__container {
-      color: #700056;
+      color: #07199e;
     }
   }
 }
 .projectDescP {
   opacity: 0;
   font-size: 60px;
-  color: #700056;
+  color: #07199e;
   transition: all 2s ease;
 }
 .projectDataCol {
