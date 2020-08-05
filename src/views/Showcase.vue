@@ -772,8 +772,6 @@ export default {
     text-align: left;
     font-size: 70px;
     color: #fff;
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: black;
   }
 }
 .jobRow {
@@ -782,8 +780,6 @@ export default {
     text-align: left;
     font-size: 50px;
     color: #fff;
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: black;
   }
 }
 .item {
