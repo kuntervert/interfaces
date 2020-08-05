@@ -27,6 +27,7 @@
       <v-row class="portfolioHeaderRow" no-gutters>
         <h1 id="solHeader" class="projectHeader">Recruitment tool</h1>
       </v-row>
+      <Mobilehome />
       <v-row class="projectsRow" no-gutters>
         <v-col class="projectDataCol" cols="12" sm="4" md="4" lg="4" xl="4">
           <p
@@ -52,7 +53,7 @@
           />
         </v-col>
 
-        <v-col class="projectDataCol" cols="12" sm="8" md="8" lg="8" xl="8">
+        <v-col id="fail" class="projectDataCol" cols="12" sm="8" md="8" lg="8" xl="8">
           <img
             data-aos="fade-up"
             data-aos-anchor-placement="top-center"
@@ -447,9 +448,12 @@
 <script>
 import AOS from "aos";
 import "aos/dist/aos.css";
+import Mobilehome from "../views/ShowcaseMobile";
 export default {
   name: "Home",
-  components: {},
+  components: {
+    Mobilehome,
+  },
   mounted() {
     AOS.init();
   },
@@ -629,29 +633,15 @@ export default {
       font-size: 40px;
     }
   }
-  .projectsRow :nth-child(1) {
-    order: 0;
+  .projectsRow {
+    display: none;
+    flex-flow: column;
   }
-  .projectsRow :nth-child(2) {
-    order: 0;
+  .portfolioHeaderRow {
+    display: none;
   }
-  .projectsRow :nth-child(3) {
-    order: 3;
-  }
-  .projectsRow :nth-child(4) {
-    order: 2;
-  }
-  .projectsRow :nth-child(5) {
-    order: 2;
-  }
-  .projectsRow :nth-child(6) {
-    order: 2;
-  }
-  .projectsRow :nth-child(7) {
-    order: 2;
-  }
-  .projectsRow :nth-child(8) {
-    order: 2;
+  .separator {
+    display: none;
   }
 }
 </style>
