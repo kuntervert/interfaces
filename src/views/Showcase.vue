@@ -1,6 +1,7 @@
 <template>
   <v-container class="parentCont">
     <v-row class="firstHeadRow">
+      <v-parallax src="../assets/taust3.jpg" id="paraImage2" class="backgroundImage" />
       <v-col class="headRowCol1" cols="12" sm="7" md="7" lg="7" xl="7">
         <div class="profileImgDiv">
           <img class="profImg" src="../assets/profilepic.jpg" />
@@ -706,7 +707,7 @@
           href="https://www.linkedin.com/in/künter-evert-b22771194"
           id="solHeader"
           class="projectHeader"
-          style="color:#0b1ec4; "
+          style="color:#860152; "
         >About me</a>
       </v-row>
     </v-row>
@@ -721,6 +722,11 @@ export default {
   components: {},
   mounted() {
     AOS.init();
+    let para = document.getElementById("paraImage");
+    window.addEventListener("scroll", function () {
+      let value = window.scrollY;
+      para.style.top = value * 0.2 + "px";
+    });
   },
 };
 </script>
@@ -740,10 +746,16 @@ export default {
   min-height: 100%;
   .firstHeadRow {
     margin: 0;
-    background-image: url("../assets/25201.jpg");
     background-size: 100% 100%;
     min-height: 800px;
+    .backgroundImage {
+      position: absolute;
+      width: 100vw;
+      z-index: 1;
+      height: 800px !important;
+    }
     .headRowCol1 {
+      z-index: 2;
       // min-width: 300px;
       display: flex;
       align-items: center;
@@ -756,6 +768,7 @@ export default {
       }
     }
     .headRowCol2 {
+      z-index: 2;
       align-self: center;
     }
   }
@@ -815,16 +828,16 @@ export default {
   font-size: 60px;
   margin-bottom: 30px;
   margin-top: 50px;
-  color: #0b1ec4;
+  color: #860152;
 }
 .projectHeader {
   font-size: 50px;
   margin-bottom: 50px;
-  color: #0b1ec4;
+  color: #860152;
 }
 .separator {
   width: 50%;
-  border: 2px solid #0b1ec4;
+  border: 2px solid #860152;
   margin-left: 25%;
   margin-bottom: 100px;
 }
@@ -854,14 +867,14 @@ export default {
     font-size: 1.35rem !important;
     text-transform: initial !important;
     .v-ripple__container {
-      color: #07199e;
+      color: #860152;
     }
   }
 }
 .projectDescP {
   opacity: 0;
   font-size: 60px;
-  color: #07199e;
+  color: #860152;
   transition: all 2s ease;
 }
 .projectDataCol {
