@@ -24,7 +24,7 @@
     "mongoose": "^5.9.24",
     "nodemon": "^2.0.4",
     "shortid": "^2.2.15",
-    "validator": "^13.1.1",
+    "validator": "^13.7.0",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
     "vuetify": "^2.2.11",
